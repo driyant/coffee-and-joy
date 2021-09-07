@@ -7,14 +7,63 @@
   font-family: $font-poppins;
 }
 
-body {
-  font-family: $font-poppins;
-  font-size: 1rem;
-}
 
 nav {
   height: 60px;
   color: white;
   background-color: $accent-color;
-  @include flex(center,center,center);
+  @include flex(flex,center,center);
+  position: sticky;
+  top:0;
+
+  .wrapper {
+    width: 95%;
+    height: 100%;
+    border: 1px solid red;
+    @include flex(flex,space-between,center);
+  }
+
+  .title__logo {
+    font-family: $font-cinzel;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-decoration: underline;
+  }
+
+  .nav__links {
+    display: none;
+  }
+
+  .hamburger {
+    border: 1.5px solid white;
+    height: 40px;
+    width: 40px;
+    margin-right: 0.875rem;
+    @include flex(flex,space-evenly,center);
+    flex-flow: column;
+  
+    span {
+      background-color: white;
+      height: 2px;
+      width: 60%;
+    
+      &::before {
+        content: '';
+        background-color: white;
+        height: 2px;
+        width: 17px;
+        position: absolute;
+        transform: translateY(-8px);       
+      }
+
+      &::after {
+        content: '';
+        background-color: white;
+        height: 2px;
+        width: 23px;
+        position: absolute;
+        transform: translateY(8px);       
+      }
+    }
+  }
 }

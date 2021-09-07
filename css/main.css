@@ -12,21 +12,93 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-}
-
 nav {
   height: 60px;
   color: white;
   background-color: #a58cb3;
-  display: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+nav .wrapper {
+  width: 95%;
+  height: 100%;
+  border: 1px solid red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .title__logo {
+  font-family: "Cinzel", serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+nav .nav__links {
+  display: none;
+}
+
+nav .hamburger {
+  border: 1.5px solid white;
+  height: 40px;
+  width: 40px;
+  margin-right: 0.875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+nav .hamburger span {
+  background-color: white;
+  height: 2px;
+  width: 60%;
+}
+
+nav .hamburger span::before {
+  content: '';
+  background-color: white;
+  height: 2px;
+  width: 17px;
+  position: absolute;
+  -webkit-transform: translateY(-8px);
+          transform: translateY(-8px);
+}
+
+nav .hamburger span::after {
+  content: '';
+  background-color: white;
+  height: 2px;
+  width: 23px;
+  position: absolute;
+  -webkit-transform: translateY(8px);
+          transform: translateY(8px);
 }
 /*# sourceMappingURL=main.css.map */
