@@ -232,6 +232,21 @@ header {
           height: 40px;
           padding-left: 10px;
         }
+
+        button {
+          width: 80%;
+          height: 50px;
+          margin: 1.5rem 0;
+          background-color: $cta-button;
+          color:white;
+          box-shadow: 0.5px 1px 1px 1px rgb(98, 98, 98);
+          transition: all 0.5s;
+          cursor: pointer;
+          border: none;
+          font-family: $font-poppins;
+          font-size: 0.875rem;
+          font-weight: 400;
+        }
       }
     }
   }

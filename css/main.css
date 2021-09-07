@@ -337,4 +337,21 @@ header .brand__intro .brand__description p {
   height: 40px;
   padding-left: 10px;
 }
+
+.event .wrapper .form__group .form button {
+  width: 80%;
+  height: 50px;
+  margin: 1.5rem 0;
+  background-color: #f68e56;
+  color: white;
+  -webkit-box-shadow: 0.5px 1px 1px 1px #626262;
+          box-shadow: 0.5px 1px 1px 1px #626262;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
 /*# sourceMappingURL=main.css.map */
