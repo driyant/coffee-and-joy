@@ -4,6 +4,7 @@
 // Base style
 :root {
   font-size: 18px;
+  font-weight: 400;
   font-family: $font-poppins;
 }
 
@@ -179,6 +180,59 @@ header {
       width: 100%;
       object-fit: contain;
       object-fit: cover;
+    }
+  }
+}
+
+.event {
+  background: linear-gradient(180deg, #8560a8, #a690bb);
+  color: white;
+  .title {
+    text-align: center;
+    border-bottom: 2px solid white;
+    width: 30%;
+    padding-top: 1.5rem;
+    margin: auto auto;
+    font-weight: 400;
+  }
+  .wrapper {
+    text-align: center;
+    margin: 3rem auto 0 auto;
+    width: 95%;
+
+    .content__description {
+      h4 {
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+      p {
+        margin: 0.5rem 0;
+      }
+    }
+
+    .time__remaining {
+      margin: 1.5rem 0;
+      h1 {
+        font-weight: 400;
+        font-size: 2rem;
+      }
+    }
+
+    .form__group {
+      p {
+        font-size: 0.875rem;
+      }
+      .form {
+        @include flex(flex,space-between,center);
+        flex-direction: column;
+
+        input {
+          margin: 5px;
+          width: 80%;
+          height: 40px;
+          padding-left: 10px;
+        }
+      }
     }
   }
 }

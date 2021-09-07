@@ -9,6 +9,7 @@
 
 :root {
   font-size: 18px;
+  font-weight: 400;
   font-family: "Poppins", sans-serif;
 }
 
@@ -57,7 +58,7 @@ nav .nav__links {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: absolute;
-  background-color: #b177b6;
+  background-color: #95499c;
   top: 0px;
   left: 0px;
   width: 100vw;
@@ -269,5 +270,71 @@ header .brand__intro .brand__description p {
      object-fit: contain;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.event {
+  background: -webkit-gradient(linear, left top, left bottom, from(#8560a8), to(#a690bb));
+  background: linear-gradient(180deg, #8560a8, #a690bb);
+  color: white;
+}
+
+.event .title {
+  text-align: center;
+  border-bottom: 2px solid white;
+  width: 30%;
+  padding-top: 1.5rem;
+  margin: auto auto;
+  font-weight: 400;
+}
+
+.event .wrapper {
+  text-align: center;
+  margin: 3rem auto 0 auto;
+  width: 95%;
+}
+
+.event .wrapper .content__description h4 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.event .wrapper .content__description p {
+  margin: 0.5rem 0;
+}
+
+.event .wrapper .time__remaining {
+  margin: 1.5rem 0;
+}
+
+.event .wrapper .time__remaining h1 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.event .wrapper .form__group p {
+  font-size: 0.875rem;
+}
+
+.event .wrapper .form__group .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.event .wrapper .form__group .form input {
+  margin: 5px;
+  width: 80%;
+  height: 40px;
+  padding-left: 10px;
 }
 /*# sourceMappingURL=main.css.map */
