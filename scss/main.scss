@@ -19,7 +19,6 @@ nav {
   .wrapper {
     width: 95%;
     height: 100%;
-    border: 1px solid red;
     @include flex(flex,space-between,center);
   }
 
@@ -31,7 +30,31 @@ nav {
   }
 
   .nav__links {
-    display: none;
+    transform: scaleX(0);
+    @include transistion-ease(all,1s,ease-in-out);
+    position: absolute;
+    background-color: $main-color;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    @include flex(flex,center,center);
+    flex-direction: column;
+    list-style-type: none;
+    li {
+      margin: 1.5rem 0;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+    .img {
+      position: absolute;
+      top:-1000px
+    }
+    &.open {
+      transform: scalex(1);
+    }
   }
 
   .hamburger {
@@ -41,6 +64,7 @@ nav {
     margin-right: 0.875rem;
     @include flex(flex,space-evenly,center);
     flex-flow: column;
+    z-index: 2;
   
     span {
       background-color: white;

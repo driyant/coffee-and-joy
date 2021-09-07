@@ -33,7 +33,6 @@ nav {
 nav .wrapper {
   width: 95%;
   height: 100%;
-  border: 1px solid red;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,7 +52,49 @@ nav .title__logo {
 }
 
 nav .nav__links {
-  display: none;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  position: absolute;
+  background-color: #95499c;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  list-style-type: none;
+}
+
+nav .nav__links li {
+  margin: 1.5rem 0;
+}
+
+nav .nav__links li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav .nav__links .img {
+  position: absolute;
+  top: -1000px;
+}
+
+nav .nav__links.open {
+  -webkit-transform: scalex(1);
+          transform: scalex(1);
 }
 
 nav .hamburger {
@@ -74,6 +115,7 @@ nav .hamburger {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
+  z-index: 2;
 }
 
 nav .hamburger span {
