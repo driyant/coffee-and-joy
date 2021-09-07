@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
 * {
   margin: 0;
@@ -57,7 +57,7 @@ nav .nav__links {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   position: absolute;
-  background-color: #95499c;
+  background-color: #b177b6;
   top: 0px;
   left: 0px;
   width: 100vw;
@@ -196,5 +196,55 @@ nav .hamburger.open::after {
 
 .announcement img {
   margin: auto 15px;
+}
+
+header {
+  color: white;
+}
+
+header img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+header .brand__intro {
+  margin-top: -7px;
+  background-color: #95499c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  padding: 1rem;
+}
+
+header .brand__intro .brand__title {
+  margin: 1.5rem 0;
+}
+
+header .brand__intro .brand__title img {
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+header .brand__intro .brand__description {
+  text-align: center;
+}
+
+header .brand__intro .brand__description p {
+  font-weight: 300;
 }
 /*# sourceMappingURL=main.css.map */

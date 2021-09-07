@@ -33,7 +33,7 @@ nav {
     transform: scaleX(0);
     @include transistion-ease(all,0.5s,ease-in-out);
     position: absolute;
-    background-color: $main-color;
+    background-color: $navlinks-color;
     top: 0px;
     left: 0px;
     width: 100vw;
@@ -124,5 +124,39 @@ nav {
   width: 100%;
   img {
     margin: auto 15px;
+  }
+}
+
+header {
+  color: white;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .brand__intro {
+    margin-top: -7px;
+    background-color: $main-color;
+    @include flex(flex,space-between,center);
+    flex-flow: column;
+    padding: 1rem;
+
+    .brand__title {
+      margin: 1.5rem 0;
+      img {
+        border: 2px solid white;
+        border-radius: 50%;
+        padding: 3px;
+      }
+    }
+    
+    .brand__description {
+      text-align: center;
+
+      p {
+        font-weight: 300;
+      }
+    }
   }
 }
