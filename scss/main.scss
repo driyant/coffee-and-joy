@@ -1,1 +1,20 @@
-@import "__config.scss"
+@import "_config.scss";
+
+
+// Base style
+:root {
+  font-size: 18px;
+  font-family: $font-poppins;
+}
+
+body {
+  font-family: $font-poppins;
+  font-size: 1rem;
+}
+
+nav {
+  height: 60px;
+  color: white;
+  background-color: $accent-color;
+  @include flex(center,center,center);
+}

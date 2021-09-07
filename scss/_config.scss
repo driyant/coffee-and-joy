@@ -1,0 +1,29 @@
+// Reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+$font-poppins : 'Poppins', sans-serif;
+$font-cinzel : 'Cinzel', serif;
+
+// Color
+$accent-color: #a58cb3;
+$main-color: #95499c;
+
+
+// Display
+@mixin flex($display, $justify-content, $align-item) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-item;
+}
+
+// Transistion
+@mixin transistion-ease($all, $time, $ease) {
+  transition: $all $time $ease;
+}
