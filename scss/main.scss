@@ -58,35 +58,59 @@ nav {
   }
 
   .hamburger {
-    border: 1.5px solid white;
+    @include transistion-ease(all,1s,ease);
+    border: 2px solid white;
     height: 40px;
     width: 40px;
     margin-right: 0.875rem;
     @include flex(flex,space-evenly,center);
     flex-flow: column;
     z-index: 2;
+
+    
+    &::before {
+      content: '';
+      background-color: white;
+      height: 2px;
+      width: 20px;
+      position: absolute;
+      transform: translateY(-8px);
+      border-radius: 15px;
+      @include transistion-ease(all,1s,ease);       
+    }
   
     span {
       background-color: white;
       height: 2px;
-      width: 60%;
-    
-      &::before {
-        content: '';
-        background-color: white;
-        height: 2px;
-        width: 17px;
-        position: absolute;
-        transform: translateY(-8px);       
-      }
+      width: 20px;
+      border-radius: 15px;
+      @include transistion-ease(all,1s,ease);   
+    }
 
+    
+    &::after {
+      content: '';
+      background-color: white;
+      height: 2px;
+      width: 20px;
+      position: absolute;
+      transform: translateY(8px);
+      border-radius: 15px;
+      @include transistion-ease(all,1s,ease);          
+    }
+
+    &.open {
+      border-radius: 50%;
+      
+      span {
+        transform: translateX(-35px);
+        background: transparent;
+      }
+      &::before {
+        transform: rotate(45deg) translate(0px,0px);
+      }
       &::after {
-        content: '';
-        background-color: white;
-        height: 2px;
-        width: 23px;
-        position: absolute;
-        transform: translateY(8px);       
+        transform: rotate(-45deg) translate(0px, 0px);
       }
     }
   }

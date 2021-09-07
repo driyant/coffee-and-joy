@@ -98,7 +98,9 @@ nav .nav__links.open {
 }
 
 nav .hamburger {
-  border: 1.5px solid white;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  border: 2px solid white;
   height: 40px;
   width: 40px;
   margin-right: 0.875rem;
@@ -118,29 +120,58 @@ nav .hamburger {
   z-index: 2;
 }
 
-nav .hamburger span {
-  background-color: white;
-  height: 2px;
-  width: 60%;
-}
-
-nav .hamburger span::before {
+nav .hamburger::before {
   content: '';
   background-color: white;
   height: 2px;
-  width: 17px;
+  width: 20px;
   position: absolute;
   -webkit-transform: translateY(-8px);
           transform: translateY(-8px);
+  border-radius: 15px;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
-nav .hamburger span::after {
+nav .hamburger span {
+  background-color: white;
+  height: 2px;
+  width: 20px;
+  border-radius: 15px;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+nav .hamburger::after {
   content: '';
   background-color: white;
   height: 2px;
-  width: 23px;
+  width: 20px;
   position: absolute;
   -webkit-transform: translateY(8px);
           transform: translateY(8px);
+  border-radius: 15px;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+nav .hamburger.open {
+  border-radius: 50%;
+}
+
+nav .hamburger.open span {
+  -webkit-transform: translateX(-35px);
+          transform: translateX(-35px);
+  background: transparent;
+}
+
+nav .hamburger.open::before {
+  -webkit-transform: rotate(45deg) translate(0px, 0px);
+          transform: rotate(45deg) translate(0px, 0px);
+}
+
+nav .hamburger.open::after {
+  -webkit-transform: rotate(-45deg) translate(0px, 0px);
+          transform: rotate(-45deg) translate(0px, 0px);
 }
 /*# sourceMappingURL=main.css.map */
