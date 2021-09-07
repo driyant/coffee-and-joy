@@ -54,8 +54,8 @@ nav .title__logo {
 nav .nav__links {
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   position: absolute;
   background-color: #95499c;
   top: 0px;
@@ -118,6 +118,7 @@ nav .hamburger {
       -ms-flex-flow: column;
           flex-flow: column;
   z-index: 2;
+  cursor: pointer;
 }
 
 nav .hamburger::before {
