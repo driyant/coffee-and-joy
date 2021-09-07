@@ -175,4 +175,26 @@ nav .hamburger.open::after {
   -webkit-transform: rotate(-45deg) translate(0px, 0px);
           transform: rotate(-45deg) translate(0px, 0px);
 }
+
+.announcement {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  padding: 0.575rem;
+  width: 100%;
+}
+
+.announcement img {
+  margin: auto 15px;
+}
 /*# sourceMappingURL=main.css.map */

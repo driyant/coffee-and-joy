@@ -116,3 +116,13 @@ nav {
     }
   }
 }
+
+.announcement {
+  @include flex(flex,center,center);
+  flex-flow: row;
+  padding: 0.575rem;
+  width: 100%;
+  img {
+    margin: auto 15px;
+  }
+}
