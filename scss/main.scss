@@ -160,3 +160,25 @@ header {
     }
   }
 }
+
+.about__us {
+  h2 {
+    text-align: center;
+    border-bottom: 2px solid black;
+    width: 30%;
+    margin: 1rem auto;
+  }
+  .about__description {
+    padding: 1rem;
+  }
+
+  .image__about {
+    padding: 1rem;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      object-fit: cover;
+    }
+  }
+}

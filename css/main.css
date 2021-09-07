@@ -247,4 +247,27 @@ header .brand__intro .brand__description {
 header .brand__intro .brand__description p {
   font-weight: 300;
 }
+
+.about__us h2 {
+  text-align: center;
+  border-bottom: 2px solid black;
+  width: 30%;
+  margin: 1rem auto;
+}
+
+.about__us .about__description {
+  padding: 1rem;
+}
+
+.about__us .image__about {
+  padding: 1rem;
+}
+
+.about__us .image__about img {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 /*# sourceMappingURL=main.css.map */
