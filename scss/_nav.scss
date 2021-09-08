@@ -25,7 +25,7 @@ nav {
     transform: scaleX(0);
     @include transistion-ease(all,0.5s,ease-in-out);
     position: absolute;
-    background-color: $navlinks-color;
+    background-color: #847187;
     top: 0px;
     left: 0px;
     width: 100vw;
