@@ -20,7 +20,6 @@
     @include flex(flex,space-between,start);
     flex-flow: column;
     padding-left: 1.5rem;
-    // border: 1px solid red;
 
     @include tablet {
       display: grid;
@@ -31,8 +30,11 @@
     .contact__description {
       list-style-type: none;
       font-weight: 300;
-      @include tablet {
-        li {
+      color: white;
+      
+      li {
+        margin: 0.5rem 0;
+        @include tablet {
           margin: 1rem 0;
         }
       }
@@ -44,13 +46,19 @@
       text-decoration: underline;
       text-underline-position: under;
       font-weight: 300;
-      @include tablet {
-        margin:0;
-        li {
+      li {
+        margin: 0.5rem 0;
+        @include tablet {
+          margin:0;
           margin: 1rem 0;
           padding-left: 4rem;
+          
+        }
+        a {
+          color: white;
         }
       }
+      
     }
 
     .social__links {
@@ -58,8 +66,13 @@
       text-decoration: underline;
       text-underline-position: under;
       font-weight: 300;
-      @include tablet {
-        li {
+      color: white;
+      li {
+        margin: 0.5rem 0;
+        a {
+          color: white;
+        }
+        @include tablet {
           margin: 1rem 0;
           padding-left: 4rem;
         }
