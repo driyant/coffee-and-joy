@@ -10,6 +10,7 @@
 
 
 nav {
+  z-index: 999;
   height: 60px;
   color: white;
   background-color: $accent-color;
@@ -31,6 +32,7 @@ nav {
   }
 
   .nav__links {
+    z-index: 99;
     transform: scaleX(0);
     @include transistion-ease(all,0.5s,ease-in-out);
     position: absolute;
@@ -66,7 +68,7 @@ nav {
     margin-right: 0.875rem;
     @include flex(flex,space-evenly,center);
     flex-flow: column;
-    z-index: 2;
+    z-index: 9999;
     cursor: pointer;
 
     
@@ -250,4 +252,97 @@ header {
       }
     }
   }
+}
+
+.our__menu {
+  background-image: url("/assets/bg-menu.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include flex(flex,space-between,center);
+  flex-flow: column;
+
+  .title {
+    text-align: center;
+    margin:auto auto;
+    border-bottom: 2px solid black;
+    width: 50%;
+    font-weight: 400;
+    padding-top: 1.5rem;
+  }
+
+  .menu__links {
+    @include flex(flex, space-evenly, center);
+    flex-flow: row wrap;
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: black;
+    height: 250px;
+    li {
+      background-color: $menu-links;
+      margin: 0.5rem 1rem;
+      font-size: 0.875rem;
+      padding: 12px;
+      border-radius: 25px;
+      width: 150px;
+      cursor: pointer;
+      @include transistion-ease(all,0.5s,ease);
+
+      &.active {
+        background-color: $main-color;
+        color: white;
+      }
+
+      &:hover {
+        background-color: $main-color;
+        color: white;
+      }
+    }
+  }
+
+  .content__menu {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap:30px;
+    
+    .menu {
+      position: relative;
+      @include flex(flex,center,center);
+      flex-flow: column wrap;
+      width: 95%;
+      margin: auto auto;
+      border-radius: 20px 20px 20px 20px;            
+      img {
+         width: 100%;
+         object-fit: cover;
+         object-position: center;
+         border-radius: 20px 20px 20px 20px;
+      }
+      .menu__description {
+        position: absolute;
+        bottom: 0;
+        background-color: #ffffff;
+        opacity: 79%;
+        height: 250px;
+        @include flex(flex,space-evenly,start);
+        flex-direction: column; 
+        border-radius: 20px 20px 20px 20px;
+        padding: 0.5rem;
+        
+        h4 {
+          font-weight: 400;
+          font-size: 22px;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
 }

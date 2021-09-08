@@ -14,6 +14,7 @@
 }
 
 nav {
+  z-index: 999;
   height: 60px;
   color: white;
   background-color: #a58cb3;
@@ -53,6 +54,7 @@ nav .title__logo {
 }
 
 nav .nav__links {
+  z-index: 99;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transition: all 0.5s ease-in-out;
@@ -118,7 +120,7 @@ nav .hamburger {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
-  z-index: 2;
+  z-index: 9999;
   cursor: pointer;
 }
 
@@ -353,5 +355,150 @@ header .brand__intro .brand__description p {
   font-family: "Poppins", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
+}
+
+.our__menu {
+  background-image: url("/assets/bg-menu.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.our__menu .title {
+  text-align: center;
+  margin: auto auto;
+  border-bottom: 2px solid black;
+  width: 50%;
+  font-weight: 400;
+  padding-top: 1.5rem;
+}
+
+.our__menu .menu__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  width: 100%;
+  list-style-type: none;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: black;
+  height: 250px;
+}
+
+.our__menu .menu__links li {
+  background-color: #d7d7d7;
+  margin: 0.5rem 1rem;
+  font-size: 0.875rem;
+  padding: 12px;
+  border-radius: 25px;
+  width: 150px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.our__menu .menu__links li.active {
+  background-color: #95499c;
+  color: white;
+}
+
+.our__menu .menu__links li:hover {
+  background-color: #95499c;
+  color: white;
+}
+
+.our__menu .content__menu {
+  margin: 2rem 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  gap: 30px;
+}
+
+.our__menu .content__menu .menu {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  width: 95%;
+  margin: auto auto;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.our__menu .content__menu .menu img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.our__menu .content__menu .menu .menu__description {
+  position: absolute;
+  bottom: 0;
+  background-color: #ffffff;
+  opacity: 79%;
+  height: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 20px 20px 20px 20px;
+  padding: 0.5rem;
+}
+
+.our__menu .content__menu .menu .menu__description h4 {
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.our__menu .content__menu .menu .menu__description p {
+  font-size: 1rem;
 }
 /*# sourceMappingURL=main.css.map */
