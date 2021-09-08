@@ -1,336 +1,43 @@
 @import "_config.scss";
+
+/*
+* Navigation
+*/
 @import "__nav.scss";
 
-.announcement {
-  @include flex(flex,center,center);
-  flex-flow: row;
-  padding: 0.575rem;
-  width: 100%;
-  img {
-    margin: auto 15px;
-  }
-}
+/*
+* Announcement
+*/
+@import "__announcement.scss";
 
-header {
-  color: white;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .brand__intro {
-    margin-top: -7px;
-    height: 500px;
-    background-color: $main-color;
-    @include flex(flex,space-between,center);
-    flex-flow: column;
-    padding: 1rem;
+/*
+* Header
+*/
+@import "_header.scss";
 
-    .brand__title {
-      margin: 1rem 0 0rem 0;
+/*
+* About Us
+*/
+@import "_about.scss";
 
-      .title {
-        font-family: $font-cinzel;
-        font-weight: 400;
-        text-decoration: underline;
-        text-underline-position: under;
-      }
-    }
+/*
+* Event
+*/
+@import "_event.scss";
 
-     img {
-        margin: 1.5rem 0;
-        border: 2px solid white;
-        border-radius: 50%;
-        padding: 3px;
-        height: 200px;
-        width: 200px;
-      }
+/*
+* Our Menu
+*/
+@import "_our-menu.scss";
 
-    .brand__description {
-      text-align: center;
+/*
+* Testimonials
+*/
+@import "_testimonials.scss";
 
-      p {
-        font-weight: 300;
-      }
-    }
-  }
-}
-
-.about__us {
-  .title {
-    margin: 1rem 0;
-    text-align: center;
-    font-weight: 400;
-    text-decoration:underline;
-    text-underline-position: under;
-    text-decoration-thickness: 2px;
-  }
-
-  .about__description {
-    padding: 1rem;
-  }
-
-  .image__about {
-    padding: 1rem;
-
-    img {
-      width: 100%;
-      object-fit: contain;
-      object-fit: cover;
-    }
-  }
-}
-
-.event {
-  background: linear-gradient(180deg, #8560a8, #a690bb);
-  color: white;
-
-    .title {
-    padding-top: 1rem;
-    text-align: center;
-    font-weight: 400;
-    text-decoration:underline;
-    text-underline-position: under;
-    text-decoration-thickness: 2px;
-  }
-
-  .wrapper {
-    text-align: center;
-    margin: 3rem auto 0 auto;
-    width: 95%;
-
-    .content__description {
-      h4 {
-        font-weight: 400;
-        text-transform: uppercase;
-      }
-      p {
-        margin: 0.5rem 0;
-      }
-    }
-
-    .time__remaining {
-      margin: 1.5rem 0;
-      h1 {
-        font-weight: 400;
-        font-size: 2rem;
-      }
-    }
-
-    .form__group {
-      p {
-        font-size: 0.875rem;
-      }
-      .form {
-        @include flex(flex,space-between,center);
-        flex-direction: column;
-
-        input {
-          margin: 5px;
-          width: 80%;
-          height: 40px;
-          padding-left: 10px;
-        }
-
-        button {
-          width: 80%;
-          height: 50px;
-          margin: 1.5rem 0;
-          background-color: $cta-button;
-          color:white;
-          box-shadow: 0.5px 1px 1px 1px rgb(98, 98, 98);
-          transition: all 0.5s;
-          cursor: pointer;
-          border: none;
-          font-family: $font-poppins;
-          font-size: 0.875rem;
-          font-weight: 400;
-        }
-      }
-    }
-  }
-}
-
-.our__menu {
-  background-image: url("/assets/bg-menu.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @include flex(flex,space-between,center);
-  flex-flow: column;
-
-  .title {
-    margin: 1rem 0;
-    text-align: center;
-    font-weight: 400;
-    text-decoration:underline;
-    text-underline-position: under;
-    text-decoration-thickness: 2px;
-  }
+/*
+* Contact
+*/
+@import "_contact";
 
 
-  .menu__links {
-    @include flex(flex, space-evenly, center);
-    flex-flow: row wrap;
-    width: 100%;
-    list-style-type: none;
-    text-align: center;
-    margin-top: 1.5rem;
-    color: black;
-    height: 250px;
-    li {
-      background-color: $menu-links;
-      margin: 0.5rem 1rem;
-      font-size: 0.875rem;
-      padding: 12px;
-      border-radius: 25px;
-      width: 150px;
-      cursor: pointer;
-      @include transistion-ease(all,0.5s,ease);
-
-      &.active {
-        background-color: $main-color;
-        color: white;
-      }
-
-      &:hover {
-        background-color: $main-color;
-        color: white;
-      }
-    }
-  }
-
-  .content__menu {
-    margin: 2rem 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap:30px;
-    
-    .menu {
-      position: relative;
-      @include flex(flex,center,center);
-      flex-flow: column wrap;
-      width: 95%;
-      margin: auto auto;
-      border-radius: 20px 20px 20px 20px;            
-      img {
-         width: 100%;
-         object-fit: cover;
-         object-position: center;
-         border-radius: 20px 20px 20px 20px;
-      }
-      .menu__description {
-        position: absolute;
-        bottom: 0;
-        background-color: #ffffff;
-        opacity: 79%;
-        height: 250px;
-        @include flex(flex,space-evenly,start);
-        flex-direction: column; 
-        border-radius: 20px 20px 20px 20px;
-        padding: 0.5rem;
-        
-        h4 {
-          font-weight: 400;
-          font-size: 22px;
-        }
-
-        p {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-}
-
-.testimonials {
-  .title {
-    margin: 1rem 0 0 0;
-    text-align: center;
-    font-weight: 400;
-    text-decoration:underline;
-    text-underline-position: under;
-    text-decoration-thickness: 2px;
-    font-size: 1.3rem;
-  }
-
-  p {
-    text-align: center;
-    font-size: 0.875rem;
-    font-weight: 400;
-    width: auto;
-    margin: auto auto;
-  }
-  .card {
-    @include flex(flex,space-between,center);
-    flex-flow: column;
-    margin:2rem auto;
-    width: 90%;
-    
-    img {
-      height: 250px;
-      width: 250px;
-      object-fit: cover;
-      object-position: center right;
-      border-radius: 50%;
-    }
-    h4 {
-      margin: 1rem 0;
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-    p {
-      font-style: italic;
-      font-size: 0.875rem;
-      line-height: normal;
-    }
-  }
-}
-
-.contact {
-  background-color: $main-color;
-  color: white;
-  font-weight: 400;
-
-  .title {
-    text-align: center;
-    text-decoration: underline;
-    text-underline-position: under;
-    margin:auto auto;
-    font-weight: 500;
-    padding-top: 1.5rem;
-    font-size: 1.3rem;
-  }
-
-  .wrapper {
-    margin : 3rem 0;
-    @include flex(flex,space-between,start);
-    flex-flow: column;
-    padding-left: 1.5rem;
-
-    .contact__description {
-      list-style-type: none;
-    }
-
-    .links {
-      list-style-type: none;
-      margin: 2rem 0;
-      text-decoration: underline;
-      text-underline-position: under;
-    }
-
-    .social__links {
-      list-style-type: none;
-      text-decoration: underline;
-      text-underline-position: under;
-    }
-  }
-
-  footer {
-    margin-top: 1rem;
-    height: 50px;
-    text-align: center;
-  }
-}

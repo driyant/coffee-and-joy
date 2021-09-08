@@ -1,0 +1,24 @@
+.about__us {
+  .title {
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 400;
+    text-decoration:underline;
+    text-underline-position: under;
+    text-decoration-thickness: 2px;
+  }
+
+  .about__description {
+    padding: 1rem;
+  }
+
+  .image__about {
+    padding: 1rem;
+
+    img {
+      width: 100%;
+      object-fit: contain;
+      object-fit: cover;
+    }
+  }
+}

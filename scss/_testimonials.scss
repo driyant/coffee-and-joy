@@ -1,0 +1,44 @@
+
+.testimonials {
+  .title {
+    margin: 1rem 0 0 0;
+    text-align: center;
+    font-weight: 400;
+    text-decoration:underline;
+    text-underline-position: under;
+    text-decoration-thickness: 2px;
+    font-size: 1.3rem;
+  }
+
+  p {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 400;
+    width: auto;
+    margin: auto auto;
+  }
+  .card {
+    @include flex(flex,space-between,center);
+    flex-flow: column;
+    margin:2rem auto;
+    width: 90%;
+    
+    img {
+      height: 250px;
+      width: 250px;
+      object-fit: cover;
+      object-position: center right;
+      border-radius: 50%;
+    }
+    h4 {
+      margin: 1rem 0;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+    p {
+      font-style: italic;
+      font-size: 0.875rem;
+      line-height: normal;
+    }
+  }
+}
