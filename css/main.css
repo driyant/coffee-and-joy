@@ -820,6 +820,7 @@ header .brand__intro .brand__description p {
   font-style: italic;
   font-size: 0.875rem;
   line-height: normal;
+  margin-top: 0;
 }
 
 /*
@@ -894,14 +895,18 @@ header .brand__intro .brand__description p {
   font-weight: 300;
 }
 
+@media (min-width: 768px) {
+  .contact .wrapper .links {
+    margin: 0;
+  }
+}
+
 .contact .wrapper .links li {
   margin: 0.5rem 0;
 }
 
 @media (min-width: 768px) {
   .contact .wrapper .links li {
-    margin: 0;
-    margin: 1rem 0;
     padding-left: 4rem;
   }
 }
