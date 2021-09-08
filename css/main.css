@@ -501,4 +501,62 @@ header .brand__intro .brand__description p {
 .our__menu .content__menu .menu .menu__description p {
   font-size: 1rem;
 }
+
+.testimonials .title {
+  text-align: center;
+  margin: auto auto;
+  border-bottom: 2px solid black;
+  width: 90%;
+  font-weight: 500;
+  padding-top: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.testimonials p {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  width: auto;
+  margin: auto auto;
+}
+
+.testimonials .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  margin: 2rem auto 0 auto;
+  width: 90%;
+}
+
+.testimonials .card img {
+  height: 250px;
+  width: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center right;
+     object-position: center right;
+  border-radius: 50%;
+}
+
+.testimonials .card h4 {
+  margin: 1rem 0;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.testimonials .card p {
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: normal;
+}
 /*# sourceMappingURL=main.css.map */

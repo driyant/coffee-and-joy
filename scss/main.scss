@@ -344,5 +344,47 @@ header {
       }
     }
   }
+}
 
+.testimonials {
+  .title {
+    text-align: center;
+    margin:auto auto;
+    border-bottom: 2px solid black;
+    width: 90%;
+    font-weight: 500;
+    padding-top: 1.5rem;
+    font-size: 1.3rem;
+  }
+  p {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 400;
+    width: auto;
+    margin: auto auto;
+  }
+  .card {
+    @include flex(flex,space-between,center);
+    flex-flow: column;
+    margin:2rem auto 0 auto;
+    width: 90%;
+    
+    img {
+      height: 250px;
+      width: 250px;
+      object-fit: cover;
+      object-position: center right;
+      border-radius: 50%;
+    }
+    h4 {
+      margin: 1rem 0;
+      font-weight: 500;
+      font-size: 1.2rem;
+    }
+    p {
+      font-style: italic;
+      font-size: 0.875rem;
+      line-height: normal;
+    }
+  }
 }
