@@ -727,6 +727,12 @@ header .brand__intro .brand__description p {
   font-size: 1.3rem;
 }
 
+@media (min-width: 1190px) {
+  .testimonials .title {
+    margin-top: 2rem;
+  }
+}
+
 .testimonials p {
   text-align: center;
   font-size: 0.875rem;
@@ -735,12 +741,28 @@ header .brand__intro .brand__description p {
   margin: auto auto;
 }
 
+.testimonials .wrapper {
+  width: 80%;
+  margin: 3rem auto;
+}
+
 @media (min-width: 768px) {
   .testimonials .wrapper {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+  }
+}
+
+@media (min-width: 1190px) {
+  .testimonials .wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     -ms-grid-rows: auto auto;
         grid-template-rows: auto auto;
   }

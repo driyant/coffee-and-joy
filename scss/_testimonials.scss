@@ -8,6 +8,9 @@
     text-underline-position: under;
     text-decoration-thickness: 2px;
     font-size: 1.3rem;
+    @include desktop {
+      margin-top: 2rem;
+    }
   }
 
   p {
@@ -24,6 +27,13 @@
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
     }
+    @include desktop {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    width: 80%;
+    margin: 3rem auto;
     .card {
       @include flex(flex,space-between,center);
       flex-flow: column;
