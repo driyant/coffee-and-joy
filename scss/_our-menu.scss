@@ -1,4 +1,4 @@
-
+@import "_responsive.scss";
 .our__menu {
   background-image: url("/assets/bg-menu.png");
   background-position: center;
@@ -26,6 +26,10 @@
     margin-top: 1.5rem;
     color: black;
     height: 250px;
+    @include tablet {
+      margin-top: 0;
+      height: 150px;
+    }
     li {
       background-color: $menu-links;
       margin: 0.5rem 1rem;
@@ -54,6 +58,11 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap:30px;
+    @include tablet {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
     
     .menu {
       position: relative;

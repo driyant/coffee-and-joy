@@ -1,4 +1,4 @@
-
+@import "_responsive.scss";
 
 .contact {
   background-color: $main-color;
@@ -21,6 +21,12 @@
     flex-flow: column;
     padding-left: 1.5rem;
 
+    @include tablet {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
     .contact__description {
       list-style-type: none;
     }
@@ -30,6 +36,10 @@
       margin: 2rem 0;
       text-decoration: underline;
       text-underline-position: under;
+      @include tablet {
+        margin:0;
+        padding-left: 2rem;
+      }
     }
 
     .social__links {

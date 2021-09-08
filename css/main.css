@@ -279,6 +279,7 @@ header .brand__intro .brand__description {
 
 header .brand__intro .brand__description p {
   font-weight: 300;
+  padding-bottom: 2rem;
 }
 
 /*
@@ -449,6 +450,13 @@ header .brand__intro .brand__description p {
   height: 250px;
 }
 
+@media (min-width: 768px) {
+  .our__menu .menu__links {
+    margin-top: 0;
+    height: 150px;
+  }
+}
+
 .our__menu .menu__links li {
   background-color: #d7d7d7;
   margin: 0.5rem 1rem;
@@ -480,6 +488,17 @@ header .brand__intro .brand__description p {
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .our__menu .content__menu {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+  }
 }
 
 .our__menu .content__menu .menu {
@@ -564,7 +583,18 @@ header .brand__intro .brand__description p {
   margin: auto auto;
 }
 
-.testimonials .card {
+@media (min-width: 768px) {
+  .testimonials .wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto;
+        grid-template-rows: auto auto;
+  }
+}
+
+.testimonials .wrapper .card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -582,7 +612,7 @@ header .brand__intro .brand__description p {
   width: 90%;
 }
 
-.testimonials .card img {
+.testimonials .wrapper .card img {
   height: 250px;
   width: 250px;
   -o-object-fit: cover;
@@ -592,13 +622,13 @@ header .brand__intro .brand__description p {
   border-radius: 50%;
 }
 
-.testimonials .card h4 {
+.testimonials .wrapper .card h4 {
   margin: 1rem 0;
   font-weight: 500;
   font-size: 1.2rem;
 }
 
-.testimonials .card p {
+.testimonials .wrapper .card p {
   font-style: italic;
   font-size: 0.875rem;
   line-height: normal;
@@ -641,6 +671,17 @@ header .brand__intro .brand__description p {
   padding-left: 1.5rem;
 }
 
+@media (min-width: 768px) {
+  .contact .wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+  }
+}
+
 .contact .wrapper .contact__description {
   list-style-type: none;
 }
@@ -650,6 +691,13 @@ header .brand__intro .brand__description p {
   margin: 2rem 0;
   text-decoration: underline;
   text-underline-position: under;
+}
+
+@media (min-width: 768px) {
+  .contact .wrapper .links {
+    margin: 0;
+    padding-left: 2rem;
+  }
 }
 
 .contact .wrapper .social__links {

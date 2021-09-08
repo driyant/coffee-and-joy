@@ -17,28 +17,36 @@
     width: auto;
     margin: auto auto;
   }
-  .card {
-    @include flex(flex,space-between,center);
-    flex-flow: column;
-    margin:2rem auto;
-    width: 90%;
-    
-    img {
-      height: 250px;
-      width: 250px;
-      object-fit: cover;
-      object-position: center right;
-      border-radius: 50%;
+
+  .wrapper {
+    @include tablet{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
     }
-    h4 {
-      margin: 1rem 0;
-      font-weight: 500;
-      font-size: 1.2rem;
-    }
-    p {
-      font-style: italic;
-      font-size: 0.875rem;
-      line-height: normal;
+    .card {
+      @include flex(flex,space-between,center);
+      flex-flow: column;
+      margin:2rem auto;
+      width: 90%;
+      
+      img {
+        height: 250px;
+        width: 250px;
+        object-fit: cover;
+        object-position: center right;
+        border-radius: 50%;
+      }
+      h4 {
+        margin: 1rem 0;
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+      p {
+        font-style: italic;
+        font-size: 0.875rem;
+        line-height: normal;
+      }
     }
   }
 }
