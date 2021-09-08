@@ -4,8 +4,8 @@ const hamburger = document.querySelector(".hamburger");
 
 // Callback function
 const toggleMenuOpen = () => {
-  navlinks.classList.add("open");
-  hamburger.classList.add("open");
+  navlinks.classList.toggle("open");
+  hamburger.classList.toggle("open");
 }
 hamburger.addEventListener("click", toggleMenuOpen);
 
@@ -13,7 +13,7 @@ const removeOpen = () => {
   setTimeout(() => {
     navlinks.classList.remove("open");
     hamburger.classList.remove("open");
-  }, 500);
+  }, 400);
 }
 const navLists = document.querySelectorAll(".nav__links li");
 navLists.forEach(navList => {
