@@ -6,19 +6,46 @@
     text-decoration:underline;
     text-underline-position: under;
     text-decoration-thickness: 2px;
+    @include desktop {
+      margin-top: 3rem;
+    }
   }
 
-  .about__description {
-    padding: 1rem;
-  }
+  .wrapper {
+    @include desktop {
+      margin: 3rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .about__description {
+      padding: 1rem;
+      @include desktop {
+        @include flex(flex,center,center);
+        flex-flow: column nowrap;
+        padding: 0 3rem;
 
-  .image__about {
-    padding: 1rem;
+        p {
+          margin: 1rem 0;
+        }
+      }
+    }
 
-    img {
-      width: 100%;
-      object-fit: contain;
-      object-fit: cover;
+    .image__about {
+      padding: 1rem;
+      @include desktop {
+        padding: 0;
+        @include flex(flex,center,center);
+      }
+      img {
+        width: 100%;
+        object-fit: contain;
+        object-fit: cover;
+        @include desktop {
+          width: 80%;
+          height: 80%;     
+        }
+      }
     }
   }
 }
