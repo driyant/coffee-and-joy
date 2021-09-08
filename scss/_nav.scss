@@ -18,6 +18,11 @@ nav {
     font-weight: 500;
     font-size: 1.5rem;
     text-decoration: underline;
+
+    a {
+      text-decoration:none;
+      color: white;
+    }
   }
 
   .nav__links {

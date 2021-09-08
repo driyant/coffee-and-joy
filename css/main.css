@@ -60,6 +60,11 @@ nav .title__logo {
   text-decoration: underline;
 }
 
+nav .title__logo a {
+  text-decoration: none;
+  color: white;
+}
+
 nav .nav__links {
   z-index: 99;
   -webkit-transform: scaleX(0);
