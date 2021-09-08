@@ -1,11 +1,11 @@
-nav {
+nav { 
   z-index: 999;
   height: 60px;
   color: white;
   background-color: $accent-color;
   @include flex(flex,center,center);
   position: sticky;
-  top:0;
+  top:0; 
 
   .wrapper {
     width: 95%;
