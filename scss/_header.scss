@@ -1,6 +1,11 @@
 @import "_responsive.scss";
 header {
   color: white;
+  @include desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -14,6 +19,10 @@ header {
     @include flex(flex,space-between,center);
     flex-flow: column;
     padding: 1rem;
+    @include desktop {
+      margin-top: 0;
+      height: auto;
+    }
 
     .brand__title {
       margin: 1rem 0 0rem 0;
@@ -41,6 +50,10 @@ header {
       p {
         font-weight: 300;
         padding-bottom: 2rem;
+        @include desktop {
+          width: 70%;
+          margin: auto auto;
+        }
       }
     }
   }

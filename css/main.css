@@ -224,6 +224,17 @@ header {
   color: white;
 }
 
+@media (min-width: 1190px) {
+  header {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+  }
+}
+
 header img {
   width: 100%;
   height: 100%;
@@ -253,6 +264,13 @@ header .brand__intro {
   padding: 1rem;
 }
 
+@media (min-width: 1190px) {
+  header .brand__intro {
+    margin-top: 0;
+    height: auto;
+  }
+}
+
 header .brand__intro .brand__title {
   margin: 1rem 0 0rem 0;
 }
@@ -280,6 +298,13 @@ header .brand__intro .brand__description {
 header .brand__intro .brand__description p {
   font-weight: 300;
   padding-bottom: 2rem;
+}
+
+@media (min-width: 1190px) {
+  header .brand__intro .brand__description p {
+    width: 70%;
+    margin: auto auto;
+  }
 }
 
 /*
