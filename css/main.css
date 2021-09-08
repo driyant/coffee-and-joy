@@ -822,7 +822,7 @@ header .brand__intro .brand__description p {
   text-decoration: underline;
   text-underline-position: under;
   margin: auto auto;
-  font-weight: 500;
+  font-weight: 400;
   padding-top: 1.5rem;
   font-size: 1.3rem;
 }
@@ -858,6 +858,13 @@ header .brand__intro .brand__description p {
 
 .contact .wrapper .contact__description {
   list-style-type: none;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .contact .wrapper .contact__description li {
+    margin: 1rem 0;
+  }
 }
 
 .contact .wrapper .links {
@@ -865,12 +872,16 @@ header .brand__intro .brand__description p {
   margin: 2rem 0;
   text-decoration: underline;
   text-underline-position: under;
+  font-weight: 300;
 }
 
 @media (min-width: 768px) {
   .contact .wrapper .links {
     margin: 0;
-    padding-left: 2rem;
+  }
+  .contact .wrapper .links li {
+    margin: 1rem 0;
+    padding-left: 4rem;
   }
 }
 
@@ -878,6 +889,14 @@ header .brand__intro .brand__description p {
   list-style-type: none;
   text-decoration: underline;
   text-underline-position: under;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .contact .wrapper .social__links li {
+    margin: 1rem 0;
+    padding-left: 4rem;
+  }
 }
 
 .contact footer {
