@@ -379,6 +379,13 @@ header .brand__intro .brand__description p {
   }
 }
 
+@media (min-width: 768px) {
+  .about__us .wrapper {
+    width: 90%;
+    margin: auto auto;
+  }
+}
+
 @media (min-width: 1190px) {
   .about__us .wrapper {
     margin: 3rem 0;
