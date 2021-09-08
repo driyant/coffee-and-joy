@@ -1,3 +1,4 @@
+@import "_responsive.scss";
 nav { 
   z-index: 999;
   height: 60px;
@@ -5,7 +6,10 @@ nav {
   background-color: $accent-color;
   @include flex(flex,center,center);
   position: sticky;
-  top:0; 
+  top:0;
+  @include desktop {
+    height: 100px;
+  }
 
   .wrapper {
     width: 95%;
@@ -14,6 +18,10 @@ nav {
   }
 
   .title__logo {
+    @include desktop {
+      display: none;
+    }
+
     font-family: $font-cinzel;
     font-weight: 500;
     font-size: 1.5rem;
@@ -38,7 +46,25 @@ nav {
     @include flex(flex,center,center);
     flex-direction: column;
     list-style-type: none;
+    @include desktop {
+      transform: scaleX(1);
+      background-color: transparent;
+      position: static;
+      @include flex(flex, "", center);
+      flex-flow: row nowrap;
+      .home__anchor__mobile {
+        display: none;
+      }
+    }
     li {
+      @include desktop {
+        &:nth-child(4) {
+          font-family: $font-cinzel;
+          font-size: 2rem;
+          text-decoration: underline;
+        }
+        margin:0 1rem;
+      }
       margin: 1.5rem 0;
       a {
         text-decoration: none;
@@ -66,6 +92,9 @@ nav {
     z-index: 9999;
     cursor: pointer;
 
+    @include desktop {
+      display: none;
+    }
     
     &::before {
       content: '';
