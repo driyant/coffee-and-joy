@@ -13,6 +13,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 nav {
   z-index: 999;
   height: 60px;
@@ -534,7 +538,7 @@ header .brand__intro .brand__description p {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
-  margin: 2rem auto 0 auto;
+  margin: 2rem auto;
   width: 90%;
 }
 
@@ -558,5 +562,62 @@ header .brand__intro .brand__description p {
   font-style: italic;
   font-size: 0.875rem;
   line-height: normal;
+}
+
+.contact {
+  background-color: #95499c;
+  color: white;
+  font-weight: 400;
+}
+
+.contact .title {
+  text-align: center;
+  text-decoration: underline;
+  text-underline-position: under;
+  margin: auto auto;
+  font-weight: 500;
+  padding-top: 1.5rem;
+  font-size: 1.3rem;
+}
+
+.contact .wrapper {
+  margin: 3rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  padding-left: 1.5rem;
+}
+
+.contact .wrapper .contact__description {
+  list-style-type: none;
+}
+
+.contact .wrapper .links {
+  list-style-type: none;
+  margin: 2rem 0;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.contact .wrapper .social__links {
+  list-style-type: none;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.contact footer {
+  margin-top: 1rem;
+  height: 50px;
+  text-align: center;
 }
 /*# sourceMappingURL=main.css.map */

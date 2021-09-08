@@ -9,6 +9,10 @@
 }
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 nav {
   z-index: 999;
   height: 60px;
@@ -366,7 +370,7 @@ header {
   .card {
     @include flex(flex,space-between,center);
     flex-flow: column;
-    margin:2rem auto 0 auto;
+    margin:2rem auto;
     width: 90%;
     
     img {
@@ -386,5 +390,51 @@ header {
       font-size: 0.875rem;
       line-height: normal;
     }
+  }
+}
+
+.contact {
+  background-color: $main-color;
+  color: white;
+  font-weight: 400;
+
+  .title {
+    text-align: center;
+    text-decoration: underline;
+    text-underline-position: under;
+    margin:auto auto;
+    font-weight: 500;
+    padding-top: 1.5rem;
+    font-size: 1.3rem;
+  }
+
+  .wrapper {
+    margin : 3rem 0;
+    @include flex(flex,space-between,start);
+    flex-flow: column;
+    padding-left: 1.5rem;
+
+    .contact__description {
+      list-style-type: none;
+    }
+
+    .links {
+      list-style-type: none;
+      margin: 2rem 0;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+
+    .social__links {
+      list-style-type: none;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+  }
+
+  footer {
+    margin-top: 1rem;
+    height: 50px;
+    text-align: center;
   }
 }
