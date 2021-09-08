@@ -7,14 +7,14 @@
           box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   font-size: 18px;
   font-weight: 400;
   font-family: "Poppins", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 nav {
@@ -102,6 +102,7 @@ nav .nav__links .img {
 nav .nav__links.open {
   -webkit-transform: scalex(1);
           transform: scalex(1);
+  overflow-x: hidden;
 }
 
 nav .hamburger {
@@ -220,6 +221,7 @@ header img {
 
 header .brand__intro {
   margin-top: -7px;
+  height: 500px;
   background-color: #95499c;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -238,13 +240,23 @@ header .brand__intro {
 }
 
 header .brand__intro .brand__title {
-  margin: 1.5rem 0;
+  margin: 1rem 0 0rem 0;
 }
 
-header .brand__intro .brand__title img {
+header .brand__intro .brand__title .title {
+  font-family: "Cinzel", serif;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+header .brand__intro img {
+  margin: 1.5rem 0;
   border: 2px solid white;
   border-radius: 50%;
   padding: 3px;
+  height: 200px;
+  width: 200px;
 }
 
 header .brand__intro .brand__description {
@@ -255,11 +267,13 @@ header .brand__intro .brand__description p {
   font-weight: 300;
 }
 
-.about__us h2 {
+.about__us .title {
+  margin: 1rem 0;
   text-align: center;
-  border-bottom: 2px solid black;
-  width: 30%;
-  margin: 1rem auto;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-thickness: 2px;
 }
 
 .about__us .about__description {
@@ -285,12 +299,12 @@ header .brand__intro .brand__description p {
 }
 
 .event .title {
+  padding-top: 1rem;
   text-align: center;
-  border-bottom: 2px solid white;
-  width: 30%;
-  padding-top: 1.5rem;
-  margin: auto auto;
   font-weight: 400;
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-thickness: 2px;
 }
 
 .event .wrapper {
@@ -382,12 +396,12 @@ header .brand__intro .brand__description p {
 }
 
 .our__menu .title {
+  margin: 1rem 0;
   text-align: center;
-  margin: auto auto;
-  border-bottom: 2px solid black;
-  width: 50%;
   font-weight: 400;
-  padding-top: 1.5rem;
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-thickness: 2px;
 }
 
 .our__menu .menu__links {
@@ -507,12 +521,12 @@ header .brand__intro .brand__description p {
 }
 
 .testimonials .title {
+  margin: 1rem 0 0 0;
   text-align: center;
-  margin: auto auto;
-  border-bottom: 2px solid black;
-  width: 90%;
-  font-weight: 500;
-  padding-top: 1.5rem;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-thickness: 2px;
   font-size: 1.3rem;
 }
 
