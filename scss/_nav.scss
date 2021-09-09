@@ -34,7 +34,6 @@ nav {
   }
 
   .nav__links {
-    z-index: 99;
     transform: scaleX(0);
     @include transistion-ease(all,0.5s,ease-in-out);
     position: absolute;

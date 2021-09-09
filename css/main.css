@@ -78,7 +78,6 @@ nav .title__logo a {
 }
 
 nav .nav__links {
-  z-index: 99;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transition: all 0.5s ease-in-out;
@@ -500,6 +499,12 @@ header .brand__intro .brand__description p {
   text-decoration-thickness: 2px;
 }
 
+@media (min-width: 1190px) {
+  .event .title {
+    font-size: 1.2rem;
+  }
+}
+
 .event .wrapper {
   text-align: center;
   margin: 3rem auto 0 auto;
@@ -513,6 +518,12 @@ header .brand__intro .brand__description p {
 
 .event .wrapper .content__description p {
   margin: 0.5rem 0;
+}
+
+@media (min-width: 1190px) {
+  .event .wrapper .content__description p {
+    font-size: 1.2rem;
+  }
 }
 
 .event .wrapper .time__remaining {
@@ -649,6 +660,19 @@ header .brand__intro .brand__description p {
   height: 250px;
 }
 
+@media (min-width: 768px) {
+  .our__menu .menu__links {
+    margin-top: 0;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1190px) {
+  .our__menu .menu__links {
+    width: auto;
+  }
+}
+
 .our__menu .menu__links li {
   background-color: #d7d7d7;
   margin: 0.5rem 1rem;
@@ -659,6 +683,7 @@ header .brand__intro .brand__description p {
   cursor: pointer;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  z-index: 100;
 }
 
 .our__menu .menu__links li.active {
@@ -669,13 +694,6 @@ header .brand__intro .brand__description p {
 .our__menu .menu__links li:hover {
   background-color: #95499c;
   color: white;
-}
-
-@media (min-width: 768px) {
-  .our__menu .menu__links {
-    margin-top: 0;
-    height: 150px;
-  }
 }
 
 .our__menu .content__menu {
@@ -708,6 +726,8 @@ header .brand__intro .brand__description p {
         grid-template-columns: 1fr 1fr 1fr;
     -ms-grid-rows: auto auto auto;
         grid-template-rows: auto auto auto;
+    width: 70%;
+    gap: 50px;
   }
 }
 

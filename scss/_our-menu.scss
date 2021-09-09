@@ -1,5 +1,6 @@
 @import "_responsive.scss";
 .our__menu {
+ 
   background-image: url("/assets/bg-menu.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -26,6 +27,13 @@
     margin-top: 1.5rem;
     color: black;
     height: 250px;
+    @include tablet {
+      margin-top: 0;
+      height: 150px;
+    }
+    @include desktop {
+      width: auto;
+    }
     
     li {
       background-color: $menu-links;
@@ -36,6 +44,7 @@
       width: 150px;
       cursor: pointer;
       @include transistion-ease(all,0.5s,ease);
+      z-index: 100;
 
       &.active {
         background-color: $main-color;
@@ -46,14 +55,7 @@
         background-color: $main-color;
         color: white;
       }
-    }
-    @include tablet {
-      margin-top: 0;
-      height: 150px;
-    }
-    // @include desktop {
-    //   width: auto;
-    // }
+    } 
   }
 
   .content__menu {
@@ -71,6 +73,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: auto auto auto;
+      width: 70%;
+      gap: 50px;
     }
     
     .menu {
