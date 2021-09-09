@@ -28,9 +28,11 @@
         @include flex(flex,center,center);
         flex-flow: column nowrap;
         padding: 0 3rem;
-
+       
         p {
           margin: 1rem 0;
+          font-size: 1.2rem;
+          width: 80%;
         }
       }
     }
@@ -47,7 +49,8 @@
         object-fit: cover;
         @include desktop {
           width: 80%;
-          height: 80%;     
+          height: 80%;
+          padding-left: 5rem;     
         }
       }
     }

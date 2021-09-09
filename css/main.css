@@ -271,6 +271,12 @@ nav .hamburger.open::after {
   margin: auto 15px;
 }
 
+@media (min-width: 1190px) {
+  .announcement {
+    height: 70px;
+  }
+}
+
 /*
 * Header
 */
@@ -352,12 +358,20 @@ header .brand__intro img {
   }
 }
 
+@media (min-width: 1190px) {
+  header .brand__intro img {
+    width: 400px;
+    height: 400px;
+  }
+}
+
 header .brand__intro .brand__description {
   text-align: center;
 }
 
 header .brand__intro .brand__description p {
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 1.2rem;
   padding-bottom: 2rem;
 }
 
@@ -428,6 +442,8 @@ header .brand__intro .brand__description p {
   }
   .about__us .wrapper .about__description p {
     margin: 1rem 0;
+    font-size: 1.2rem;
+    width: 80%;
   }
 }
 
@@ -462,6 +478,7 @@ header .brand__intro .brand__description p {
   .about__us .wrapper .image__about img {
     width: 80%;
     height: 80%;
+    padding-left: 5rem;
   }
 }
 
@@ -508,7 +525,7 @@ header .brand__intro .brand__description p {
 }
 
 .event .wrapper .form__group p {
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .event .wrapper .form__group .form {
@@ -525,6 +542,33 @@ header .brand__intro .brand__description p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media (min-width: 1190px) {
+  .event .wrapper .form__group .form {
+    max-width: 40%;
+    margin: auto auto;
+  }
+}
+
+.event .wrapper .form__group .form .text__group {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media (min-width: 1190px) {
+  .event .wrapper .form__group .form .text__group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 81%;
+  }
 }
 
 .event .wrapper .form__group .form input {

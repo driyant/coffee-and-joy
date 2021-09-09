@@ -46,13 +46,18 @@ header {
           width: 250px;
           height: 250px;
         }
+        @include desktop {
+          width: 400px;
+          height: 400px;
+        }
       }
 
     .brand__description {
       text-align: center;
 
       p {
-        font-weight: 300;
+        font-weight: 400;
+        font-size: 1.2rem;
         padding-bottom: 2rem;
         @include desktop {
           width: 70%;

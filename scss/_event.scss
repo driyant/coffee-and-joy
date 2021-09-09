@@ -36,12 +36,25 @@
 
     .form__group {
       p {
-        font-size: 0.875rem;
+        font-size: 1rem;
       }
       .form {
         @include flex(flex,space-between,center);
         flex-direction: column;
-
+        @include desktop {
+          max-width: 40%;
+          margin: auto auto;
+        }
+        
+        .text__group {
+          width: 100%;
+          margin-top: 1rem;
+          @include desktop {
+            @include flex(flex,space-evenly,center);
+            width: 81%;
+          }
+          
+        }
         input {
           margin: 5px;
           width: 80%;

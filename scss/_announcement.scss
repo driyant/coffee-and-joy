@@ -6,4 +6,7 @@
   img {
     margin: auto 15px;
   }
+  @include desktop {
+    height: 70px;
+  }
 }
