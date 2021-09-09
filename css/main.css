@@ -1030,11 +1030,40 @@ header .brand__intro .brand__description p {
 * Login Page
 */
 .container {
+  overflow: hidden;
+  background-color: #95499c;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container .logo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .logo img {
+  width: 300px;
+  height: 300px;
+  margin: 5rem 0;
+  border: 3px solid white;
+  border-radius: 50%;
+  padding: 0.2rem;
+}
+
+.container .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1042,14 +1071,36 @@ header .brand__intro .brand__description p {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
-  background-color: #95499c;
-  width: 100vw;
-  height: 100vh;
+  height: 500;
+  width: 100%;
 }
 
-.container img {
-  padding: 2rem;
+.container .form * {
+  margin: 1rem;
+}
+
+.container .form input {
+  padding-left: 0.5rem;
   width: 300px;
-  height: 300px;
+  height: 50px;
+}
+
+.container .form .btn {
+  background-color: #a58cb3;
+  border: none;
+  width: 300px;
+  height: 50px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-box-shadow: 2px white;
+          box-shadow: 2px white;
+}
+
+.container .form .btn:hover {
+  background-color: orange;
 }
 /*# sourceMappingURL=main.css.map */
