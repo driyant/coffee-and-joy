@@ -871,9 +871,14 @@ header .brand__intro .brand__description p {
   }
 }
 
+@media (min-width: 1190px) {
+  .contact .wrapper {
+    margin: 6rem 0;
+  }
+}
+
 .contact .wrapper .contact__description {
   list-style-type: none;
-  font-weight: 300;
   color: white;
 }
 
@@ -887,12 +892,17 @@ header .brand__intro .brand__description p {
   }
 }
 
+@media (min-width: 1190px) {
+  .contact .wrapper .contact__description li {
+    padding-left: 13rem;
+  }
+}
+
 .contact .wrapper .links {
   list-style-type: none;
   margin: 2rem 0;
   text-decoration: underline;
   text-underline-position: under;
-  font-weight: 300;
 }
 
 @media (min-width: 768px) {
@@ -908,6 +918,13 @@ header .brand__intro .brand__description p {
 @media (min-width: 768px) {
   .contact .wrapper .links li {
     padding-left: 4rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: 1190px) {
+  .contact .wrapper .links li {
+    padding-left: 10rem;
   }
 }
 
@@ -919,7 +936,6 @@ header .brand__intro .brand__description p {
   list-style-type: none;
   text-decoration: underline;
   text-underline-position: under;
-  font-weight: 300;
   color: white;
 }
 
@@ -934,7 +950,6 @@ header .brand__intro .brand__description p {
 @media (min-width: 768px) {
   .contact .wrapper .social__links li {
     margin: 1rem 0;
-    padding-left: 4rem;
   }
 }
 
