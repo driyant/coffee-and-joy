@@ -610,7 +610,7 @@ header .brand__intro .brand__description p {
 * Our Menu
 */
 .our__menu {
-  background-image: url("/assets/bg-menu.png");
+  background-image: url("../assets/bg-menu.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
