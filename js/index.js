@@ -1,3 +1,7 @@
+/*
+* Toggle hamburger menu for mobile and tablet screen
+*/
+
 // Target navlinks
 const navlinks = document.querySelector(".nav__links");
 const hamburger = document.querySelector(".hamburger");
@@ -20,6 +24,10 @@ navLists.forEach(navList => {
   navList.addEventListener("click", removeOpen);
 });
 
+/*
+* Filterlist our menu category
+*/
+
 // Filterlist
 const menuLinks = document.querySelector(".menu__links");
 const menuLists = menuLinks.querySelectorAll("li");
@@ -41,4 +49,29 @@ menuLists.forEach(menuList => {
   });
 });
 
+/*
+* Count down timer
+*/
 
+// Set the date we're counting down
+const getNewDate = new Date("September 22, 2021 10:00:00").getTime();
+
+const countDown = () => {
+  setInterval(() => {
+    const getNow = new Date().getTime();
+    const distance = getNewDate - getNow;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const getElementH1 = document.querySelector(".time__remaining h1");
+    getElementH1.innerHTML = `${days} DAYS : ${hours} HOURS : ${minutes} MINUTES : ${seconds} SECONDS`;
+
+    if (distance < 0) {
+      clearInterval(countDown);
+      getElementH1.innerHTML = `Event is already finished!`;
+    }
+  });
+}
+
+countDown();
