@@ -10,7 +10,8 @@
     text-underline-position: under;
     text-decoration-thickness: 2px;
     @include desktop {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      padding-top: 3rem;
     }
   }
 
@@ -20,7 +21,7 @@
     width: 95%;
 
     .content__description {
-      h4 {
+      h3 {
         font-weight: 400;
         text-transform: uppercase;
       }
@@ -43,6 +44,9 @@
     .form__group {
       p {
         font-size: 1rem;
+        @include desktop {
+          font-size: 1.2rem;
+        }
       }
       .form {
         @include flex(flex,space-between,center);

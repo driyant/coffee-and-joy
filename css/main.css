@@ -269,13 +269,19 @@ nav .hamburger.open::after {
   width: 100%;
 }
 
+@media (min-width: 1190px) {
+  .announcement {
+    height: 70px;
+  }
+}
+
 .announcement img {
   margin: auto 15px;
 }
 
 @media (min-width: 1190px) {
-  .announcement {
-    height: 70px;
+  .announcement p {
+    font-size: 1.2rem;
   }
 }
 
@@ -398,7 +404,8 @@ header .brand__intro .brand__description p {
 
 @media (min-width: 1190px) {
   .about__us .title {
-    margin-top: 3rem;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
   }
 }
 
@@ -504,7 +511,8 @@ header .brand__intro .brand__description p {
 
 @media (min-width: 1190px) {
   .event .title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    padding-top: 3rem;
   }
 }
 
@@ -514,7 +522,7 @@ header .brand__intro .brand__description p {
   width: 95%;
 }
 
-.event .wrapper .content__description h4 {
+.event .wrapper .content__description h3 {
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -540,6 +548,12 @@ header .brand__intro .brand__description p {
 
 .event .wrapper .form__group p {
   font-size: 1rem;
+}
+
+@media (min-width: 1190px) {
+  .event .wrapper .form__group p {
+    font-size: 1.2rem;
+  }
 }
 
 .event .wrapper .form__group .form {
@@ -639,6 +653,13 @@ header .brand__intro .brand__description p {
   text-decoration: underline;
   text-underline-position: under;
   text-decoration-thickness: 2px;
+}
+
+@media (min-width: 1190px) {
+  .our__menu .title {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+  }
 }
 
 .our__menu .menu__links {
@@ -811,6 +832,7 @@ header .brand__intro .brand__description p {
 @media (min-width: 1190px) {
   .testimonials .title {
     margin-top: 2rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -890,6 +912,12 @@ header .brand__intro .brand__description p {
   margin-top: 0;
 }
 
+@media (min-width: 1190px) {
+  .testimonials .wrapper .card p {
+    font-size: 1rem;
+  }
+}
+
 /*
 * Contact
 */
@@ -907,6 +935,12 @@ header .brand__intro .brand__description p {
   font-weight: 400;
   padding-top: 1.5rem;
   font-size: 1.3rem;
+}
+
+@media (min-width: 1190px) {
+  .contact .title {
+    font-size: 1.5rem;
+  }
 }
 
 .contact .wrapper {

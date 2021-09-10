@@ -10,6 +10,7 @@
     font-size: 1.3rem;
     @include desktop {
       margin-top: 2rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -58,6 +59,9 @@
         font-size: 0.875rem;
         line-height: normal;
         margin-top: 0;
+        @include desktop {
+          font-size: 1rem;
+        }
       }
     }
   }

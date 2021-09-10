@@ -7,7 +7,8 @@
     text-underline-position: under;
     text-decoration-thickness: 2px;
     @include desktop {
-      margin-top: 3rem;
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
     }
   }
 
