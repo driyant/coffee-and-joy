@@ -1030,7 +1030,6 @@ header .brand__intro .brand__description p {
 * Login Page
 */
 .container {
-  overflow: hidden;
   background-color: #95499c;
   width: 100vw;
   height: 100vh;

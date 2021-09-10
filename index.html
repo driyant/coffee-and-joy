@@ -87,20 +87,20 @@
     <section class="our__menu" id="our__menu">
       <h2 class="title">Our Menu</h2>
       <ul class="menu__links">
-        <li class="active"><a>All</a></li>
-        <li><a>Coffee</a></li>
-        <li><a>Non-Coffee</a></li>
-        <li><a>Food</a></li>
+        <li class="list active" data-filter="all">All</li>
+        <li class="list" data-filter="coffee">Coffee</li>
+        <li class="list" data-filter="non-coffee">Non-Coffee</li>
+        <li class="list" data-filter="food">Food</li>
       </ul>
       <div class="content__menu">
-        <div class="menu">
+        <div class="menu" data-category="coffee">
           <img src="assets/brewed-coffee.png" alt="brewed-coffee" />
           <div class="menu__description">
             <h4>Brewed Coffee</h4>
             <p>Brewed coffee is made by pouring hot water onto ground coffee beans, then allowing to brew.</p>
           </div>
         </div>
-        <div class="menu">
+        <div class="menu" data-category="coffee">
           <img src="assets/expresso.png" alt="expresso" />
           <div class="menu__description">
             <h4>Expresso</h4>
@@ -108,28 +108,28 @@
               finely-ground coffee beans. Espresso is thicker than other methods, with a viscosity of warm honey.</p>
           </div>
         </div>
-        <div class="menu">
+        <div class="menu" data-category="coffee">
           <img src="assets/iced-latte.png" alt="iced-latte" />
           <div class="menu__description">
             <h4>Iced Latte</h4>
             <p>The espresso can be pre-chilled (sometimes as a mixture of espresso and milk) or frozen in advance to avoid warming up the drink.</p>
           </div>
         </div>
-        <div class="menu">
+        <div class="menu" data-category="non-coffee">
           <img src="assets/green-tea.png" alt="green-tea" />
           <div class="menu__description">
             <h4>Green Tea</h4>
             <p>Tea that is made from Camellia sinensis leaves and buds that have not undergone the same withering and oxidation process.</p>
           </div>
         </div>
-        <div class="menu">
+        <div class="menu" data-category="food">
           <img src="assets/spaghetti-carbonara.png" alt="spaghetti carbonara-coffee" />
           <div class="menu__description">
             <h4>Spaghetti Carbonara</h4>
             <p> Italian pasta dish from Rome made with egg, hard cheese, beacon, and black pepper.</p>
           </div>
         </div>
-        <div class="menu">
+        <div class="menu" data-category="food">
           <img src="assets/healthy-salad.png" alt="healthy-salad" />
           <div class="menu__description">
             <h4>Healthy Salad</h4>
@@ -184,5 +184,10 @@
         <p>&copy Coffee & Joy - 2021</p>
       </footer>
     </section> 
+  </body>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/filterizr/2.2.4/filterizr.min.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/filterizr/2.2.4/vanilla.filterizr.min.js"></script> -->
+  <!-- <script src=" 	https://cdnjs.cloudflare.com/ajax/libs/filterizr/2.2.4/jquery.filterizr.min.js"></script> -->
   <script src="js/index.js"></script>
 </html>
