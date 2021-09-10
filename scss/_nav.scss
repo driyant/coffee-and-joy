@@ -46,6 +46,9 @@ nav {
     @include flex(flex,center,center);
     flex-direction: column;
     list-style-type: none;
+    .anchor__logo {
+      display: none;
+    }
     @include desktop {
       transform: scaleX(1);
       background-color: transparent;
@@ -56,6 +59,9 @@ nav {
         display: none;
       }
       height: auto;
+      .anchor__logo {
+        display: block;
+      }
     }
     li {
       @include desktop {

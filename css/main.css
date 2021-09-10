@@ -107,6 +107,10 @@ nav .nav__links {
   list-style-type: none;
 }
 
+nav .nav__links .anchor__logo {
+  display: none;
+}
+
 @media (min-width: 1190px) {
   nav .nav__links {
     -webkit-transform: scaleX(1);
@@ -130,6 +134,9 @@ nav .nav__links {
   }
   nav .nav__links .home__anchor__mobile {
     display: none;
+  }
+  nav .nav__links .anchor__logo {
+    display: block;
   }
 }
 
