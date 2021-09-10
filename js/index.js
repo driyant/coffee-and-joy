@@ -75,3 +75,10 @@ const countDown = () => {
 }
 
 countDown();
+
+// Aos Scroll
+AOS.init({
+  once : true,
+  easing : 'ease',
+  delay: 400
+});
