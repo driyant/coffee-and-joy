@@ -1,191 +1,238 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>Coffee & Joy</title>
-  </head>
-  <body id="body">
-    <nav>
-      <div class="wrapper">
-        <h3 class="title__logo"><a href="#body">Coffee & Joy</a></h3>
-        <ul class="nav__links">
-          <li class="home__anchor__mobile"><a href="#body">Home</a></li>
-          <li><a href="#about__us">About Us</a></li>
-          <li><a href="#event">Event</a></li>
-          <li class="anchor__logo"><a href="#body" >Coffee & Joy</a></li>
-          <li><a href="#our__menu">Our Menu</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger">
-          <span></span>
-        </div>
-      </div>
-    </nav>
-    <section class="announcement" id="announcement">
-      <img src="assets/bell.png" alt="bell" />
+{% extends 'base.html' %} {% block head %}Coffee & Joy{% endblock %} {% block
+content %}
+<nav>
+  <div class="wrapper">
+    <h3 class="title__logo"><a href="#body">Coffee & Joy</a></h3>
+    <ul class="nav__links">
+      <li class="home__anchor__mobile"><a href="#body">Home</a></li>
+      <li><a href="#about__us">About Us</a></li>
+      <li><a href="#event">Event</a></li>
+      <li class="anchor__logo"><a href="#body">Coffee & Joy</a></li>
+      <li><a href="#our__menu">Our Menu</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+    </div>
+  </div>
+</nav>
+<section class="announcement" id="announcement">
+  <img src="{{url_for('static', filename='assets/bell.png') }}" alt="bell" />
+  <p>We are having Grand Opening Event. <a href="#event">Learn More</a></p>
+</section>
+<header>
+  <div class="slider">
+    <img src="{{url_for('static', filename='assets/img.jpg')}}" alt="slider1" />
+  </div>
+  <div class="brand__intro">
+    <div class="brand__title">
+      <h1 class="title">Coffee & Joy</h1>
+    </div>
+    <img src="{{url_for('static', filename='assets/logo-2.png')}}" alt="logo" />
+    <div class="brand__description">
       <p>
-        We are having Grand Opening Event. <a href="#event">Learn More</a>
+        Welcome to Coffee & Joy! The most enjoyable place to have a cup of
+        coffee. Our mission is to give you high quality coffee.
       </p>
-    </section>
-    <header>
-      <div class="slider">
-        <img src="assets/img.jpg" alt="slider1">
+    </div>
+  </div>
+</header>
+<section class="about__us" id="about__us">
+  <h2 class="title">About Us</h2>
+  <div class="wrapper">
+    <div class="about__description" data-aos="fade-right">
+      <p>
+        Our mission is to give everyone high quality taste of coffee and
+        enjoyable place.
+      </p>
+      <br />
+      <p>
+        Coffee & Joy offers high quality coffee beans, and various menu with a
+        cozy place where people can spend their time and boost your productivity
+      </p>
+    </div>
+    <div class="image__about" data-aos="fade-left">
+      <img src="{{ url_for('static', filename='assets/img-about.png') }}" alt="image" />
+    </div>
+  </div>
+</section>
+<section class="event" id="event">
+  <h2 class="title">Event</h2>
+  <div class="wrapper">
+    <div class="content__description" data-aos="fade-up">
+      <h3>Join us for our grand opening event</h3>
+      <p>
+        There will be free coffee, discount 10% for all menus, coffee latte art
+        and many more!
+      </p>
+      <p>August 6-8th 03.00 PM</p>
+      <p><i class="fas fa-map-marker-alt"></i> ABC, Street 1270, Long Beach</p>
+    </div>
+    <div class="time__remaining" data-aos="fade-in">
+      <h1></h1>
+    </div>
+    <div class="form__group">
+      <p>Sign Up Our Monthly Newsletter</p>
+      <p>Get 1 Coffee and Croissant For Free!</p>
+      <form class="form">
+        <div class="text__group">
+          <input
+            type="text"
+            class="firstname"
+            name="firstname"
+            required
+            placeholder="Firstname"
+          />
+          <input
+            type="text"
+            class="lastname"
+            name="lastname"
+            required
+            placeholder="Lastname"
+          />
+        </div>
+        <input
+          type="email"
+          class="email"
+          name="email"
+          required
+          placeholder="Email"
+        />
+        <button class="cta__subscribe">
+          Yes, I want free coffee! <i class="far fa-thumbs-up"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+<section class="our__menu" id="our__menu">
+  <h2 class="title">Our Menu</h2>
+  <ul class="menu__links">
+    <li class="list active" data-filter="all">All</li>
+    <li class="list" data-filter="coffee">Coffee</li>
+    <li class="list" data-filter="non-coffee">Non-Coffee</li>
+    <li class="list" data-filter="food">Food</li>
+  </ul>
+  <div class="content__menu">
+    <div class="menu" data-category="coffee" data-aos="flip-left">
+      <img src="{{url_for('static', filename='assets/brewed-coffee.png')}}" alt="brewed-coffee" />
+      <div class="menu__description">
+        <h4>Brewed Coffee</h4>
+        <p>
+          Brewed coffee is made by pouring hot water onto ground coffee beans,
+          then allowing to brew.
+        </p>
       </div>
-      <div class="brand__intro">
-        <div class="brand__title">
-          <h1 class="title">Coffee & Joy</h1>
-        </div>
-        <img src="assets/logo-2.png" alt="logo">
-        <div class="brand__description">
-          <p>Welcome to Coffee & Joy! The most enjoyable place to have a cup of coffee. Our mission is to give you high quality coffee.</p>
-        </div>
+    </div>
+    <div class="menu" data-category="coffee" data-aos="flip-right">
+      <img src="{{url_for('static', filename='assets/expresso.png')}}" alt="expresso" />
+      <div class="menu__description">
+        <h4>Expresso</h4>
+        <p>
+          Boiled in high pressure through finely-ground coffee beans. Espresso
+          is thicker than other methods, with a viscosity of warm honey.
+        </p>
       </div>
-    </header>
-    <section class="about__us" id="about__us">
-      <h2 class="title">About Us</h2>
-      <div class="wrapper">
-        <div class="about__description" data-aos="fade-right">
-          <p>Our mission is to give everyone high quality taste of coffee and enjoyable place.</p> <br>
-          <p>Coffee & Joy offers high quality coffee beans, and various menu with a cozy place where people can spend their time and boost your productivity</p>
-        </div>
-        <div class="image__about" data-aos="fade-left">
-          <img src="assets/img-about.png" alt="image">
-        </div>
+    </div>
+    <div class="menu" data-category="coffee" data-aos="zoom-in-left">
+      <img src="{{url_for('static', filename='assets/iced-latte.png')}}" alt="iced-latte" />
+      <div class="menu__description">
+        <h4>Iced Latte</h4>
+        <p>
+          The espresso can be pre-chilled (sometimes as a mixture of espresso
+          and milk) or frozen in advance to avoid warming up the drink.
+        </p>
       </div>
-    </section>
-    <section class="event" id="event">
-      <h2 class="title">Event</h2>
-       <div class="wrapper">
-         <div class="content__description" data-aos="fade-up">
-           <h3>Join us for our grand opening event</h3>
-           <p>There will be free coffee, discount 10% for all menus, coffee latte art and many more!</p>
-           <p>August 6-8th 03.00 PM</p>
-           <p><i class="fas fa-map-marker-alt"></i>  ABC, Street 1270, Long Beach</p>
-         </div>
-         <div class="time__remaining" data-aos="fade-in">
-           <h1></h1>
-         </div>
-         <div class="form__group">
-           <p>Sign Up Our Monthly Newsletter</p>
-           <p>Get 1 Coffee and Croissant For Free!</p>
-           <form class="form">
-             <div class="text__group">
-              <input type="text" class="firstname" name="firstname" required placeholder="Firstname" />
-              <input type="text" class="lastname" name="lastname" required placeholder="Lastname" />
-             </div>
-             <input type="email" class="email" name="email" required placeholder="Email" />
-             <button class="cta__subscribe">Yes, I want free coffee! 
-            <i class="far fa-thumbs-up"></i></button>
-           </form>
-         </div>
-       </div>
-    </section>
-    <section class="our__menu" id="our__menu">
-      <h2 class="title">Our Menu</h2>
-      <ul class="menu__links">
-        <li class="list active" data-filter="all">All</li>
-        <li class="list" data-filter="coffee">Coffee</li>
-        <li class="list" data-filter="non-coffee">Non-Coffee</li>
-        <li class="list" data-filter="food">Food</li>
-      </ul>
-      <div class="content__menu">
-        <div class="menu" data-category="coffee" data-aos="flip-left">
-          <img src="assets/brewed-coffee.png" alt="brewed-coffee" />
-          <div class="menu__description">
-            <h4>Brewed Coffee</h4>
-            <p>Brewed coffee is made by pouring hot water onto ground coffee beans, then allowing to brew.</p>
-          </div>
-        </div>
-        <div class="menu" data-category="coffee" data-aos="flip-right">
-          <img src="assets/expresso.png" alt="expresso" />
-          <div class="menu__description">
-            <h4>Expresso</h4>
-            <p>Boiled in high pressure through 
-              finely-ground coffee beans. Espresso is thicker than other methods, with a viscosity of warm honey.</p>
-          </div>
-        </div>
-        <div class="menu" data-category="coffee" data-aos="zoom-in-left">
-          <img src="assets/iced-latte.png" alt="iced-latte" />
-          <div class="menu__description">
-            <h4>Iced Latte</h4>
-            <p>The espresso can be pre-chilled (sometimes as a mixture of espresso and milk) or frozen in advance to avoid warming up the drink.</p>
-          </div>
-        </div>
-        <div class="menu" data-category="non-coffee" data-aos="flip-down">
-          <img src="assets/green-tea.png" alt="green-tea" />
-          <div class="menu__description">
-            <h4>Green Tea</h4>
-            <p>Tea that is made from Camellia sinensis leaves and buds that have not undergone the same withering and oxidation process.</p>
-          </div>
-        </div>
-        <div class="menu" data-category="food" data-aos="flip-up">
-          <img src="assets/spaghetti-carbonara.png" alt="spaghetti carbonara-coffee" />
-          <div class="menu__description">
-            <h4>Spaghetti Carbonara</h4>
-            <p> Italian pasta dish from Rome made with egg, hard cheese, beacon, and black pepper.</p>
-          </div>
-        </div>
-        <div class="menu" data-category="food" data-aos="flip-down">
-          <img src="assets/healthy-salad.png" alt="healthy-salad" />
-          <div class="menu__description">
-            <h4>Healthy Salad</h4>
-            <p>A dish for vegetarian consisting of mixed pieces of food, typically with at least one raw ingredient.</p>
-          </div>
-        </div>
+    </div>
+    <div class="menu" data-category="non-coffee" data-aos="flip-down">
+      <img src="{{url_for('static', filename='assets/green-tea.png')}}" alt="green-tea" />
+      <div class="menu__description">
+        <h4>Green Tea</h4>
+        <p>
+          Tea that is made from Camellia sinensis leaves and buds that have not
+          undergone the same withering and oxidation process.
+        </p>
       </div>
-    </section>
-    <section class="testimonials" id="testimonials">
-      <h2 class="title">Serving Community With Love</h2>
-      <p>Bring your happiness and enjoy our coffee</p>
-      <div class="wrapper">
-        <div class="card" data-aos="zoom-out-up">
-          <img src="assets/camilla.jpg" alt="camilla" class="testimonal__image">
-          <h4>Camilla</h4>
-          <p>“ It's obvious the ladies behind Coffee & Joy pour their heart, soul, and spirit into offering up great coffee taste. Don't miss out on meeting some great people over fantastic! ”</p>
-        </div>
-        <div class="card" data-aos="zoom-out-up">
-          <img src="assets/alice.jpg" alt="alice" class="testimonal__image">
-          <h4>Alice</h4>
-          <p>“ I’ve gotta say, this is some of the most flavorful, exquisite iced coffee latte I’ve ever tasted!”</p>
-        </div>
-        <div class="card" data-aos="zoom-out-up">
-          <img src="assets/alex.jpg" alt="alex" class="testimonal__image">
-          <h4>Alex</h4>
-          <p>“ I have to say this is the most flavorful. They have high quality coffee and also vegetarian menu!”</p>
-        </div>
+    </div>
+    <div class="menu" data-category="food" data-aos="flip-up">
+      <img
+        src="{{url_for('static', filename='assets/spaghetti-carbonara.png')}}"
+        alt="spaghetti carbonara-coffee"
+      />
+      <div class="menu__description">
+        <h4>Spaghetti Carbonara</h4>
+        <p>
+          Italian pasta dish from Rome made with egg, hard cheese, beacon, and
+          black pepper.
+        </p>
       </div>
-    </section>
-    <section class="contact" id="contact">
-      <h2 class="title">Where To Find Us</h2>
-      <div class="wrapper">
-          <ul class="contact__description">
-            <li>Coffee & Joy</li>
-            <li>ABC, Street 1270, Long Beach</li>
-            <li>00-123-456-789</li>
-            <li>mail@coffeeandjoy.com</li>
-          </ul>
-          <ul class="links">
-            <li><a href="#body">Home</a></li>
-            <li><a href="#about__us">About Us</a></li>
-            <li><a href="index.html">Careers</a></li>
-            <li><a href="#event">Event</a></li>
-          </ul>
-          <ul class="social__links">
-            <li><a href="index.html">Facebook</a></li>
-            <li><a href="index.html">Instagram</a></li>
-            <li><a href="index.html">Twitter</a></li>
-          </ul>
+    </div>
+    <div class="menu" data-category="food" data-aos="flip-down">
+      <img src="{{url_for('static', filename='assets/healthy-salad.png')}}" alt="healthy-salad" />
+      <div class="menu__description">
+        <h4>Healthy Salad</h4>
+        <p>
+          A dish for vegetarian consisting of mixed pieces of food, typically
+          with at least one raw ingredient.
+        </p>
       </div>
-      <footer>
-        <p>&copy Coffee & Joy - 2021</p>
-      </footer>
-    </section> 
-  </body>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="js/index.js"></script>
-</html>
+    </div>
+  </div>
+</section>
+<section class="testimonials" id="testimonials">
+  <h2 class="title">Serving Community With Love</h2>
+  <p>Bring your happiness and enjoy our coffee</p>
+  <div class="wrapper">
+    <div class="card" data-aos="zoom-out-up">
+      <img src="{{url_for('static', filename='assets/camilla.jpg')}}" alt="camilla" class="testimonal__image" />
+      <h4>Camilla</h4>
+      <p>
+        “ It's obvious the ladies behind Coffee & Joy pour their heart, soul,
+        and spirit into offering up great coffee taste. Don't miss out on
+        meeting some great people over fantastic! ”
+      </p>
+    </div>
+    <div class="card" data-aos="zoom-out-up">
+      <img src="{{url_for('static', filename='assets/alice.jpg')}}" alt="alice" class="testimonal__image" />
+      <h4>Alice</h4>
+      <p>
+        “ I’ve gotta say, this is some of the most flavorful, exquisite iced
+        coffee latte I’ve ever tasted!”
+      </p>
+    </div>
+    <div class="card" data-aos="zoom-out-up">
+      <img src="{{url_for('static', filename='assets/alex.jpg')}}" alt="alex" class="testimonal__image" />
+      <h4>Alex</h4>
+      <p>
+        “ I have to say this is the most flavorful. They have high quality
+        coffee and also vegetarian menu!”
+      </p>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <h2 class="title">Where To Find Us</h2>
+  <div class="wrapper">
+    <ul class="contact__description">
+      <li>Coffee & Joy</li>
+      <li>ABC, Street 1270, Long Beach</li>
+      <li>00-123-456-789</li>
+      <li>mail@coffeeandjoy.com</li>
+    </ul>
+    <ul class="links">
+      <li><a href="#body">Home</a></li>
+      <li><a href="#about__us">About Us</a></li>
+      <li><a href="index.html">Careers</a></li>
+      <li><a href="#event">Event</a></li>
+    </ul>
+    <ul class="social__links">
+      <li><a href="index.html">Facebook</a></li>
+      <li><a href="index.html">Instagram</a></li>
+      <li><a href="index.html">Twitter</a></li>
+    </ul>
+  </div>
+  <footer>
+    <p>&copy Coffee & Joy - 2021</p>
+  </footer>
+</section>
+{% endblock%}

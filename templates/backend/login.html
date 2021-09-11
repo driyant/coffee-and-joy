@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -14,7 +14,7 @@
 <body>
   <div class="container">
     <div class="logo animate__animated animate__flipInX">
-      <img src="assets/logo-2.png" alt="logo">
+      <img src="{{ url_for('static', filename="assets/logo-2.png")}}" alt="logo">
     </div>  
     <form action="" class="form">
       <input type="text" placeholder="Username" required class="animate__animated animate__zoomInLeft" />
@@ -23,5 +23,5 @@
     </form>
   </div>
 </body>
-<script src="js/login.js"></script>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </html>
