@@ -1,0 +1,75 @@
+
+<section class="our__menu" id="our__menu">
+  <h2 class="title">Our Menu</h2>
+  <ul class="menu__links">
+    <li class="list active" data-filter="all">All</li>
+    <li class="list" data-filter="coffee">Coffee</li>
+    <li class="list" data-filter="non-coffee">Non-Coffee</li>
+    <li class="list" data-filter="food">Food</li>
+  </ul>
+  <div class="content__menu">
+    <div class="menu" data-category="coffee" data-aos="flip-left">
+      <img src="{{url_for('static', filename='assets/brewed-coffee.png')}}" alt="brewed-coffee" />
+      <div class="menu__description">
+        <h4>Brewed Coffee</h4>
+        <p>
+          Brewed coffee is made by pouring hot water onto ground coffee beans,
+          then allowing to brew.
+        </p>
+      </div>
+    </div>
+    <div class="menu" data-category="coffee" data-aos="flip-right">
+      <img src="{{url_for('static', filename='assets/expresso.png')}}" alt="expresso" />
+      <div class="menu__description">
+        <h4>Expresso</h4>
+        <p>
+          Boiled in high pressure through finely-ground coffee beans. Espresso
+          is thicker than other methods, with a viscosity of warm honey.
+        </p>
+      </div>
+    </div>
+    <div class="menu" data-category="coffee" data-aos="zoom-in-left">
+      <img src="{{url_for('static', filename='assets/iced-latte.png')}}" alt="iced-latte" />
+      <div class="menu__description">
+        <h4>Iced Latte</h4>
+        <p>
+          The espresso can be pre-chilled (sometimes as a mixture of espresso
+          and milk) or frozen in advance to avoid warming up the drink.
+        </p>
+      </div>
+    </div>
+    <div class="menu" data-category="non-coffee" data-aos="flip-down">
+      <img src="{{url_for('static', filename='assets/green-tea.png')}}" alt="green-tea" />
+      <div class="menu__description">
+        <h4>Green Tea</h4>
+        <p>
+          Tea that is made from Camellia sinensis leaves and buds that have not
+          undergone the same withering and oxidation process.
+        </p>
+      </div>
+    </div>
+    <div class="menu" data-category="food" data-aos="flip-up">
+      <img
+        src="{{url_for('static', filename='assets/spaghetti-carbonara.png')}}"
+        alt="spaghetti carbonara-coffee"
+      />
+      <div class="menu__description">
+        <h4>Spaghetti Carbonara</h4>
+        <p>
+          Italian pasta dish from Rome made with egg, hard cheese, beacon, and
+          black pepper.
+        </p>
+      </div>
+    </div>
+    <div class="menu" data-category="food" data-aos="flip-down">
+      <img src="{{url_for('static', filename='assets/healthy-salad.png')}}" alt="healthy-salad" />
+      <div class="menu__description">
+        <h4>Healthy Salad</h4>
+        <p>
+          A dish for vegetarian consisting of mixed pieces of food, typically
+          with at least one raw ingredient.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

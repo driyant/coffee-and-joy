@@ -5,8 +5,13 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:@localhost/db_coffeeshop"
 app.config["SQL_TRACK_MODIFICATION"] = False
 
-@app.route("/")
-def home():
+@app.route("/", methods=["GET", "POST"])
+def index():
+  return render_template("index.html")
+
+@app.route("/newsletter_subcribe", methods=["POST"])
+def newsletter_subcribe():
+  print("sucesss")
   return render_template("index.html")
 
 @app.route("/login")
