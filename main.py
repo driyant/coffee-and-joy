@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,24 +17,15 @@ def login():
 def login_process():
   username = request.form.get("username")
   password = request.form.get("password")
-  print(username,password)
-  # return render_template("admin_dashboard/pages/index.html");
-  return "ok"
-  
-  
-
-# @app.route("/admin_dashboard")
-# def admin_dashboard():
-# return "admin"
-
-# @app.route("/newsletter", methods=["POST"])
-# def newsletter():
-#   firstname = request.form.get["firstname"]
-#   lastname = request.form.get["lastname"]
-#   email = request.form.get["email"]
-#   print(firstname,lastname,email)
-#   return "ok"
-
+  if username == "admin" and password == "admin123":
+    return redirect(url_for("admin_dashboard"))
+  else:
+    print("password or username is invalid!");
+    return redirect(url_for("login"))
+    
+@app.route("/admin_dashboard")
+def admin_dashboard():
+  return "hello admin"
 
 if __name__ == "__main__":
   app.run(debug=True)
