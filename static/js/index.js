@@ -20,7 +20,7 @@ const removeOpen = () => {
   }, 400);
 }
 const navLists = document.querySelectorAll(".nav__links li");
-navLists.forEach(navList => {
+navLists.forEach(navList =>  {
   navList.addEventListener("click", removeOpen);
 });
 
@@ -35,6 +35,7 @@ const menus = document.querySelectorAll(".menu");
 
 menuLists.forEach(menuList => {
   menuList.addEventListener("click", (e) => {
+     e.preventDefault();
      menuLists.forEach(list => {
       list.classList.remove("active");
       e.target.classList.add("active");

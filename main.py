@@ -9,28 +9,22 @@ app.config["SQL_TRACK_MODIFICATION"] = False
 def index():
   return render_template("index.html")
 
-@app.route("/newsletter_subcribe", methods=["POST"])
-def newsletter_subcribe():
-  print("sucesss")
-  return render_template("index.html")
-
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-  return render_template("login.html")
-
-@app.route("/login_process", methods=["POST"])
-def login_process():
-  username = request.form.get("username")
-  password = request.form.get("password")
-  if username == "admin" and password == "admin123":
-    return redirect(url_for("admin_dashboard"))
+  if request.method == "POST":
+    username = request.form.get("username")
+    password = request.form.get("password")
+    if username == "admin" and password == "admin123":
+      return redirect(url_for("admin_dashboard"))
+    else:
+      print("Invalid username or password")
+      return render_template("login.html")   
   else:
-    print("password or username is invalid!");
-    return redirect(url_for("login"))
-    
+    return render_template("login.html")
+
 @app.route("/admin_dashboard")
 def admin_dashboard():
-  return "hello admin"
+  return render_template("admin_dashboard/admin.html")
 
 if __name__ == "__main__":
   app.run(debug=True)

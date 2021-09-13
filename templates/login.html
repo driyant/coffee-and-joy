@@ -16,7 +16,7 @@
     <div class="logo animate__animated animate__flipInX">
       <img src="{{ url_for('static', filename="assets/logo-2.png")}}" alt="logo">
     </div>  
-    <form action="/login_process" class="form" method="POST">
+    <form action="/login" class="form" method="POST">
       <input type="text" placeholder="Username" required class="animate__animated animate__zoomInLeft" name="username"/>
       <input type="password" placeholder="Password" required class="animate__animated animate__zoomInRight" name="password"/>
       <button type="submit" class="btn animate__animated">Login</button>
