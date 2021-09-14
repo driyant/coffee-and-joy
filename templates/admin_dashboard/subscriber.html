@@ -26,12 +26,16 @@ endblock %} {% block content %}
     </tr>
   </thead>
   <tbody>
+    {% for subscriber in subscribers %}
     <tr>
-      <td class="text-center hidden-xs hidden-sm">1</td>
-      <td>John</td>
-      <td>Doe</td>
-      <td>john121212@doe.com</td>
+      <td class="text-center hidden-xs hidden-sm">
+      {{ subscriber.id }}
+      </td>
+      <td>{{ subscriber.subscriber_firstname.title() }}</td>
+      <td>{{ subscriber.subscriber_lastname.title() }}</td>
+      <td>{{ subscriber.subscriber_email }}@doe.com</td>
     </tr>
+    {% endfor %}
   </tbody>
 </table>
 <!-- END Datatables -->

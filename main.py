@@ -12,6 +12,10 @@ class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
   menu = db.relationship('Menu', backref='category', lazy='joined')
+  
+  def __repr__(self):
+    return "<Category " + self.id + ">"
+
 
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +24,9 @@ class Menu(db.Model):
   menu_photo = db.Column(db.String(500), nullable=False)
   cateogry_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
+  def __repr__(self):
+    return "<Menu " + self.id + ">"
+
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -27,11 +34,13 @@ class Subscriber(db.Model):
   subscriber_lastname = db.Column(db.String(50), nullable=False)
   subscriber_email = db.Column(db.String(50), nullable=False)
 
-  def __init__(self, suscriber_firstname, subscriber_lastname, subscriber_email):
-    self.subscriber_firstname = suscriber_firstname
+  def __init__(self, subscriber_firstname, subscriber_lastname, subscriber_email):
+    self.subscriber_firstname = subscriber_lastname
     self.subscriber_lastname = subscriber_lastname
     self.subscriber_email = subscriber_email
-    
+
+  # def __repr__(self):
+  #   return "<Subscriber " + self.id + ">"
 
 class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -45,7 +54,6 @@ class Event(db.Model):
     self.event_info = event_info
     self.event_date = event_date
     self.event_status = event_status
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -81,7 +89,10 @@ def admin_dashboard():
 
 @app.route("/admin_dashboard/subscriber")
 def subscriber():
-  return render_template('admin_dashboard/subscriber.html')
+   # Fetch all data in subscriber list
+  data_subscriber = Subscriber.query.all()
+  print(data_subscriber)
+  return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
 
 if __name__ == "__main__":
   app.run(debug=True)
