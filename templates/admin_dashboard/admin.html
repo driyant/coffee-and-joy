@@ -1,405 +1,357 @@
-{% extends 'base.html' %}
-{% block title %} Admin Dashboard |  {% endblock %}
+{% extends 'base.html' %} 
+{% block title %} Admin Dashboard | Home {% endblock %} 
 {% block content %}
-    <!-- Page Content -->
-    <div id="page-content">
-      <!-- Navigation info -->
-      <ul id="nav-info" class="clearfix">
-        <li>
-          <a href="index.html"><i class="fa fa-home"></i></a>
-        </li>
-        <li class="active"><a href="">Dashboard</a></li>
-      </ul>
-      <!-- END Navigation info -->
-      <!-- Nav Dash -->
-      <ul class="nav-dash">
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Users"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-user"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Comments"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-comments"></i>
-            <span class="badge badge-success">3</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Calendar"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-calendar"></i>
-            <span class="badge badge-inverse">5</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Photos"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-camera-retro"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Projects"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-paperclip"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Tasks"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-tasks"></i>
-            <span class="badge badge-warning">1</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Reader"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-book"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Settings"
-            class="animation-fadeIn"
-          >
-            <i class="fa fa-cogs"></i>
-          </a>
-        </li>
-      </ul>
-      <!-- END Nav Dash -->
+<!-- Navigation info -->
+<ul id="nav-info" class="clearfix">
+  <li>
+    <a href="index.html"><i class="fa fa-home"></i></a>
+  </li>
+  <li class="active"><a href="">Dashboard</a></li>
+</ul>
+<!-- END Navigation info -->
+<!-- Nav Dash -->
+<ul class="nav-dash">
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Users"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-user"></i>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Comments"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-comments"></i>
+      <span class="badge badge-success">3</span>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Calendar"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-calendar"></i>
+      <span class="badge badge-inverse">5</span>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Photos"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-camera-retro"></i>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Projects"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-paperclip"></i>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Tasks"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-tasks"></i>
+      <span class="badge badge-warning">1</span>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Reader"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-book"></i>
+    </a>
+  </li>
+  <li>
+    <a
+      href="javascript:void(0)"
+      data-toggle="tooltip"
+      title="Settings"
+      class="animation-fadeIn"
+    >
+      <i class="fa fa-cogs"></i>
+    </a>
+  </li>
+</ul>
+<!-- END Nav Dash -->
 
-      <!-- Tiles -->
-      <!-- Row 1 -->
-      <div class="dash-tiles row">
-        <!-- Column 1 of Row 1 -->
-        <div class="col-sm-3">
-         <!-- Total Profit Tile -->
-          <div class="dash-tile dash-tile-leaf clearfix animation-pullDown">
-            <div class="dash-tile-header">
-              Total Profit
-            </div>
-            <div class="dash-tile-icon"><i class="fa fa-money"></i></div>
-            <div class="dash-tile-text">$5M</div>
-          </div>
-          <!-- END Total Profit Tile -->
-
-          <!-- Total Users Tile -->
-          <div class="dash-tile dash-tile-ocean clearfix animation-pullDown">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-              </div>
-              Total Menus
-            </div>
-            <div class="dash-tile-icon"><i class="fa fa-users"></i></div>
-            <div class="dash-tile-text">265k</div>
-          </div>
-          <!-- END Total Users Tile -->
-
-         
-        </div>
-        <!-- END Column 1 of Row 1 -->
-
-        <!-- Column 2 of Row 1 -->
-        <div class="col-sm-3">
-          <!-- Total Sales Tile -->
-          <div class="dash-tile dash-tile-flower clearfix animation-pullDown">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-                <div class="btn-group">
-                </div>
-              </div>
-              Total Sales
-            </div>
-            <div class="dash-tile-icon"><i class="fa fa-tags"></i></div>
-            <div class="dash-tile-text">300k</div>
-          </div>
-          <!-- END Total Sales Tile -->
-        </div>
-        <!-- END Column 2 of Row 1 -->
-
-        <!-- Column 3 of Row 1 -->
-        <div class="col-sm-3">
-          <!-- Popularity Tile -->
-          <div class="dash-tile dash-tile-oil clearfix animation-pullDown">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-                 <div class="btn-group">
-                  <p>Event Remaining : </p>
-                </div>
-              </div>
-              Total Events
-            </div>
-            <div class="dash-tile-icon"><i class="fa fa-globe"></i></div>
-            <div class="dash-tile-text">+90%</div>
-          </div>
-          <!-- END Popularity Tile -->
-
-        </div>
-        <!-- END Column 3 of Row 1 -->
-        <!-- Column 4 of Row 1 -->
-        <div class="col-sm-3">
-          <!-- RSS Subscribers Tile -->
-          <div class="dash-tile dash-tile-balloon clearfix animation-pullDown">
-            <div class="dash-tile-header">
-              Total Subscribers
-            </div>
-            <div class="dash-tile-icon"><i class="fa fa-rss"></i></div>
-            <div class="dash-tile-text">160k</div>
-          </div>
-          <!-- END Subscribers Tile -->
-        </div>
-        <!-- END Column 4 of Row 1 -->
-      </div>
-      <!-- END Row 1 -->
-
-      <!-- Row 2 -->
-      <div class="row">
-        <!-- Column 1 of Row 2 -->
-        <div class="col-sm-6">
-          <!-- Statistics Tile -->
-          <div class="dash-tile dash-tile-2x">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-                <div
-                  id="example-advanced-daterangepicker"
-                  class="btn btn-default"
-                >
-                  <i class="fa fa-calendar"></i>
-                  <span></span>
-                  <b class="caret"></b>
-                </div>
-              </div>
-              <i class="fa fa-bar-chart-o"></i>
-            </div>
-            <div class="dash-tile-content">
-              <div
-                id="dash-example-stats"
-                class="dash-tile-content-inner"
-              ></div>
-            </div>
-          </div>
-          <!-- END Statistics Tile -->
-        </div>
-        <!-- END Column 1 of Row 2 -->
-
-        <!-- Column 2 of Row 2 -->
-        <div class="col-sm-3">
-          <!-- Projects Tile -->
-          <div class="dash-tile dash-tile-2x">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-                <a
-                  href="javascript:void(0)"
-                  class="btn btn-default"
-                  data-toggle="tooltip"
-                  title="Manage projects"
-                  ><i class="fa fa-cog"></i
-                ></a>
-              </div>
-              Projects
-            </div>
-            <div class="dash-tile-content">
-              <div class="dash-tile-content-inner scrollable-tile-2x">
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#1 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-success"
-                    style="width: 100%"
-                  >
-                    <i class="fa fa-check"></i> Done!
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#2 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-success"
-                    style="width: 75%"
-                  >
-                    75%
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#3 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-warning"
-                    style="width: 50%"
-                  >
-                    50%
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#4 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-danger"
-                    style="width: 20%"
-                  >
-                    20%
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#5 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-success"
-                    style="width: 85%"
-                  >
-                    85%
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#6 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-success"
-                    style="width: 95%"
-                  >
-                    95%
-                  </div>
-                </div>
-                <h5 class="page-header-sub">
-                  <a href="javascript:void(0)">#7 - Project</a>
-                </h5>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-warning"
-                    style="width: 60%"
-                  >
-                    60%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- END Projects Tile -->
-        </div>
-        <!-- END Column 2 of Row 2 -->
-
-        <!-- Column 3 of Row 2 -->
-        <div class="col-sm-3">
-          <!-- Alerts Tile -->
-          <div class="dash-tile dash-tile-2x">
-            <div class="dash-tile-header">
-              <div class="dash-tile-options">
-                <div class="btn-group">
-                  <a
-                    href="javascript:void(0)"
-                    class="btn btn-default dropdown-toggle"
-                    data-toggle="dropdown"
-                    ><span class="caret"></span
-                  ></a>
-                  <a href="javascript:void(0)" class="btn btn-info"
-                    ><i class="fa fa-twitter"></i
-                  ></a>
-                  <a href="javascript:void(0)" class="btn btn-success"
-                    ><i class="fa fa-cog"></i
-                  ></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0)">System</a></li>
-                    <li><a href="javascript:void(0)">Projects</a></li>
-                    <li><a href="javascript:void(0)">Users</a></li>
-                  </ul>
-                </div>
-              </div>
-              Alerts
-            </div>
-            <div class="dash-tile-content">
-              <div class="dash-tile-content-inner scrollable-tile-2x">
-                <h5 class="page-header-sub">Today</h5>
-                <div class="alert alert-warning">
-                  <button type="button" class="close" data-dismiss="alert">
-                    ×
-                  </button>
-                  <i class="fa fa-barcode"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <div class="alert alert-success">
-                  <i class="fa fa-unlock"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <div class="alert alert-danger">
-                  <button type="button" class="close" data-dismiss="alert">
-                    ×
-                  </button>
-                  <i class="fa fa-bell-o"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <div class="alert alert-info">
-                  <i class="fa fa-signal"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <h5 class="page-header-sub">Yesterday</h5>
-                <div class="alert alert-success">
-                  <button type="button" class="close" data-dismiss="alert">
-                    ×
-                  </button>
-                  <i class="fa fa-barcode"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <div class="alert alert-warning">
-                  <i class="fa fa-barcode"></i> <strong>Check out!</strong> This
-                  is a notification!
-                </div>
-                <div class="alert alert-info">
-                  <button type="button" class="close" data-dismiss="alert">
-                    ×
-                  </button>
-                  <i class="fa fa-facebook"></i>
-                  <strong>Check out!</strong> This is a notification!
-                </div>
-                <div class="alert alert-danger">
-                  <i class="fa fa-align-justify"></i>
-                  <strong>Check out!</strong> This is a notification!
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- END Alerts Tile -->
-        </div>
-        <!-- END Column 3 of Row 2 -->
-      </div>
-      <!-- END Row 2 -->
-      <!-- END Tiles -->
+<!-- Tiles -->
+<!-- Row 1 -->
+<div class="dash-tiles row">
+  <!-- Column 1 of Row 1 -->
+  <div class="col-sm-3">
+    <!-- Total Profit Tile -->
+    <div class="dash-tile dash-tile-leaf clearfix animation-pullDown">
+      <div class="dash-tile-header">Total Profit</div>
+      <div class="dash-tile-icon"><i class="fa fa-money"></i></div>
+      <div class="dash-tile-text">$5M</div>
     </div>
-    <!-- END Page Content -->
+    <!-- END Total Profit Tile -->
+
+    <!-- Total Users Tile -->
+    <div class="dash-tile dash-tile-ocean clearfix animation-pullDown">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options"></div>
+        Total Menus
+      </div>
+      <div class="dash-tile-icon"><i class="fa fa-users"></i></div>
+      <div class="dash-tile-text">265k</div>
+    </div>
+    <!-- END Total Users Tile -->
+  </div>
+  <!-- END Column 1 of Row 1 -->
+
+  <!-- Column 2 of Row 1 -->
+  <div class="col-sm-3">
+    <!-- Total Sales Tile -->
+    <div class="dash-tile dash-tile-flower clearfix animation-pullDown">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options">
+          <div class="btn-group"></div>
+        </div>
+        Total Sales
+      </div>
+      <div class="dash-tile-icon"><i class="fa fa-tags"></i></div>
+      <div class="dash-tile-text">300k</div>
+    </div>
+    <!-- END Total Sales Tile -->
+  </div>
+  <!-- END Column 2 of Row 1 -->
+
+  <!-- Column 3 of Row 1 -->
+  <div class="col-sm-3">
+    <!-- Popularity Tile -->
+    <div class="dash-tile dash-tile-oil clearfix animation-pullDown">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options">
+          <div class="btn-group">
+            <p>Event Remaining :</p>
+          </div>
+        </div>
+        Total Events
+      </div>
+      <div class="dash-tile-icon"><i class="fa fa-globe"></i></div>
+      <div class="dash-tile-text">+90%</div>
+    </div>
+    <!-- END Popularity Tile -->
+  </div>
+  <!-- END Column 3 of Row 1 -->
+  <!-- Column 4 of Row 1 -->
+  <div class="col-sm-3">
+    <!-- RSS Subscribers Tile -->
+    <div class="dash-tile dash-tile-balloon clearfix animation-pullDown">
+      <div class="dash-tile-header">Total Subscribers</div>
+      <div class="dash-tile-icon"><i class="fa fa-rss"></i></div>
+      <div class="dash-tile-text">160k</div>
+    </div>
+    <!-- END Subscribers Tile -->
+  </div>
+  <!-- END Column 4 of Row 1 -->
+</div>
+<!-- END Row 1 -->
+
+<!-- Row 2 -->
+<div class="row">
+  <!-- Column 1 of Row 2 -->
+  <div class="col-sm-6">
+    <!-- Statistics Tile -->
+    <div class="dash-tile dash-tile-2x">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options">
+          <div id="example-advanced-daterangepicker" class="btn btn-default">
+            <i class="fa fa-calendar"></i>
+            <span></span>
+            <b class="caret"></b>
+          </div>
+        </div>
+        <i class="fa fa-bar-chart-o"></i>
+      </div>
+      <div class="dash-tile-content">
+        <div id="dash-example-stats" class="dash-tile-content-inner"></div>
+      </div>
+    </div>
+    <!-- END Statistics Tile -->
+  </div>
+  <!-- END Column 1 of Row 2 -->
+
+  <!-- Column 2 of Row 2 -->
+  <div class="col-sm-3">
+    <!-- Projects Tile -->
+    <div class="dash-tile dash-tile-2x">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options">
+          <a
+            href="javascript:void(0)"
+            class="btn btn-default"
+            data-toggle="tooltip"
+            title="Manage projects"
+            ><i class="fa fa-cog"></i
+          ></a>
+        </div>
+        Projects
+      </div>
+      <div class="dash-tile-content">
+        <div class="dash-tile-content-inner scrollable-tile-2x">
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#1 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 100%">
+              <i class="fa fa-check"></i> Done!
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#2 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 75%">
+              75%
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#3 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" style="width: 50%">
+              50%
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#4 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-danger" style="width: 20%">
+              20%
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#5 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 85%">
+              85%
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#6 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: 95%">
+              95%
+            </div>
+          </div>
+          <h5 class="page-header-sub">
+            <a href="javascript:void(0)">#7 - Project</a>
+          </h5>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" style="width: 60%">
+              60%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Projects Tile -->
+  </div>
+  <!-- END Column 2 of Row 2 -->
+
+  <!-- Column 3 of Row 2 -->
+  <div class="col-sm-3">
+    <!-- Alerts Tile -->
+    <div class="dash-tile dash-tile-2x">
+      <div class="dash-tile-header">
+        <div class="dash-tile-options">
+          <div class="btn-group">
+            <a
+              href="javascript:void(0)"
+              class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown"
+              ><span class="caret"></span
+            ></a>
+            <a href="javascript:void(0)" class="btn btn-info"
+              ><i class="fa fa-twitter"></i
+            ></a>
+            <a href="javascript:void(0)" class="btn btn-success"
+              ><i class="fa fa-cog"></i
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="javascript:void(0)">System</a></li>
+              <li><a href="javascript:void(0)">Projects</a></li>
+              <li><a href="javascript:void(0)">Users</a></li>
+            </ul>
+          </div>
+        </div>
+        Alerts
+      </div>
+      <div class="dash-tile-content">
+        <div class="dash-tile-content-inner scrollable-tile-2x">
+          <h5 class="page-header-sub">Today</h5>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <i class="fa fa-barcode"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <div class="alert alert-success">
+            <i class="fa fa-unlock"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <i class="fa fa-bell-o"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <div class="alert alert-info">
+            <i class="fa fa-signal"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <h5 class="page-header-sub">Yesterday</h5>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <i class="fa fa-barcode"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <div class="alert alert-warning">
+            <i class="fa fa-barcode"></i> <strong>Check out!</strong> This is a
+            notification!
+          </div>
+          <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <i class="fa fa-facebook"></i>
+            <strong>Check out!</strong> This is a notification!
+          </div>
+          <div class="alert alert-danger">
+            <i class="fa fa-align-justify"></i>
+            <strong>Check out!</strong> This is a notification!
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Alerts Tile -->
+  </div>
+  <!-- END Column 3 of Row 2 -->
+</div>
+<!-- END Row 2 -->
+<!-- END Tiles -->
 {% endblock %}

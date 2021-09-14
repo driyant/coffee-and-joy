@@ -503,11 +503,9 @@
           <!-- END Demo Theme Options -->
         </aside>
         <!-- END Sidebar -->
-        
-          {% block content %} 
-
-          {% endblock %}
-        
+        <div id="page-content">
+          {% block content %} {% endblock %}
+        </div>
         <!-- Footer -->
         <footer>
           <span id="year-copy"></span> &copy;
@@ -519,8 +517,7 @@
             ></strong
           >
         </footer>
-        <!-- END Footer -->
-      
+        <!-- END Footer -->  
       </div>
       <!-- END Inner Container -->
       <!-- Scroll to top link, check main.js - scrollToTop() -->
