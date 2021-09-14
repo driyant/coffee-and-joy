@@ -95,7 +95,22 @@ def category_add():
     print(category)
     return redirect(url_for('category'))
   else:
-    return render_template("admin_dashboard/category_add.html")
+    return render_template("admin_dashboard/category-add.html")
+
+@app.route("/admin_dashboard/menu")
+def menu():
+  return render_template("admin_dashboard/menu.html")
+
+@app.route("/admin_dashboard/menu/add", methods=["GET","POST"])
+def menu_add():
+  if request.method == "POST":
+    menu_name = request.form["menu_name"]
+    menu_description = request.form["menu_description"]
+    menu_category = request.form["menu_category"]
+    menu_photo = request.form["menu_photo"]
+    print(menu_name, menu_description, menu_category, menu_photo)
+    return redirect(url_for('menu'))
+  return render_template("admin_dashboard/menu-add.html")
 
 @app.route("/admin_dashboard/event")
 def event():
