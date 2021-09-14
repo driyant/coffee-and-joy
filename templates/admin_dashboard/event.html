@@ -1,17 +1,18 @@
-{% extends 'base.html' %} {% block title %} Admin Dashboard | Subscriber {%
-endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard | Event{% endblock %}
+{% block content %}
 <!-- Navigation info -->
 <ul id="nav-info" class="clearfix">
   <li>
     <a href="index.html"><i class="fa fa-home"></i></a>
   </li>
   <li><a href="javascript:void(0)">Tables</a></li>
-  <li class="active"><a href="">Data Subscriber</a></li>
+  <li class="active"><a href="">Data Event</a></li>
 </ul>
 <!-- END Navigation info -->
 <!-- Datatables -->
 <h3 class="page-header page-header-top">
-  Tables <small>List of Subscriber</small>
+  Tables <small>List of Event</small>
 </h3>
 <table
   id="example-datatables"
@@ -20,26 +21,27 @@ endblock %} {% block content %}
   <thead>
     <tr>
       <th class="cell-small text-center hidden-xs hidden-sm">#</th>
-      <th><i class="fa fa-user"> </i> Firstname</th>
-      <th><i class="hi hi-briefcas"> </i> Lastname</th>
-      <th><i class="fa fa-envelope-o"> </i> Email</th>
+      <th><i class="fa fa-user"> </i> Event</th>
+      <th><i class="hi hi-briefcas"> </i>Info Desscription</th>
+      <th><i class="fa fa-envelope-o"> </i> Date</th>
+       <th><i class="fa fa-envelope-o"> </i> Status</th>
     </tr>
   </thead>
   <tbody>
-    {% for subscriber in subscribers %}
+   
     <tr>
-      <td class="text-center hidden-xs hidden-sm">
-      {{ subscriber.id }}
+      <td class="text-center hidden-xs hidden-sm">1
       </td>
-      <td>{{ subscriber.subscriber_firstname.title() }}</td>
-      <td>{{ subscriber.subscriber_lastname.title() }}</td>
-      <td>{{ subscriber.subscriber_email }}</td>
+      <td>grand opening</td>
+      <td>discount 10% for all menus</td>
+      <td>12 August</td>
+      <td>Active</td>
     </tr>
-    {% endfor %}
+   
   </tbody>
 </table>
 <!-- END Datatables -->
-{% endblock %} {% block script_subscriber%}
+
 <!-- Javascript code only for this page -->
 <script>
   $(function () {
@@ -53,3 +55,5 @@ endblock %} {% block content %}
   });
 </script>
 {% endblock %}
+
+

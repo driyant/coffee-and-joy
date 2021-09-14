@@ -94,5 +94,10 @@ def subscriber():
   print(data_subscriber)
   return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
 
+@app.route("/admin_dashboard/event")
+def event():
+  #Fetch all data in event list
+  return render_template('admin_dashboard/event.html')
+
 if __name__ == "__main__":
   app.run(debug=True)
