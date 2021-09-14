@@ -79,5 +79,9 @@ def login():
 def admin_dashboard():
   return render_template("admin_dashboard/admin.html")
 
+@app.route("/admin_dashboard/subscriber")
+def subscriber():
+  return render_template('admin_dashboard/subscriber.html')
+
 if __name__ == "__main__":
   app.run(debug=True)
