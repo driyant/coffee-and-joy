@@ -443,27 +443,27 @@
           <nav id="primary-nav">
             <ul>
               <li>
-                <a href="/admin_dashboard" class="active"
+                <a href="/admin_dashboard" class="{% block active_dashboard %} {% endblock %}"
                   ><i class="fa fa-fire"></i>Dashboard</a
                 >
               </li>
               <li>
-                <a href="/admin_dashboard/event"
+                <a href="/admin_dashboard/event" class="{% block active_event %} {% endblock %}"
                   ><i class="fa fa-glass"></i>Event</a
                 >
               </li>
               <li>
-                <a href="page_typography.html"
-                  ><i class="fa fa-font"></i>Menu</a
+                <a href="page_typography.html" class="{% block active_menu %} {% endblock %}"
+                  ><i class="fa fa-font"></i>Menu List</a
                 >
               </li>
               <li>
-                <a href="page_login.html"
-                  ><i class="fa fa-power-off"></i>Category</a
+                <a href="/admin_dashboard/category" class="{% block active_category %} {% endblock %}"
+                  ><i class="fa fa-power-off"></i>Category Menu</a
                 >
               </li>
               <li>
-                <a href="/admin_dashboard/subscriber"
+                <a href="/admin_dashboard/subscriber" class="{% block active_subscriber %} {% endblock %}"
                   ><i class="hi hi-user"></i>Subscriber</a
                 >
               </li>
@@ -835,4 +835,5 @@ Bio Information..</textarea
   <script src="{{ url_for('static', filename='admin/js/main.js') }}"></script>
   {% block script_admin %} {% endblock %}
   {% block script_subscriber %} {% endblock %}
+  {% block script_category %} {% endblock %}
 </html>

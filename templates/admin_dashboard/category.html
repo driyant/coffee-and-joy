@@ -1,0 +1,168 @@
+{% extends 'base.html' %} {% block title %}Admin Dashboard | Category{% endblock
+%} {% block active_category %}active{% endblock %} {% block content %}
+<!-- Navigation info -->
+<ul id="nav-info" class="clearfix">
+  <li>
+    <a href="index.html"><i class="fa fa-home"></i></a>
+  </li>
+  <li><a href="javascript:void(0)">Tables</a></li>
+  <li class="active"><a href="">Data Category Menu</a></li>
+</ul>
+<!-- END Navigation info -->
+<!-- Datatables -->
+<h3 class="page-header page-header-top">
+  Tables <small>List of Category Menu</small>
+</h3>
+<a
+  href="/admin_dashboard/category/add"
+  class="btn btn-sm btn-success"
+  style="margin-bottom: 2rem"
+  ><i class="fa fa-plus"></i> Add Category</a
+>
+<table id="example-datatables" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th class="cell-small text-center hidden-xs hidden-sm">#</th>
+      <th><i class="fa fa-user"> </i> Category Menu</th>
+      <th><i class="fa fa-user"> </i> Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-center hidden-xs hidden-sm">1</td>
+      <td>coffee</td>
+      <td>
+        <div class="btn-group">
+          <a
+            style="margin-right: 1rem"
+            href="javascript:void(0)"
+            data-toggle="tooltip"
+            title="Edit"
+            class="btn btn-xs btn-success"
+            ><i class="fa fa-pencil"></i> Edit</a
+          >
+          <a
+            href="javascript:void(0)"
+            data-toggle="tooltip"
+            title="Delete"
+            class="btn btn-xs btn-danger"
+            ><i class="fa fa-times"></i> Delete</a
+          >
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- END Datatables -->
+<!-- User Modal Settings, appears when clicking on 'User Settings' link found on user dropdown menu (header, top right) -->
+<div id="category" class="modal">
+  <!-- Modal Dialog -->
+  <div class="modal-dialog">
+    <!-- Modal Content -->
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+        <h4>Profile Settings</h4>
+      </div>
+      <!-- END Modal Header -->
+      <!-- Modal Content -->
+      <div class="modal-body">
+        <!-- Tab links -->
+        <ul id="example-user-tabs" class="nav nav-tabs" data-toggle="tabs">
+          <li class="active">
+            <a href="#example-user-tabs-account"
+              ><i class="fa fa-cogs"></i> Category</a
+            >
+          </li>
+        </ul>
+        <!-- END Tab links -->
+        <!-- END Tab Content -->
+        <div class="tab-content">
+          <!-- First Tab -->
+          <div class="tab-pane" id="example-user-tabs-account">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label col-md-3">Username</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">administrator</p>
+                  <span class="help-block"
+                    >You can't change your username!</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3" for="example-user-pass"
+                  >Password</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="password"
+                    id="example-user-pass"
+                    name="example-user-pass"
+                    class="form-control"
+                  />
+                  <span class="help-block"
+                    >if you want to change your password enter your current for
+                    confirmation!</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3" for="example-user-newpass"
+                  >New Password</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="password"
+                    id="example-user-newpass"
+                    name="example-user-newpass"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- END First Tab -->
+        </div>
+        <!-- END Tab Content -->
+      </div>
+      <!-- END Modal Content -->
+
+      <!-- Modal footer -->
+      <div class="modal-footer remove-margin">
+        <button class="btn btn-danger" data-dismiss="modal">
+          <i class="fa fa-times"></i> Close
+        </button>
+        <button class="btn btn-success">
+          <i class="fa fa-save"></i> Save changes
+        </button>
+      </div>
+      <!-- END Modal footer -->
+    </div>
+    <!-- END Modal Content -->
+  </div>
+  <!-- END Modal Dialog -->
+</div>
+<!-- END User Modal Settings -->
+{% block script_category %}
+<!-- Javascript code only for this page -->
+<script>
+  $(function () {
+    /* Initialize Datatables */
+    $("#example-datatables").dataTable({
+      columnDefs: [{ orderable: false, targets: [0] }],
+    });
+    $("#example-datatables2").dataTable();
+    $("#example-datatables3").dataTable();
+    $(".dataTables_filter input").attr("placeholder", "Search");
+  });
+</script>
+{% endblock script_category%} {% endblock content %}

@@ -11,22 +11,14 @@ db = SQLAlchemy(app)
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
-  menu = db.relationship('Menu', backref='category', lazy='joined')
+  menu = db.relationship('Menu', backref='id_category', lazy='joined')
   
-  def __repr__(self):
-    return "<Category " + self.id + ">"
-
-
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   menu_name = db.Column(db.String(100), nullable=False)
   menu_description = db.Column(db.String(200), nullable=False)
   menu_photo = db.Column(db.String(500), nullable=False)
-  cateogry_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
-
-  def __repr__(self):
-    return "<Menu " + self.id + ">"
-
+  id_category = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -39,15 +31,12 @@ class Subscriber(db.Model):
     self.subscriber_lastname = subscriber_lastname
     self.subscriber_email = subscriber_email
 
-  # def __repr__(self):
-  #   return "<Subscriber " + self.id + ">"
-
 class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   event_name = db.Column(db.String(50), nullable=False)
-  event_info = db.Column(db.String(50), nullable=False)
-  event_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-  event_status = db.Column(db.Boolean, nullable=False, default=0)
+  event_promo_info = db.Column(db.String(255), nullable=False)
+  event_date_info = db.Column(db.String(200), nullable=False)
+  event_date_end = db.Column(db.DateTime, nullable=False)
 
   def __init__(self, event_name, event_info, event_date, event_status):
     self.event_name = event_name
@@ -93,6 +82,20 @@ def subscriber():
   data_subscriber = Subscriber.query.all()
   print(data_subscriber)
   return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
+
+@app.route("/admin_dashboard/category")
+def category():
+  return render_template("admin_dashboard/category.html")
+
+@app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
+def category_add():
+  if request.method == "POST":
+    # Get form category value
+    category = request.form["category"]
+    print(category)
+    return redirect(url_for('category'))
+  else:
+    return render_template("admin_dashboard/category_add.html")
 
 @app.route("/admin_dashboard/event")
 def event():
