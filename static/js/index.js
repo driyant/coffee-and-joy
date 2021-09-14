@@ -55,7 +55,7 @@ menuLists.forEach(menuList => {
 */
 
 // Set the date we're counting down
-const getNewDate = new Date("September 22, 2021 10:00:00").getTime();
+const getNewDate = new Date("2021-09-15 03:04").getTime();
 
 const countDown = () => {
   setInterval(() => {
