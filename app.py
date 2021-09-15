@@ -12,23 +12,21 @@ db = SQLAlchemy(app)
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
-  menus = db.relationship('Menu', backref="category")
+  menus = db.relationship('Menu', backref="category", lazy="joined")
 
   def __init__(self, category_name):
     self.category_name = category_name
-  
+
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  menu_name = db.Column(db.String(100), nullable=False)
-  menu_description = db.Column(db.String(200), nullable=False)
-  menu_photo = db.Column(db.String(500), nullable=False)
+  menu_name = db.Column(db.String(100))
+  menu_description = db.Column(db.String(200))
   category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
-  def __init__(self, menu_name, menu_description, menu_photo, category_id):
+  def __init__(self, menu_name, menu_description, category_id):
     self.menu_name = menu_name
     self.menu_description = menu_description
     self.category_id = category_id
-    self.menu_photo = menu_photo
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -149,12 +147,14 @@ def menu_add():
   # Get category menu
   categories = Category.query.all()
   if request.method == "POST":
+    # Get input value
     menu_name = request.form["menu_name"].lower()
     menu_description = request.form["menu_description"].lower()
-    menu_category = request.form["menu_category"].lower()
-    menu_photo = request.form["menu_photo"]
-    print(menu_name, menu_description, menu_category, menu_photo)
-    data = Menu(menu)
+    menu_category = request.form["menu_category"]
+    # menu_photo = request.files["menu_photo"]
+    # data = Menu(menu_name, menu_description, menu_category, menu_photo)
+    data = Menu(menu_name, menu_description, menu_category)
+    print(f"Success!, Menu Name : {menu_name} ,Menu Description : {menu_description}, Menu Category : {menu_category}")
     return redirect(url_for('menu'))
   return render_template("admin_dashboard/menu-add.html", categories=categories)
 
