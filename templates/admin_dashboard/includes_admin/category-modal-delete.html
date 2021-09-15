@@ -1,0 +1,47 @@
+<div id="delete{{category.id}}" class="modal">
+  <!-- Modal Dialog -->
+  <div class="modal-dialog">
+    <!-- Modal Content -->
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+          >
+          ×
+        </button>
+        <h4>Category Delete</h4>
+      </div>
+      <!-- END Modal Header -->
+      <!-- Modal Content -->
+      <div class="modal-body">
+        <div class="tab-content">
+          <!-- First Tab -->
+          <div class="tab-pane active">
+            <form action="/admin_dashboard/category/delete/{{category.id}}" class="form-horizontal" method="POST">
+              <div class="form-group">
+                <div class="col-md-12">
+                  <p>Are you sure want to delete this category <strong>{{category.category_name.title()}}?</strong></p>
+                  <p>All the menus in this category will be deleted!</p>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer remove-margin">
+        <button class="btn btn-danger" data-dismiss="modal">
+          <i class="fa fa-times"></i> Close
+        </button>
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-save"></i> Save changes
+        </button>
+      </div>
+      </form>
+    <!-- END Modal Content -->
+  </div>
+  <!-- END Modal Dialog -->
+</div>
+<!-- END User Modal Settings -->

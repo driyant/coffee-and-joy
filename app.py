@@ -130,12 +130,15 @@ def category_edit(id):
 
 @app.route("/admin_dashboard/category/delete/<id>", methods=["GET", "POST"])
 def category_delete(id):
-  data = Category.query.filter_by(id=id).first()
-  db.session.delete(data)
-  db.session.commit()
-  return redirect(url_for("category"))
+  try:
+    data = Category.query.filter_by(id=id).first()
+    db.session.delete(data)
+    db.session.commit()
+    return redirect(url_for("category"))
+  except:
+    print("There is an issue!")
+    return redirect(url_for("category"))
   
-
 @app.route("/admin_dashboard/menu")
 def menu():
   return render_template("admin_dashboard/menu.html")

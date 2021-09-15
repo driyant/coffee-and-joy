@@ -36,89 +36,23 @@
         <div class="btn-group">
           <a
             style="margin-right: 1rem"
-            href="#edit{{category.id}}"
-            role="button"
+            href="#edit{{category.id}}"        
             data-toggle="modal"
             title="Edit"
             class="btn btn-xs btn-success"
             ><i class="fa fa-pencil"></i> Edit</a
           >
-          <div id="edit{{category.id}}" class="modal">
-            <!-- Modal Dialog -->
-            <div class="modal-dialog">
-              <!-- Modal Content -->
-              <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-hidden="true"
-                  >
-                    ×
-                  </button>
-                  <h4>Category Edit</h4>
-                </div>
-                <!-- END Modal Header -->
-                <!-- Modal Content -->
-                <div class="modal-body">
-                  <!-- Tab links -->
-                  <ul id="example-user-tabs" class="nav nav-tabs" data-toggle="tabs">
-                    <li class="active">
-                      <a href="#example-user-tabs-account"
-                        ><i class="fa fa-cogs"></i> Category</a
-                      >
-                    </li>
-                  </ul>
-                  <!-- END Tab links -->
-                  <!-- END Tab Content -->
-                  <!-- END Tab Content -->
-                  <div class="tab-content">
-                    <!-- First Tab -->
-                    <div class="tab-pane active">
-                      <form action="/admin_dashboard/category/edit/{{category.id}}" class="form-horizontal" method="POST">
-                        <div class="form-group">
-                          <label class="control-label col-md-3">Category:</label>
-                          <div class="col-md-9">
-                            <input
-                              type="text"
-                              name="category"
-                              class="form-control"
-                              value={{category.category_name}}
-                            />
-                              </div>
-                            </div>
-                        </div>
-                        <!-- END First Tab -->
-                      </div>
-                      <!-- END Tab Content -->
-                    </div>
-                    <!-- END Modal Content -->
-                    <!-- Modal footer -->
-                      <div class="modal-footer remove-margin">
-                        <button class="btn btn-danger" data-dismiss="modal">
-                          <i class="fa fa-times"></i> Close
-                        </button>
-                        <button type="submit" class="btn btn-success">
-                          <i class="fa fa-save"></i> Save changes
-                        </button>
-                      </div>
-                      <!-- END Modal footer -->
-                    </div>
-                    <!-- END Modal Content -->
-                  </div>
-                </form>
-            <!-- END Modal Dialog -->
-          </div>
-          <!-- END User Modal Settings -->
+          {% include 'admin_dashboard/includes_admin/category-modal-edit.html' %}
+        </div>
+        <div class="btn-group">
           <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
+            href="#delete{{category.id}}"
+            data-toggle="modal"
             title="Delete"
             class="btn btn-xs btn-danger"
             ><i class="fa fa-times"></i> Delete</a
           >
+          {% include 'admin_dashboard/includes_admin/category-modal-delete.html' %}
         </div>
       </td>
     </tr>
