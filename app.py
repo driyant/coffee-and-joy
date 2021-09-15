@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffeeshop.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
 
@@ -55,6 +56,10 @@ class Event(db.Model):
     self.event_time = event_time
     self.event_place = event_place
     self.event_status = event_status
+
+db.create_all()
+db.session.commit()
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -163,6 +168,23 @@ def menu_add():
     db.session.commit()
     return redirect(url_for('menu'))
   return render_template("admin_dashboard/menu-add.html", categories=categories)
+
+@app.route("/admin_dashboard/menu/edit/<int:id>", methods=["GET","POST"])
+def menu_edit(id):
+  menu = Menu.query.filter_by(id=id).first()
+  categories = Category.query.all()
+  if request.method == "POST":
+    try:
+      menu.menu_name = request.form["menu_name"]
+      menu.menu_description = request.form["menu_description"]
+      
+      db.session.commit()
+      return redirect(url_for("menu"))
+    except:
+      print("There is something wrong!")
+      return redirect(url_for("menu"))
+  else:
+    return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories)
 
 @app.route("/admin_dashboard/event")
 def event():
