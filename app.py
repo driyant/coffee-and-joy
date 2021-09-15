@@ -5,20 +5,30 @@ from datetime import datetime
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
-  menu = db.relationship('Menu', backref='id_category', lazy='joined')
+  menus = db.relationship('Menu', backref="category")
+
+  def __init__(self, category_name):
+    self.category_name = category_name
   
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   menu_name = db.Column(db.String(100), nullable=False)
   menu_description = db.Column(db.String(200), nullable=False)
   menu_photo = db.Column(db.String(500), nullable=False)
-  id_category = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+  category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+
+  def __init__(self, menu_name, menu_description, menu_photo, category_id):
+    self.menu_name = menu_name
+    self.menu_description = menu_description
+    self.menu_photo = menu_photo
+    self.category_id = category_id
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -27,7 +37,7 @@ class Subscriber(db.Model):
   subscriber_email = db.Column(db.String(50), nullable=False)
 
   def __init__(self, subscriber_firstname, subscriber_lastname, subscriber_email):
-    self.subscriber_firstname = subscriber_lastname
+    self.subscriber_firstname = subscriber_firstname
     self.subscriber_lastname = subscriber_lastname
     self.subscriber_email = subscriber_email
 
@@ -35,13 +45,17 @@ class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   event_name = db.Column(db.String(50), nullable=False)
   event_promo_info = db.Column(db.String(255), nullable=False)
-  event_date_info = db.Column(db.String(200), nullable=False)
-  event_date_end = db.Column(db.DateTime, nullable=False)
+  event_date = db.Column(db.DateTime, nullable=False)
+  event_time = db.Column(db.String(100), nullable=False)
+  event_place = db.Column(db.String(100), nullable=False)
+  event_status = db.Column(db.String(20), nullable=False, default='upcoming')
 
-  def __init__(self, event_name, event_info, event_date, event_status):
+  def __init__(self, event_name, event_promo_info, event_date, event_time, event_place, event_status):
     self.event_name = event_name
-    self.event_info = event_info
+    self.event_promo_info = event_promo_info
     self.event_date = event_date
+    self.event_time = event_time
+    self.event_place = event_place
     self.event_status = event_status
 
 @app.route("/", methods=["GET", "POST"])
@@ -116,6 +130,10 @@ def menu_add():
 def event():
   #Fetch all data in event list
   return render_template('admin_dashboard/event.html')
+
+@app.route("/admin_dashboard/event/add")
+def event_add():
+  return render_template("admin_dashboard/event-add.html")
 
 if __name__ == "__main__":
   app.run(debug=True)

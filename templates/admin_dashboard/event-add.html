@@ -1,0 +1,90 @@
+{% extends 'base.html' %} {% block title %}Admin Dashboard | Event{% endblock %}
+{% block active_event %}active{% endblock %} {% block content %}
+<!-- Navigation info -->
+<ul id="nav-info" class="clearfix">
+  <li>
+    <a href="index.html"><i class="fa fa-home"></i></a>
+  </li>
+  <li><a href="javascript:void(0)">Tables</a></li>
+  <li class="active"><a href="">Add Event</a></li>
+</ul>
+<!-- END Navigation info -->
+<!-- Text Inputs -->
+<form
+  action="/admin_dashboard/category/add"
+  method="POST"
+  class="form-horizontal form-box"
+>
+  <h4 class="form-box-header">Add Event</h4>
+  <div class="form-box-content">
+    <!-- Input Sizes -->
+    <div class="form-group">
+      <label class="control-label col-md-2" for="event">Event :</label>
+      <div class="col-md-3">
+        <input
+          type="text"
+          name="event"
+          class="form-control"
+          placeholder="e.g. Grand Opening"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="event">Promo Info :</label>
+      <div class="col-md-3">
+        <input
+          type="text"
+          name="promo_info"
+          class="form-control"
+          placeholder="e.g. Promo Buy 1 Get 1 Free"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="example-input-datepicker">
+        Date :</label
+      >
+      <div class="col-md-2">
+        <input
+          type="text"
+          id="example-input-datepicker"
+          name="example-input-datepicker"
+          class="form-control input-datepicker"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="example-input-timepicker">
+        Time :</label
+      >
+      <div class="col-md-2">
+        <div class="input-group bootstrap-timepicker">
+          <input
+            type="text"
+            id="example-input-timepicker"
+            name="example-input-timepicker"
+            class="form-control input-timepicker"
+          />
+          <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="event">Place :</label>
+      <div class="col-md-3">
+        <input
+          type="text"
+          name="promo_info"
+          class="form-control"
+          placeholder="e.g. ABC, Street 1270, Long Beach"
+        />
+      </div>
+    </div>
+    <div class="form-group form-actions">
+      <div class="col-md-10 col-md-offset-2">
+        <input type="submit" class="btn btn-success" value="Save" />
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock content %}
