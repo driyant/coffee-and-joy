@@ -33,7 +33,7 @@ endblock %} {% block content %}
       </td>
       <td>{{ subscriber.subscriber_firstname.title() }}</td>
       <td>{{ subscriber.subscriber_lastname.title() }}</td>
-      <td>{{ subscriber.subscriber_email }}</td>
+      <td>{{ subscriber.subscriber_email.lower() }}</td>
     </tr>
     {% endfor %}
   </tbody>

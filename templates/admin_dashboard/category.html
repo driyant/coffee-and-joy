@@ -28,29 +28,31 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td class="text-center hidden-xs hidden-sm">1</td>
-      <td>coffee</td>
-      <td>
-        <div class="btn-group">
-          <a
-            style="margin-right: 1rem"
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Edit"
-            class="btn btn-xs btn-success"
-            ><i class="fa fa-pencil"></i> Edit</a
-          >
-          <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Delete"
-            class="btn btn-xs btn-danger"
-            ><i class="fa fa-times"></i> Delete</a
-          >
-        </div>
-      </td>
-    </tr>
+    {% for category in categories %}
+      <tr>
+        <td class="text-center hidden-xs hidden-sm">{{ category.id }}</td>
+        <td>{{ category.category_name.title() }}</td>
+        <td>
+          <div class="btn-group">
+            <a
+              style="margin-right: 1rem"
+              href="javascript:void(0)"
+              data-toggle="tooltip"
+              title="Edit"
+              class="btn btn-xs btn-success"
+              ><i class="fa fa-pencil"></i> Edit</a
+            >
+            <a
+              href="javascript:void(0)"
+              data-toggle="tooltip"
+              title="Delete"
+              class="btn btn-xs btn-danger"
+              ><i class="fa fa-times"></i> Delete</a
+            >
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
 <!-- END Datatables -->

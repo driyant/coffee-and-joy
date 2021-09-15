@@ -99,14 +99,20 @@ def subscriber():
 
 @app.route("/admin_dashboard/category")
 def category():
-  return render_template("admin_dashboard/category.html")
+  # Fetch all category data
+  categories = Category.query.all()
+  print(categories)
+  return render_template("admin_dashboard/category.html", categories = categories)
 
 @app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
 def category_add():
   if request.method == "POST":
     # Get form category value
-    category = request.form["category"]
-    print(category)
+    category = request.form["category"].lower()
+    data = Category(category)
+    db.session.add(data)
+    db.session.commit()
+    print("Success!", category)
     return redirect(url_for('category'))
   else:
     return render_template("admin_dashboard/category-add.html")
