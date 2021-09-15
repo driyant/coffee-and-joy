@@ -10,14 +10,15 @@
   <title>Coffee & Joy</title>
 </head>
 <body id="body">
-  {% include 'includes_frontend/nav.html' %}
-  {% include 'includes_frontend/announcement.html' %}
-  {% include 'includes_frontend/header.html' %}
-  {% include 'includes_frontend/aboutus.html' %}
-  {% include 'includes_frontend/event.html' %}
-  {% include 'includes_frontend/ourmenu.html' %}
-  {% include 'includes_frontend/testimonials.html' %}
-  {% include 'includes_frontend/contact.html' %}
+  {% include 'components/nav.html' %}
+  {% include 'components/announcement.html' %}
+  {% include 'components/header.html' %}
+  {% include 'components/aboutus.html' %}
+  {% include 'components/event.html' %}
+  {% include 'components/ourmenu.html' %}
+  {% include 'components/testimonials.html' %}
+  {% include 'components/contact.html' %}
+  {% include 'components/modal_menu_edit.html' %}
 </body>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>

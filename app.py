@@ -99,7 +99,6 @@ def subscriber():
 def category():
   # Fetch all category data
   categories = Category.query.all()
-  print(categories)
   return render_template("admin_dashboard/category.html", categories = categories)
 
 @app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
@@ -110,21 +109,24 @@ def category_add():
     data = Category(category)
     db.session.add(data)
     db.session.commit()
-    print("Success!", category)
     return redirect(url_for('category'))
   else:
     return render_template("admin_dashboard/category-add.html")
 
-@app.route("/admin_dashboard/category/edit/<int:id>", methods=["GET", "POST"])
+@app.route("/admin_dashboard/category/edit/<int:id>", methods=["GET","POST"])
 def category_edit(id):
-  print(id)
-  data = Category.query.filter_by(id=id).first()
+  category = Category.query.filter_by(id=id).first()
   if request.method == "POST":
-    data.category_name = request.form["category"].lower()
-    db.session.commit()
-    return redirect(url_for('category'))
+    try:
+      # Get input value
+      category.category_name = request.form["category"].lower()
+      db.session.commit()
+      return redirect(url_for("category"))
+    except:
+      print("there is an issue")
+      return redirect(url_for("category"))
   else:
-    return redirect(url_for('category'))
+    return render_template("admin_dashboard/category-edit.html", category=category)
 
 @app.route("/admin_dashboard/category/delete/<id>", methods=["GET", "POST"])
 def category_delete(id):
@@ -150,11 +152,15 @@ def menu_add():
     # Get input value
     menu_name = request.form["menu_name"].lower()
     menu_description = request.form["menu_description"].lower()
-    menu_category = request.form["menu_category"]
-    # menu_photo = request.files["menu_photo"]
-    # data = Menu(menu_name, menu_description, menu_category, menu_photo)
-    data = Menu(menu_name, menu_description, menu_category)
-    print(f"Success!, Menu Name : {menu_name} ,Menu Description : {menu_description}, Menu Category : {menu_category}")
+    # Select category
+    menu_category = request.form["menu_category"].lower()
+    selected = Category.query.filter_by(category_name=menu_category).first()
+    # Passing data into Menu class
+    data = Menu(menu_name, menu_description, selected.id)
+    # Session add db
+    db.session.add(data)
+    # Session commit db
+    db.session.commit()
     return redirect(url_for('menu'))
   return render_template("admin_dashboard/menu-add.html", categories=categories)
 

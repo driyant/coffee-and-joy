@@ -33,17 +33,14 @@
       <td class="text-center hidden-xs hidden-sm">{{ category.id }}</td>
       <td>{{ category.category_name.title() }}</td>
       <td>
-        <div class="btn-group">
           <a
             style="margin-right: 1rem"
-            href="#edit{{category.id}}"        
+            href="/admin_dashboard/category/edit/{{category.id}}"        
             data-toggle="modal"
             title="Edit"
             class="btn btn-xs btn-success"
             ><i class="fa fa-pencil"></i> Edit</a
           >
-          {% include 'admin_dashboard/includes_admin/category-modal-edit.html' %}
-        </div>
         <div class="btn-group">
           <a
             href="#delete{{category.id}}"
@@ -73,4 +70,5 @@
     $(".dataTables_filter input").attr("placeholder", "Search");
   });
 </script>
-{% endblock script_category%} {% endblock content %}
+{% endblock script_category%} 
+{% endblock content %}
