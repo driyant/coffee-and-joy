@@ -30,10 +30,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td class="text-center hidden-xs hidden-sm">1</td>
-      <td><a href="/admin_dashboard/menu/id">coffee</a></td>
-      <td>Brewed coffee is made by pouring hot water onto ground coffee beans, then allowing to brew.</td>
+    {% for menu in menus  %}
+      <td class="text-center hidden-xs hidden-sm">{{ menu.id }}</td>
+      <td><a href="/admin_dashboard/menu/id">{{ menu.menu_name }}</a></td>
+      <td>{{ menu.menu_description }}</td>
       <td>
         <div class="btn-group">
           <a
@@ -53,11 +53,11 @@
           >
         </div>
       </td>
-    </tr>
+    {% endfor %}
   </tbody>
 </table>
 <!-- END Datatables -->
-
+{% block script_menu %}
 <!-- Javascript code only for this page -->
 <script>
   $(function () {
@@ -70,4 +70,5 @@
     $(".dataTables_filter input").attr("placeholder", "Search");
   });
 </script>
+{% endblock%}
 {% endblock %}

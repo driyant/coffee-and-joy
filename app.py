@@ -27,8 +27,8 @@ class Menu(db.Model):
   def __init__(self, menu_name, menu_description, menu_photo, category_id):
     self.menu_name = menu_name
     self.menu_description = menu_description
-    self.menu_photo = menu_photo
     self.category_id = category_id
+    self.menu_photo = menu_photo
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -139,20 +139,24 @@ def category_delete(id):
     print("There is an issue!")
     return redirect(url_for("category"))
   
-@app.route("/admin_dashboard/menu")
+@app.route("/admin_dashboard/menu", methods=["GET"])
 def menu():
-  return render_template("admin_dashboard/menu.html")
+  menus = Menu.query.all()
+  return render_template("admin_dashboard/menu.html", menus=menus)
 
 @app.route("/admin_dashboard/menu/add", methods=["GET","POST"])
 def menu_add():
+  # Get category menu
+  categories = Category.query.all()
   if request.method == "POST":
-    menu_name = request.form["menu_name"]
-    menu_description = request.form["menu_description"]
-    menu_category = request.form["menu_category"]
+    menu_name = request.form["menu_name"].lower()
+    menu_description = request.form["menu_description"].lower()
+    menu_category = request.form["menu_category"].lower()
     menu_photo = request.form["menu_photo"]
     print(menu_name, menu_description, menu_category, menu_photo)
+    data = Menu(menu)
     return redirect(url_for('menu'))
-  return render_template("admin_dashboard/menu-add.html")
+  return render_template("admin_dashboard/menu-add.html", categories=categories)
 
 @app.route("/admin_dashboard/event")
 def event():

@@ -51,8 +51,9 @@
           name="menu_category"
           class="form-control"
         >
-          <option>Coffee</option>
-          <option>Non-Coffee</option>
+          {% for category in categories  %}
+            <option>{{category.category_name.title()}}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
