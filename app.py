@@ -5,7 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_ECHO"] = True
+app.config["SQLALCHEMY_ECHO"] = False
 
 db = SQLAlchemy(app)
 
@@ -116,6 +116,25 @@ def category_add():
     return redirect(url_for('category'))
   else:
     return render_template("admin_dashboard/category-add.html")
+
+@app.route("/admin_dashboard/category/edit/<int:id>", methods=["GET", "POST"])
+def category_edit(id):
+  print(id)
+  data = Category.query.filter_by(id=id).first()
+  if request.method == "POST":
+    data.category_name = request.form["category"].lower()
+    db.session.commit()
+    return redirect(url_for('category'))
+  else:
+    return redirect(url_for('category'))
+
+@app.route("/admin_dashboard/category/delete/<id>", methods=["GET", "POST"])
+def category_delete(id):
+  data = Category.query.filter_by(id=id).first()
+  db.session.delete(data)
+  db.session.commit()
+  return redirect(url_for("category"))
+  
 
 @app.route("/admin_dashboard/menu")
 def menu():
