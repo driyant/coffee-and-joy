@@ -32,7 +32,7 @@
   <tbody>
     {% for menu in menus %}
     <tr>
-      <td class="text-center hidden-xs hidden-sm">{{ menu.id }}</td>
+      <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
       <td><a href="/admin_dashboard/menu/id">{{menu.menu_name.title()}}</a></td>
       <td>{{menu.menu_description}}</td>
       <td>

@@ -147,9 +147,10 @@ def category_edit(id):
       # Get input value
       category.category_name = request.form["category"].lower()
       db.session.commit()
+      flash("Success, edit category!")
       return redirect(url_for("category"))
     except:
-      print("there is an issue")
+      flash("Sorry, there is an issue!")
       return redirect(url_for("category"))
   else:
     return render_template("admin_dashboard/category-edit.html", category=category)
@@ -160,9 +161,10 @@ def category_delete(id):
     data = Category.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
+    flash("Success, delete category")
     return redirect(url_for("category"))
   except:
-    print("There is an issue!")
+    flash("There is an issue!")
     return redirect(url_for("category"))
   
 @app.route("/admin_dashboard/menu", methods=["GET"])

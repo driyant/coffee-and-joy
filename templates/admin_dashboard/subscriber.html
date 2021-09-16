@@ -30,7 +30,7 @@
   <tbody>
     {% for subscriber in subscribers %}
     <tr>
-      <td class="text-center hidden-xs hidden-sm">{{ subscriber.id }}</td>
+      <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
       <td>{{ subscriber.subscriber_firstname.title() }}</td>
       <td>{{ subscriber.subscriber_lastname.title() }}</td>
       <td>{{ subscriber.subscriber_email.lower() }}</td>

@@ -37,7 +37,7 @@ messages %}
   <tbody>
     {% for category in categories %}
     <tr>
-      <td class="text-center hidden-xs hidden-sm">{{ category.id }}</td>
+      <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
       <td>{{ category.category_name.title() }}</td>
       <td>
           <a
