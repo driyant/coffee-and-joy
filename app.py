@@ -31,6 +31,9 @@ class Menu(db.Model):
     self.menu_description = menu_description
     self.category_id = category_id
 
+    def __repr__(self):
+        return f"<Menu {self.menu_name}]"
+
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   subscriber_firstname = db.Column(db.String(50), nullable=False)
@@ -177,19 +180,19 @@ def menu_add():
   # Get category menu
   categories = Category.query.all()
   if request.method == "POST":
-    # Get input value
-    menu_name = request.form["menu_name"].lower()
-    menu_description = request.form["menu_description"].lower()
-    # Select category
-    menu_category = request.form["menu_category"].lower()
-    selected = Category.query.filter_by(category_name=menu_category).first()
-    # Passing data into Menu class
-    data = Menu(menu_name, menu_description, selected.id)
-    # Session add db
-    db.session.add(data)
-    # Session commit db
-    db.session.commit()
-    return redirect(url_for('menu'))
+    try:
+      menu_name = request.form["menu_name"].lower()
+      menu_description = request.form["menu_description"].lower()
+      menu_category = request.form["menu_category"]
+      data = Menu(menu_name, menu_description, menu_category)
+      db.session.add(data)
+      db.session.commit()
+      print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
+      flash("Success! There is a new menu 🥘 in the list")
+      return redirect(url_for('menu'))
+    except:
+      flash("Oops! There is an issue")
+      return redirect(url_for('menu'))
   return render_template("admin_dashboard/menu-add.html", categories=categories)
 
 @app.route("/admin_dashboard/menu/edit/<int:id>", methods=["GET","POST"])
@@ -200,7 +203,6 @@ def menu_edit(id):
     try:
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
-      
       db.session.commit()
       return redirect(url_for("menu"))
     except:

@@ -59,11 +59,11 @@
       >
       <div class="col-md-4">
         <select
-          name="menu_category"
           class="form-control"
+           name="menu_category" 
         >
           {% for category in categories  %}
-            <option>{{category.category_name.title()}}</option>
+            <option value="{{ category.id }}">{{category.category_name.title()}}</option>
           {% endfor %}
         </select>
       </div>
