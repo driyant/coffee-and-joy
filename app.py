@@ -116,7 +116,6 @@ def admin_dashboard():
 def subscriber():
    # Fetch all data in subscriber list
   data_subscriber = Subscriber.query.all()
-  print(data_subscriber)
   return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
 
 @app.route("/admin_dashboard/category")
@@ -134,7 +133,7 @@ def category_add():
       data = Category(category)
       db.session.add(data)
       db.session.commit()
-      flash("Success, adding new category!")
+      flash("Success ✔️, adding new category!")
       return redirect(url_for('category'))
     except:
       flash("There is an issue!")
@@ -150,7 +149,7 @@ def category_edit(id):
       # Get input value
       category.category_name = request.form["category"].lower()
       db.session.commit()
-      flash("Success, edit category!")
+      flash("Success ✔️, edit category!")
       return redirect(url_for("category"))
     except:
       flash("Sorry, there is an issue!")
@@ -203,13 +202,20 @@ def menu_edit(id):
     try:
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
+      menu.category_id = request.form["menu_category"]
       db.session.commit()
+      flash("Success ✔️ edit menu ! ")
       return redirect(url_for("menu"))
     except:
-      print("There is something wrong!")
+      flash("Oops sorry, there is an issue! ")
       return redirect(url_for("menu"))
   else:
     return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories)
+
+@app.route("/admin_dashboard/menu/detail/<int:id>")
+def menu_detail(id):
+  menu = Menu.query.filter_by(id=id).first()
+  return render_template("admin_dashboard/menu-detail.html", menu=menu)
 
 @app.route("/admin_dashboard/event")
 def event():
