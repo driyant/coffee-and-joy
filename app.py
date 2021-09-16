@@ -125,12 +125,17 @@ def category():
 @app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
 def category_add():
   if request.method == "POST":
-    # Get form category value
-    category = request.form["category"].lower()
-    data = Category(category)
-    db.session.add(data)
-    db.session.commit()
-    return redirect(url_for('category'))
+    try:
+      # Get form category value
+      category = request.form["category"].lower()
+      data = Category(category)
+      db.session.add(data)
+      db.session.commit()
+      flash("Success, adding new category!")
+      return redirect(url_for('category'))
+    except:
+      flash("There is an issue!")
+      return redirect(url_for('category'))
   else:
     return render_template("admin_dashboard/category-add.html")
 
