@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
-  menus = db.relationship('Menu', backref="category", cascade="all,delete", lazy="joined")
+  menus = db.relationship('Menu', backref="category", cascade="all,delete-orphan", lazy="joined")
 
   def __init__(self, category_name):
     self.category_name = category_name
@@ -32,7 +32,7 @@ class Menu(db.Model):
     self.category_id = category_id
 
     def __repr__(self):
-        return f"<Menu {self.menu_name}]"
+        return f"<Menu {self.menu_name}>"
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -157,7 +157,7 @@ def category_edit(id):
   else:
     return render_template("admin_dashboard/category-edit.html", category=category)
 
-@app.route("/admin_dashboard/category/delete/<id>", methods=["GET", "POST"])
+@app.route("/admin_dashboard/category/delete/<id>", methods=["POST"])
 def category_delete(id):
   try:
     data = Category.query.filter_by(id=id).first()
@@ -217,8 +217,8 @@ def menu_detail(id):
   menu = Menu.query.filter_by(id=id).first()
   return render_template("admin_dashboard/menu-detail.html", menu=menu)
 
-@app.route("/admin_dashboard/menu/delete/<int:id>")
-def menu_delete(id, methods=["POST"]):
+@app.route("/admin_dashboard/menu/delete/<int:id>", methods=["POST"])
+def menu_delete(id):
   try:
     data = Menu.query.filter_by(id=id).first()
     db.session.delete(data)
@@ -226,7 +226,7 @@ def menu_delete(id, methods=["POST"]):
     flash("Success, delete menu")
     return redirect(url_for("menu"))
   except:
-    flash("There is an issue!")
+    flash("There is an issue delete menu!")
     return redirect(url_for("menu"))
 
 @app.route("/admin_dashboard/event")
