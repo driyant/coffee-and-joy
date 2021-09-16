@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -7,6 +7,8 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffeeshop.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
+
+app.secret_key = 'admin123'
 
 db = SQLAlchemy(app)
 
@@ -61,6 +63,19 @@ db.create_all()
 db.session.commit()
 
 
+# Browser caching issue
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
+
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
   if request.method == "POST":
@@ -81,10 +96,10 @@ def login():
   if request.method == "POST":
     username = request.form.get("username")
     password = request.form.get("password")
-    if username == "admin" and password == "admin123":
+    if username == "admin" and password != "admin123":
       return redirect(url_for("admin_dashboard"))
     else:
-      print("Invalid username or password")
+      flash("Invalid username or password!")
       return render_template("login.html")   
   else:
     return render_template("login.html")

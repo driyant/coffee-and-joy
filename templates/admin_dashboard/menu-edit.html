@@ -61,9 +61,9 @@
           name="menu_category"
           class="form-control"
         >
-        {% for category in categories %}
-          <option>{{category.category_name.title()}}</option>
-         {% endfor %}
+          {% for category in categories %}
+            <option value="{{category.id}}">{{category.category_name.title()}}</option>
+          {% endfor %}
         </select>
       </div>
     </div>

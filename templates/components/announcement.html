@@ -1,4 +1,13 @@
 <section class="announcement" id="announcement">
   <img src="{{url_for('static', filename='assets/bell.png') }}" alt="bell" />
   <p>We are having Grand Opening Event. <a href="#event">Learn More</a></p>
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> you have subscribed. Don't miss our event!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
 </section>

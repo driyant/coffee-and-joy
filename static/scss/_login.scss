@@ -1,9 +1,8 @@
 @import "_variable.scss";
 
 .container { 
-  background-color: $main-color;
-  width: 100vw;
-  height: 100vh;
+  background-color: $main-color; 
+  overflow: hidden;
 
   .logo {
     display: flex;
@@ -20,9 +19,6 @@
   }
  
   .form {
-    * {
-      margin: 1rem;
-    }
     display: flex;
     justify-content: center;
     align-items: center;
