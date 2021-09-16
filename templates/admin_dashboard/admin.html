@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% block title %} Admin Dashboard | Home {% endblock
-%} 
-{% block active_dashboard %}active{% endblock %}
-{% block content %}
+%} {% block active_dashboard %}active{% endblock %} {% block content %}
 <!-- Navigation info -->
 <ul id="nav-info" class="clearfix">
   <li>
@@ -10,94 +8,13 @@
   <li class="active"><a href="">Dashboard</a></li>
 </ul>
 <!-- END Navigation info -->
-<!-- Nav Dash -->
-<ul class="nav-dash">
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Users"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-user"></i>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Comments"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-comments"></i>
-      <span class="badge badge-success">3</span>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Calendar"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-calendar"></i>
-      <span class="badge badge-inverse">5</span>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Photos"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-camera-retro"></i>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Projects"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-paperclip"></i>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Tasks"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-tasks"></i>
-      <span class="badge badge-warning">1</span>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Reader"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-book"></i>
-    </a>
-  </li>
-  <li>
-    <a
-      href="javascript:void(0)"
-      data-toggle="tooltip"
-      title="Settings"
-      class="animation-fadeIn"
-    >
-      <i class="fa fa-cogs"></i>
-    </a>
-  </li>
-</ul>
-<!-- END Nav Dash -->
-
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>{{message}}</strong> Hello Admin😊, Welcome to the Dashboard!
+</div>
+{% endfor %} {% endif %} {% endwith %}
 <!-- Tiles -->
 <!-- Row 1 -->
 <div class="dash-tiles row">
