@@ -56,12 +56,13 @@ messages %}
         </div>
         <div class="btn-group">
           <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
+            href="#delete{{menu.id}}"
+            data-toggle="modal"
             title="Delete"
             class="btn btn-xs btn-danger"
             ><i class="fa fa-times"></i> Delete</a
           >
+          {% include 'admin_dashboard/includes_admin/menu-modal-delete.html' %}
         </div>
       </td>
     </tr>

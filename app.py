@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   category_name = db.Column(db.String(50), nullable=False)
-  menus = db.relationship('Menu', backref="category", lazy="joined")
+  menus = db.relationship('Menu', backref="category", cascade="all,delete", lazy="joined")
 
   def __init__(self, category_name):
     self.category_name = category_name
@@ -216,6 +216,18 @@ def menu_edit(id):
 def menu_detail(id):
   menu = Menu.query.filter_by(id=id).first()
   return render_template("admin_dashboard/menu-detail.html", menu=menu)
+
+@app.route("/admin_dashboard/menu/delete/<int:id>")
+def menu_delete(id, methods=["POST"]):
+  try:
+    data = Menu.query.filter_by(id=id).first()
+    db.session.delete(data)
+    db.session.commit()
+    flash("Success, delete menu")
+    return redirect(url_for("menu"))
+  except:
+    flash("There is an issue!")
+    return redirect(url_for("menu"))
 
 @app.route("/admin_dashboard/event")
 def event():
