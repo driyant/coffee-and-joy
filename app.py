@@ -78,6 +78,7 @@ def add_header(response):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+  flash("Wohoo! you have subscribed our newsletter!")
   if request.method == "POST":
     # Get input value
     firstname = request.form['firstname']
@@ -86,7 +87,7 @@ def index():
     data = Subscriber(firstname,lastname,email)
     db.session.add(data)
     db.session.commit()
-    print("Success!", firstname, lastname, email)
+  
     return render_template("index.html")
   else:
     return render_template("index.html")
