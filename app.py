@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from forms import LoginForm, RegisterForm 
+from functools import wraps
+from datetime import timedelta
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
@@ -8,7 +11,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffeeshop.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
 
-app.secret_key = 'admin123'
+app.secret_key = '66700+!&##&+#ULHjek'
+app.permanent_session_lifetime = timedelta(minutes=5)
 
 db = SQLAlchemy(app)
 
@@ -96,35 +100,62 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-  if request.method == "POST":
-    username = request.form.get("username")
-    password = request.form.get("password")
+  form = LoginForm()
+  if form.validate_on_submit():
+    username = request.form["username"]
+    password = request.form["password"]
+    # Check username and password login
     if username == "admin" and password == "admin123":
-      flash("Login success!")
+      # Passed
+      session["logged_in"] = True
+      session["username"] = username
+      flash("Login success ✔️!")
       return redirect(url_for("admin_dashboard"))
     else:
-      flash("Invalid username or password!")
-      return render_template("login.html")   
-  else:
-    return render_template("login.html")
+      flash("Login failed! ☹️ Invalid username or password ")
+      return redirect(url_for("login"))
+  return render_template("login.html", form=form, login=True)
+
+#Check if the user logged in
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if "logged_in" in session:
+          return f(*args, **kwargs)
+        else:
+          flash("Unauthorised ⛔, Please login!")
+          return redirect(url_for("login"))
+    return wrap
+
+# Logout user
+@app.route("/logout")
+@login_required
+def logout():
+  session.clear()
+  flash("Logged out! 👋")
+  return redirect(url_for("login"))
 
 @app.route("/admin_dashboard")
+@login_required
 def admin_dashboard():
   return render_template("admin_dashboard/admin.html")
 
 @app.route("/admin_dashboard/subscriber")
+@login_required
 def subscriber():
    # Fetch all data in subscriber list
   data_subscriber = Subscriber.query.all()
   return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
 
 @app.route("/admin_dashboard/category")
+@login_required
 def category():
   # Fetch all category data
   categories = Category.query.all()
   return render_template("admin_dashboard/category.html", categories = categories)
 
 @app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
+@login_required
 def category_add():
   if request.method == "POST":
     try:
@@ -142,6 +173,7 @@ def category_add():
     return render_template("admin_dashboard/category-add.html")
 
 @app.route("/admin_dashboard/category/edit/<int:id>", methods=["GET","POST"])
+@login_required
 def category_edit(id):
   category = Category.query.filter_by(id=id).first()
   if request.method == "POST":
@@ -158,6 +190,7 @@ def category_edit(id):
     return render_template("admin_dashboard/category-edit.html", category=category)
 
 @app.route("/admin_dashboard/category/delete/<id>", methods=["POST"])
+@login_required
 def category_delete(id):
   try:
     data = Category.query.filter_by(id=id).first()
@@ -170,11 +203,13 @@ def category_delete(id):
     return redirect(url_for("category"))
   
 @app.route("/admin_dashboard/menu", methods=["GET"])
+@login_required
 def menu():
   menus = Menu.query.all()
   return render_template("admin_dashboard/menu.html", menus=menus)
 
 @app.route("/admin_dashboard/menu/add", methods=["GET","POST"])
+@login_required
 def menu_add():
   # Get category menu
   categories = Category.query.all()
@@ -195,6 +230,7 @@ def menu_add():
   return render_template("admin_dashboard/menu-add.html", categories=categories)
 
 @app.route("/admin_dashboard/menu/edit/<int:id>", methods=["GET","POST"])
+@login_required
 def menu_edit(id):
   menu = Menu.query.filter_by(id=id).first()
   categories = Category.query.all()
@@ -213,11 +249,13 @@ def menu_edit(id):
     return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories)
 
 @app.route("/admin_dashboard/menu/detail/<int:id>")
+@login_required
 def menu_detail(id):
   menu = Menu.query.filter_by(id=id).first()
   return render_template("admin_dashboard/menu-detail.html", menu=menu)
 
 @app.route("/admin_dashboard/menu/delete/<int:id>", methods=["POST"])
+@login_required
 def menu_delete(id):
   try:
     data = Menu.query.filter_by(id=id).first()
@@ -230,11 +268,13 @@ def menu_delete(id):
     return redirect(url_for("menu"))
 
 @app.route("/admin_dashboard/event")
+@login_required
 def event():
   #Fetch all data in event list
   return render_template('admin_dashboard/event.html')
 
 @app.route("/admin_dashboard/event/add")
+@login_required
 def event_add():
   return render_template("admin_dashboard/event-add.html")
 

@@ -20,13 +20,12 @@
     />
     <title>Coffee & Joy | Login</title>
   </head>
-  <body>
+  <body style="background-color:#95499c">
     <div class="container">
       {% with messages = get_flashed_messages() %} {% if messages %} {% for
       message in messages %}
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Login failed!</strong> You should check in on some of those
-        fields below.
+        <strong>{{ message }}</strong>
         <button
           type="button"
           class="close"
@@ -41,22 +40,12 @@
         <img src="{{ url_for('static', filename="assets/logo-2.png")}}"
         alt="logo">
       </div>
-      <form action="/login" class="form" method="POST">
-        <input
-          type="text"
-          placeholder="Username"
-          required
-          class="animate__animated animate__zoomInLeft"
-          name="username"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          class="animate__animated animate__zoomInRight"
-          name="password"
-        />
-        <button type="submit" class="btn animate__animated">Login</button>
+      <form action="/login" class="form" method="POST" role="form">
+        {{form.hidden_tag()}}
+        {{form.username}}
+        {{form.password}}
+        {{form.submit()}}   
+        <a class="form-check-label" style="color:white;" href="/">Back to Hompage</a>
       </form>
     </div>
   </body>
