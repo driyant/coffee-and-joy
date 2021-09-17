@@ -85,6 +85,8 @@ def add_header(response):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+  # Get data category
+  categories = Category.query.all()
   if request.method == "POST":
     # Get input value
     firstname = request.form['firstname']
@@ -94,9 +96,9 @@ def index():
     db.session.add(data)
     db.session.commit()
     flash("Wohoo! you have subscribed our newsletter!")
-    return render_template("index.html")
+    return render_template("index.html", categories=categories)
   else:
-    return render_template("index.html")
+    return render_template("index.html", categories=categories)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

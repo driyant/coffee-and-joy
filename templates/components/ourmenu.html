@@ -3,9 +3,9 @@
   <h2 class="title">Our Menu</h2>
   <ul class="menu__links">
     <li class="list active" data-filter="all">All</li>
-    <li class="list" data-filter="coffee">Coffee</li>
-    <li class="list" data-filter="non-coffee">Non-Coffee</li>
-    <li class="list" data-filter="food">Food</li>
+    {% for category in categories  %}
+    <li class="list" data-filter="{{category.category_name}}">{{category.category_name.title()}}</li>
+    {% endfor %}
   </ul>
   <div class="content__menu">
     <div class="menu" data-category="coffee" data-aos="flip-left">
