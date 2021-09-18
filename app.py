@@ -186,7 +186,7 @@ def category_add():
       data = Category(category)
       db.session.add(data)
       db.session.commit()
-      flash("Success ✔️, adding new category!")
+      flash(f"Success ✔️, category {category.title()} has been added!")
       return redirect(url_for('category'))
     except:
       flash("There is an issue!")
@@ -203,7 +203,7 @@ def category_edit(id):
       # Get input value
       category.category_name = request.form["category"].lower()
       db.session.commit()
-      flash("Success ✔️, edit category!")
+      flash(f"Success ✔️, {category.category_name.title()} has been updated!")
       return redirect(url_for("category"))
     except:
       flash("Sorry, there is an issue!")
@@ -218,7 +218,7 @@ def category_delete(id):
     data = Category.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash(f"Success, delete category {category.category_name}")
+    flash(f"Success ✔️, category {data.category_name.tite()} has been deleted!")
     return redirect(url_for("category"))
   except:
     flash("There is an issue!")
