@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from forms import LoginForm, RegisterForm 
 from functools import wraps
 from datetime import timedelta
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
@@ -12,7 +13,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
 
 app.secret_key = '66700+!&##&+#ULHjek'
-app.permanent_session_lifetime = timedelta(minutes=5)
+app.permanent_session_lifetime = timedelta(minutes=15)
 
 db = SQLAlchemy(app)
 
@@ -28,15 +29,21 @@ class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   menu_name = db.Column(db.String(100))
   menu_description = db.Column(db.String(200))
+  menu_image = db.Column(db.Text, unique=True, nullable=False)
+  mimetype = db.Column(db.Text, nullable=False)
+  menu_filename = db.Column(db.Text, nullable=False)
   category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
-  def __init__(self, menu_name, menu_description, category_id):
+  def __init__(self, menu_name, menu_description, menu_image, menu_mimetype, menu_filename, category_id):
     self.menu_name = menu_name
     self.menu_description = menu_description
+    self.menu_image = menu_image
+    self.mimetype = menu_mimetype
+    self.menu_filename = menu_filename
     self.category_id = category_id
 
-    def __repr__(self):
-        return f"<Menu {self.menu_name}>"
+  def __repr__(self):
+    return f"<Menu {self.menu_name}>"
 
 class Subscriber(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -69,7 +76,6 @@ class Event(db.Model):
 db.create_all()
 db.session.commit()
 
-
 # Browser caching issue
 @app.after_request
 def add_header(response):
@@ -80,8 +86,6 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
-
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -198,7 +202,7 @@ def category_delete(id):
     data = Category.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash("Success, delete category")
+    flash(f"Success, delete category {category.category_name}")
     return redirect(url_for("category"))
   except:
     flash("There is an issue!")
@@ -220,7 +224,14 @@ def menu_add():
       menu_name = request.form["menu_name"].lower()
       menu_description = request.form["menu_description"].lower()
       menu_category = request.form["menu_category"]
-      data = Menu(menu_name, menu_description, menu_category)
+      menu_image = request.files["menu_image"]
+      if not menu_image:
+        flash("There is no image selected, please upload the image")
+        return redirect(url_for("menu_add"))
+      menu_secure_img = secure_filename(menu_image.filename)
+      menu_mimetype = menu_image.mimetype
+      # Add query to save data
+      data = Menu(menu_name, menu_description, menu_image.read(), menu_mimetype, menu_secure_img, menu_category)
       db.session.add(data)
       db.session.commit()
       print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
@@ -254,6 +265,8 @@ def menu_edit(id):
 @login_required
 def menu_detail(id):
   menu = Menu.query.filter_by(id=id).first()
+  # menu_image_response = Response(menu.menu_image, mimetype=menu.mimetype, )
+  # print(menu_image_response.headers)
   return render_template("admin_dashboard/menu-detail.html", menu=menu)
 
 @app.route("/admin_dashboard/menu/delete/<int:id>", methods=["POST"])

@@ -10,9 +10,7 @@
 </ul>
 <!-- END Navigation info -->
 <!-- Text Inputs -->
-<div
-  class="form-horizontal form-box"
->
+<div class="form-horizontal form-box">
   <h4 class="form-box-header">Menu Detail</h4>
   <div class="form-box-content">
     <!-- Input Sizes -->
@@ -24,7 +22,7 @@
           name="menu_name"
           class="form-control"
           disabled
-          value={{menu.menu_name.title()}}
+          value="{{menu.menu_name.title()}}"
         />
       </div>
     </div>
@@ -38,31 +36,25 @@
           class="form-control"
           rows="4"
           disabled
-        >{{menu.menu_description}}</textarea>
+        >
+{{menu.menu_description}}</textarea
+        >
       </div>
     </div>
-    {#<div class="form-group">
+    <div class="form-group">
       <label class="control-label col-md-2" for="example-file">Photo :</label>
-      <div class="col-md-4">
-        <input
-          type="file"
-          name="menu_photo"
-          class="form-control"
-        />
-      </div>
-    </div>#}
+      <img src="{{ menu.menu_filename}}" alt="fakeimg"
+      {# <img src="{{url_for('static', filename='assets/expresso.png')}}" alt="fakeimg" #}
+      />
+    </div>
 
     <div class="form-group">
-      <label class="control-label col-md-2" for="Category"
-        >Category :</label
-      >
+      <label class="control-label col-md-2" for="Category">Category :</label>
       <div class="col-md-4">
-        <select
-          name="menu_category"
-          class="form-control"
-          disabled
-        >
-          <option value="">{{menu.category_id}}</option>
+        <select name="menu_category" class="form-control" disabled>
+          <option value="{{ menu.category_id }}">
+            {{ menu.category.category_name.title() }}
+          </option>
         </select>
       </div>
     </div>
