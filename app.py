@@ -25,6 +25,9 @@ class Category(db.Model):
 
   def __init__(self, category_name):
     self.category_name = category_name
+  
+  def __repr__(self):
+    return f"<Category {self.category_name}>"
 
 class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -56,6 +59,9 @@ class Subscriber(db.Model):
     self.subscriber_firstname = subscriber_firstname
     self.subscriber_lastname = subscriber_lastname
     self.subscriber_email = subscriber_email
+  
+  def __repr__(self):
+    return f"<Subscriber {self.subscriber_firstname}>"
 
 class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -92,18 +98,27 @@ def add_header(response):
 def index():
   # Get data category
   categories = Category.query.all()
+  menus = Menu.query.all()
+  images_list = []
+  for menu in menus:
+    image_encode = base64.b64encode(menu.menu_image)
+    image_decode = image_encode.decode("UTF-8")
+    images_list.append(image_decode)
   if request.method == "POST":
-    # Get input value
-    firstname = request.form['firstname']
-    lastname = request.form['lastname']
-    email = request.form['email']
-    data = Subscriber(firstname,lastname,email)
-    db.session.add(data)
-    db.session.commit()
-    flash("Wohoo! you have subscribed our newsletter!")
-    return render_template("index.html", categories=categories)
-  else:
-    return render_template("index.html", categories=categories)
+    try:
+      # Get input value
+      firstname = request.form['firstname']
+      lastname = request.form['lastname']
+      email = request.form['email']
+      data = Subscriber(firstname,lastname,email)
+      db.session.add(data)
+      db.session.commit()
+      flash(f"Wohoo! {firstname.title()}, you have subscribed our newsletter!")
+      return redirect(url_for("index"))
+    except:
+      flash("Upps, there is an issue!")
+      return redirect(url_for("index"))
+  return render_template("index.html", categories=categories, menus=menus, images_list=images_list)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
