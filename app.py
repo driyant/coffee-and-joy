@@ -154,13 +154,24 @@ def login_required(f):
 @login_required
 def logout():
   session.clear()
-  flash("Logged out! 👋")
+  flash("Logged out! Bye 👋, have a nice day!")
   return redirect(url_for("login"))
 
-@app.route("/admin_dashboard")
+@app.route("/admin_dashboard", methods=["GET"])
 @login_required
 def admin_dashboard():
-  return render_template("admin_dashboard/admin.html")
+  categories = Category.query.all()
+  menus = Menu.query.all()
+  subscribers = Subscriber.query.all()
+  count_subscribers = len(subscribers)
+  count_menus = len(menus)
+  count_categories = len(categories)
+  total = {
+    "subscribers" : count_subscribers,
+    "menus" :  count_menus,
+    "categories" : count_categories
+  }
+  return render_template("admin_dashboard/admin.html", total=total)
 
 @app.route("/admin_dashboard/subscriber")
 @login_required
@@ -218,7 +229,7 @@ def category_delete(id):
     data = Category.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash(f"Success ✔️, category {data.category_name.tite()} has been deleted!")
+    flash(f"Success ✔️, category has been deleted!")
     return redirect(url_for("category"))
   except:
     flash("There is an issue!")
