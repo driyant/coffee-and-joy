@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, Response
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from forms import LoginForm, RegisterForm 
 from functools import wraps
 from datetime import timedelta
 from werkzeug.utils import secure_filename
+import base64
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
@@ -265,9 +266,11 @@ def menu_edit(id):
 @login_required
 def menu_detail(id):
   menu = Menu.query.filter_by(id=id).first()
-  # menu_image_response = Response(menu.menu_image, mimetype=menu.mimetype, )
-  # print(menu_image_response.headers)
-  return render_template("admin_dashboard/menu-detail.html", menu=menu)
+  # Convert blob image into base64
+  image_string = base64.b64encode(menu.menu_image)
+  # Decode into utf-8
+  image_string = image_string.decode("UTF-8")
+  return render_template("admin_dashboard/menu-detail.html", menu=menu, image_string=image_string)
 
 @app.route("/admin_dashboard/menu/delete/<int:id>", methods=["POST"])
 @login_required
