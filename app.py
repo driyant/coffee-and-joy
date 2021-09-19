@@ -229,7 +229,7 @@ def category_delete(id):
     data = Category.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash(f"Success ✔️, category has been deleted!")
+    flash(f"Success ✔️, category {data.category_name.title()} has been deleted!")
     return redirect(url_for("category"))
   except:
     flash("There is an issue!")
@@ -262,7 +262,7 @@ def menu_add():
       db.session.add(data)
       db.session.commit()
       print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
-      flash("Success! There is a new menu 🥘 in the list")
+      flash(f"Success! menu {menu_name.title()} 🥘 has been added to the list")
       return redirect(url_for('menu'))
     except:
       flash("Oops! There is an issue")
@@ -280,7 +280,7 @@ def menu_edit(id):
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
       db.session.commit()
-      flash("Success ✔️ edit menu ! ")
+      flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
       return redirect(url_for("menu"))
     except:
       flash("Oops sorry, there is an issue! ")
@@ -305,7 +305,7 @@ def menu_delete(id):
     data = Menu.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash("Success, delete menu")
+    flash(f"Success, delete menu {data.menu_name.title()}!")
     return redirect(url_for("menu"))
   except:
     flash("There is an issue delete menu!")

@@ -1,6 +1,7 @@
 autopep8==1.5.7
 Babel==2.9.1
 blinker==1.4
+cachelib==0.3.0
 click==8.0.1
 colorama==0.4.4
 Flask==2.0.1
@@ -9,6 +10,7 @@ Flask-Login==0.5.0
 Flask-Mail==0.9.1
 Flask-Principal==0.4.0
 Flask-Security==3.0.0
+Flask-Session==0.4.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==0.15.1
 greenlet==1.1.1

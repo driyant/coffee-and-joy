@@ -5,7 +5,7 @@
 <!-- Navigation info -->
 <ul id="nav-info" class="clearfix">
   <li>
-    <a href="index.html"><i class="fa fa-home"></i></a>
+    <a href="{{url_for('admin_dashboard')}}"><i class="fa fa-home"></i></a>
   </li>
   <li><a href="javascript:void(0)">Tables</a></li>
   <li class="active"><a href="">Data Subscriber</a></li>
@@ -37,7 +37,11 @@
     </tr>
     {% endfor %}
   </tbody>
-</table>
+</table> <br/>
+<p>
+  Note :
+  The list of data is coming from newsletter form.
+</p>
 <!-- END Datatables -->
 {% endblock %} {% block script_subscriber%}
 <!-- Javascript code only for this page -->

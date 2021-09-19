@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block title %}Admin Dashboard | Menu{% endblock %}
-{% block active_category %}active{% endblock %} {% block content %}
+{% block active_menu %}active{% endblock %} {% block content %}
 <!-- Navigation info -->
 <ul id="nav-info" class="clearfix">
   <li>
-    <a href="index.html"><i class="fa fa-home"></i></a>
+    <a href="{{url_for('admin_dashboard')}}"><i class="fa fa-home"></i></a>
   </li>
   <li><a href="javascript:void(0)">Tables</a></li>
   <li class="active"><a href="">Edit Menu</a></li>
