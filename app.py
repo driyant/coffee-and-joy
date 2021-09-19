@@ -83,7 +83,7 @@ class Event(db.Model):
 db.create_all()
 db.session.commit()
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Browser caching issue
 @app.after_request
@@ -272,7 +272,7 @@ def menu_add():
         flash(f"Success! menu {menu_name.title()} 🥘 has been added to the list")
         return redirect(url_for('menu'))
       else:
-        flash("Upps, sorry there is an issue uploading your image")
+        flash("Upps, sorry only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
         return redirect(url_for("menu"))
     except:
       flash("Oops! There is an issue")
@@ -292,12 +292,15 @@ def menu_edit(id):
     try:
       menu.menu_name = request.form["menu_name"].lower()
       menu.menu_description = request.form["menu_description"]
+      menu.category_id = request.form["menu_category"]
+      if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):        
+        flash("Sorry, only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
+        return redirect(url_for("menu"))
       menu.menu_image = request.files["menu_image"].read()
       menu.menu_mimetype = request.files["menu_image"].mimetype
       menu.menu_filename = secure_filename(request.files["menu_image"].filename) 
-      menu.category_id = request.form["menu_category"]
       db.session.commit()
-      flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
+      flash(f"Success ✔️, menu {menu.menu_name.title()} has been updated! ")
       return redirect(url_for("menu"))
     except:
       flash("Oops sorry, there is an issue! ")
