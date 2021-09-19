@@ -249,7 +249,7 @@ def menu_add():
   if request.method == "POST":
     try:
       menu_name = request.form["menu_name"].lower()
-      menu_description = request.form["menu_description"].lower()
+      menu_description = request.form["menu_description"]
       menu_category = request.form["menu_category"]
       menu_image = request.files["menu_image"]
       if not menu_image:
@@ -273,11 +273,18 @@ def menu_add():
 @login_required
 def menu_edit(id):
   menu = Menu.query.filter_by(id=id).first()
+   # Convert blob image into base64
+  image_string = base64.b64encode(menu.menu_image)
+  # Decode into utf-8
+  image_string = image_string.decode("UTF-8")
   categories = Category.query.all()
   if request.method == "POST":
     try:
-      menu.menu_name = request.form["menu_name"]
+      menu.menu_name = request.form["menu_name"].lower()
       menu.menu_description = request.form["menu_description"]
+      menu.menu_image = request.files["menu_image"].read()
+      menu.menu_mimetype = request.files["menu_image"].mimetype
+      menu.menu_filename = secure_filename(request.files["menu_image"].filename) 
       menu.category_id = request.form["menu_category"]
       db.session.commit()
       flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
@@ -286,7 +293,7 @@ def menu_edit(id):
       flash("Oops sorry, there is an issue! ")
       return redirect(url_for("menu"))
   else:
-    return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories)
+    return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories, image_string=image_string)
 
 @app.route("/admin_dashboard/menu/detail/<int:id>")
 @login_required
