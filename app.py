@@ -83,6 +83,8 @@ class Event(db.Model):
 db.create_all()
 db.session.commit()
 
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 # Browser caching issue
 @app.after_request
 def add_header(response):
@@ -93,6 +95,10 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
+
+def allowed_file(image):
+    return '.' in image and \
+           image.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -255,15 +261,19 @@ def menu_add():
       if not menu_image:
         flash("There is no image selected, please upload the image")
         return redirect(url_for("menu_add"))
-      menu_secure_img = secure_filename(menu_image.filename)
-      menu_mimetype = menu_image.mimetype
-      # Add query to save data
-      data = Menu(menu_name, menu_description, menu_image.read(), menu_mimetype, menu_secure_img, menu_category)
-      db.session.add(data)
-      db.session.commit()
-      print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
-      flash(f"Success! menu {menu_name.title()} 🥘 has been added to the list")
-      return redirect(url_for('menu'))
+      if menu_image and allowed_file(menu_image.filename):
+        menu_secure_img = secure_filename(menu_image.filename)
+        menu_mimetype = menu_image.mimetype
+        # Add query to save data
+        data = Menu(menu_name, menu_description, menu_image.read(), menu_mimetype, menu_secure_img, menu_category)
+        db.session.add(data)
+        db.session.commit()
+        print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
+        flash(f"Success! menu {menu_name.title()} 🥘 has been added to the list")
+        return redirect(url_for('menu'))
+      else:
+        flash("Upps, sorry there is an issue uploading your image")
+        return redirect(url_for("menu"))
     except:
       flash("Oops! There is an issue")
       return redirect(url_for('menu'))
