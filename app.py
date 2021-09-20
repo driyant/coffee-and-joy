@@ -306,16 +306,15 @@ def menu_edit(id):
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
-      menu.menu_image = request.files["menu_image"].read()
-      menu.menu_mimetype = request.files["menu_image"].mimetype
-      menu.menu_filename = secure_filename(request.files["menu_image"].filename)
-      if not request.files["menu_image"]:
-        old_menu = menu.menu_image.read()
-      if request.files["menu_image"] is not allowed_file(request.files["menu_image"].filename):        
+      if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):
+        menu.menu_image = request.files["menu_image"].read()
+        menu.menu_mimetype = request.files["menu_image"].mimetype
+        menu.menu_filename = secure_filename(request.files["menu_image"].filename)
+      else:        
         flash("Sorry, only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
         return redirect(url_for("menu"))
       db.session.commit()
-      flash(f"Success ✔️, menu has been updated! ")
+      flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
       return redirect(url_for("menu"))
     except:
       flash("There is an issue!")
