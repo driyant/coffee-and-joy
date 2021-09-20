@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 import base64
 from dateutil import parser
 import json
+import datetime
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
@@ -110,6 +111,9 @@ def index():
   # Get data category
   categories = Category.query.all()
   menus = Menu.query.all()
+  event = Event.query.filter_by(event_status="upcoming").first()
+  get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
+  display_date = get_date.strftime("%d %B %Y")
   images_list = []
   for menu in menus:
     image_encode = base64.b64encode(menu.menu_image)
@@ -129,7 +133,7 @@ def index():
     except:
       flash("Upps, there is an issue!")
       return redirect(url_for("index"))
-  return render_template("index.html", categories=categories, menus=menus, images_list=images_list)
+  return render_template("index.html", categories=categories, menus=menus, images_list=images_list, event=event, display_date=display_date)
 
 @app.route("/update/event")
 def update_event():

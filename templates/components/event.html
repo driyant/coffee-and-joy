@@ -2,13 +2,11 @@
   <h2 class="title">Event</h2>
   <div class="wrapper">
     <div class="content__description" data-aos="fade-up">
-      <h3>Join us for our grand opening event</h3>
-      <p>
-        There will be free coffee, discount 10% for all menus, coffee latte art
-        and many more!
+      <h3>Join us our {{event.event_name}} event</h3>
+      <p>{{event.event_promo_info}}
       </p>
-      <p>August 6-8th 03.00 PM</p>
-      <p><i class="fas fa-map-marker-alt"></i> ABC, Street 1270, Long Beach</p>
+      <p>{{ display_date }} {{event.event_time}}</p>
+      <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
       <p>Event will be ended in :</p>
     </div>
     <div class="time__remaining" data-aos="fade-in">
