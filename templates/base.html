@@ -30,6 +30,9 @@
     <!-- END Stylesheets -->
     <!-- Modernizr (browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
     <script src="{{ url_for('static', filename='admin/js/vendor/modernizr-respond.min.js') }}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet"> 
   </head>
   <!-- Add the class .fixed to <body> for a fixed layout on large resolutions (min: 1200px) -->
   <!-- <body class="fixed"> -->
@@ -56,9 +59,13 @@
         </ul>
         <!-- END Mobile Navigation -->
         <!-- Logo -->
-        <a href="index.html" class="navbar-brand"
-          ><img src="img/template/logo.png" alt="logo"
-        /></a>
+        <a 
+          href="{{ url_for("index") }}" 
+          class="navbar-brand" 
+          style="font-family:'Cinzel', serif; text-decoration:underline;" 
+          target="_blank"
+          rel="noreferrer"
+          >Coffee & Joy</a>
         <!-- Loading Indicator, Used for demostrating how loading of widgets could happen, check main.js - uiDemo() -->
         <div id="loading" class="pull-left">
           <i class="fa fa-certificate fa-spin"></i>
@@ -402,7 +409,7 @@
               href="javascript:void(0)"
               class="dropdown-toggle"
               data-toggle="dropdown"
-              ><img src="img/template/avatar.png" alt="avatar" />
+              ><img src="{{ url_for("static", filename="assets/user.png") }}" alt="avatar" height:"30px" width="30px"/>
               <b class="caret"></b
             ></a>
             <ul class="dropdown-menu">
@@ -430,22 +437,22 @@
               </li>
               <li>
                 <a href="/admin_dashboard/event" class="{% block active_event %} {% endblock %}"
-                  ><i class="fa fa-glass"></i>Event</a
+                  ><i class="gi gi-chevron-right"></i>Event</a
                 >
               </li>
               <li>
                 <a href="/admin_dashboard/menu" class="{% block active_menu %} {% endblock %}"
-                  ><i class="fa fa-font"></i>Menu List</a
+                  ><i class="gi gi-glass"></i>Menu List</a
                 >
               </li>
               <li>
                 <a href="/admin_dashboard/category" class="{% block active_category %} {% endblock %}"
-                  ><i class="fa fa-power-off"></i>Category Menu</a
+                  ><i class="gi gi-show_big_thumbnails"></i>Category Menu</a
                 >
               </li>
               <li>
                 <a href="/admin_dashboard/subscriber" class="{% block active_subscriber %} {% endblock %}"
-                  ><i class="hi hi-user"></i>Subscriber</a
+                  ><i class="gi gi-message_full"></i>Subscriber</a
                 >
               </li>
             </ul>

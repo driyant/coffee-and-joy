@@ -31,9 +31,9 @@ messages %}
   <thead>
     <tr>
       <th class="cell-small text-center hidden-xs hidden-sm">#</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th><i class="fa fa-user"> </i> Operation</th>
+      <th><i class="gi gi-snowflake"> </i> Name</th>
+      <th><i class="gi gi-book"></i> Category</th>
+      <th><i class="fa fa-gear (alias)"> </i> Operation</th>
     </tr>
   </thead>
   <tbody>
@@ -41,14 +41,13 @@ messages %}
     <tr>
       <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
       <td>
-        <a data-toggle="modal" href="/admin_dashboard/menu/detail/{{menu.id}}">{{menu.menu_name.title()}}</a>
+        <a href="/admin_dashboard/menu/detail/{{menu.id}}">{{menu.menu_name}}</a>
       <td>{{menu.category.category_name.title()}}</td>
       <td>
         <div class="btn-group">
           <a
             style="margin-right: 1rem"
             href="/admin_dashboard/menu/edit/{{menu.id}}"
-            data-toggle="modal"
             title="Edit"
             class="btn btn-xs btn-success"
             ><i class="fa fa-pencil"></i> Edit</a

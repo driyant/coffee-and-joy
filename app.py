@@ -126,6 +126,10 @@ def index():
       return redirect(url_for("index"))
   return render_template("index.html", categories=categories, menus=menus, images_list=images_list)
 
+@app.route("/update/event")
+def update_event():
+  return "Update event"
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
   form = LoginForm()
@@ -254,7 +258,7 @@ def menu_add():
   categories = Category.query.all()
   if request.method == "POST":
     try:
-      menu_name = request.form["menu_name"].lower()
+      menu_name = request.form["menu_name"]
       menu_description = request.form["menu_description"]
       menu_category = request.form["menu_category"]
       menu_image = request.files["menu_image"]
@@ -290,23 +294,24 @@ def menu_edit(id):
   categories = Category.query.all()
   if request.method == "POST":
     try:
-      menu.menu_name = request.form["menu_name"].lower()
+      menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
-      if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):        
-        flash("Sorry, only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
-        return redirect(url_for("menu"))
       menu.menu_image = request.files["menu_image"].read()
       menu.menu_mimetype = request.files["menu_image"].mimetype
-      menu.menu_filename = secure_filename(request.files["menu_image"].filename) 
+      menu.menu_filename = secure_filename(request.files["menu_image"].filename)
+      if not request.files["menu_image"]:
+        old_menu = menu.menu_image.read()
+      if request.files["menu_image"] is not allowed_file(request.files["menu_image"].filename):        
+        flash("Sorry, only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
+        return redirect(url_for("menu"))
       db.session.commit()
-      flash(f"Success ✔️, menu {menu.menu_name.title()} has been updated! ")
+      flash(f"Success ✔️, menu has been updated! ")
       return redirect(url_for("menu"))
     except:
-      flash("Oops sorry, there is an issue! ")
+      flash("There is an issue!")
       return redirect(url_for("menu"))
-  else:
-    return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories, image_string=image_string)
+  return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories, image_string=image_string)
 
 @app.route("/admin_dashboard/menu/detail/<int:id>")
 @login_required
