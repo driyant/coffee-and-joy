@@ -11,7 +11,7 @@
 <!-- END Navigation info -->
 <!-- Text Inputs -->
 <form
-  action="/admin_dashboard/category/add"
+  action="/admin_dashboard/event/add"
   method="POST"
   class="form-horizontal form-box"
 >
@@ -47,8 +47,8 @@
       <div class="col-md-2">
         <input
           type="text"
-          id="example-input-datepicker"
-          name="example-input-datepicker"
+          id="date_emd"
+          name="date_end"
           class="form-control input-datepicker"
         />
       </div>
@@ -61,8 +61,8 @@
         <div class="input-group bootstrap-timepicker">
           <input
             type="text"
-            id="example-input-timepicker"
-            name="example-input-timepicker"
+            id="time_end"
+            name="time_end"
             class="form-control input-timepicker"
           />
           <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
@@ -74,7 +74,7 @@
       <div class="col-md-3">
         <input
           type="text"
-          name="promo_info"
+          name="event_place"
           class="form-control"
           placeholder="e.g. ABC, Street 1270, Long Beach"
         />

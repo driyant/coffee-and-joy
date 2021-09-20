@@ -17,6 +17,13 @@
   style="margin-bottom: 2rem"
   ><i class="fa fa-plus"></i> Add Event</a
 >
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{message}}
+</div>
+{% endfor %} {% endif %} {% endwith %}
 <table
   id="example-datatables"
   class="table table-striped table-bordered table-hover"
@@ -34,14 +41,15 @@
     </tr>
   </thead>
   <tbody>
+  {% for event in events  %}
     <tr>
-      <td class="text-center hidden-xs hidden-sm">1</td>
-      <td>Grand Opening</td>
-      <td>Discount 10% for all menus</td>
-      <td>12 December 2021</td>
-      <td>03.00 PM</td>
-      <td>ABC, Street 1270, Long Beach</td>
-      <td><span class="label label-info">Upcoming...</span></td>
+      <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
+      <td>{{ event.event_name }}</td>
+      <td>{{ event.event_promo_info }}</td>
+      <td>{{ event.event_date }}</td>
+      <td>{{ event.event_time }}</td>
+      <td>{{ event.event_place }}</td>
+      <td><span class="label label-info">{{ event.event_status.title() }}...</span></td>
       <td>
         <div class="btn-group">
           <a
@@ -62,6 +70,7 @@
         </div>
       </td>
     </tr>
+    {% endfor %}
   </tbody>
 </table> </br>
 <p>Note :

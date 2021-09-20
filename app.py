@@ -6,6 +6,8 @@ from functools import wraps
 from datetime import timedelta
 from werkzeug.utils import secure_filename
 import base64
+from dateutil import parser
+import json
 
 app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
@@ -67,10 +69,10 @@ class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   event_name = db.Column(db.String(50), nullable=False)
   event_promo_info = db.Column(db.String(255), nullable=False)
-  event_date = db.Column(db.DateTime, nullable=False)
+  event_date = db.Column(db.String(50), nullable=False)
   event_time = db.Column(db.String(100), nullable=False)
   event_place = db.Column(db.String(100), nullable=False)
-  event_status = db.Column(db.String(20), nullable=False, default='upcoming')
+  event_status = db.Column(db.String(20), nullable=False)
 
   def __init__(self, event_name, event_promo_info, event_date, event_time, event_place, event_status):
     self.event_name = event_name
@@ -79,6 +81,9 @@ class Event(db.Model):
     self.event_time = event_time
     self.event_place = event_place
     self.event_status = event_status
+  
+  def __repr__(self):
+    return f"<Event {self.event_name} >"
 
 db.create_all()
 db.session.commit()
@@ -336,16 +341,34 @@ def menu_delete(id):
     flash("There is an issue delete menu!")
     return redirect(url_for("menu"))
 
-@app.route("/admin_dashboard/event")
+@app.route("/admin_dashboard/event", methods=["GET"])
 @login_required
 def event():
   #Fetch all data in event list
-  return render_template('admin_dashboard/event.html')
+  events = Event.query.all()
+  return render_template('admin_dashboard/event.html', events=events)
 
-@app.route("/admin_dashboard/event/add")
+@app.route("/admin_dashboard/event/add", methods=["GET","POST"])
 @login_required
 def event_add():
-  return render_template("admin_dashboard/event-add.html")
+  if request.method == "POST":
+    try:
+      event_name = request.form["event"]
+      event_promo_info = request.form["promo_info"]
+      event_date_end = request.form["date_end"]
+      event_time_end = request.form["time_end"]
+      event_place = request.form["event_place"]
+      event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "upcoming")
+      print(event)
+      db.session.add(event)
+      db.session.commit()
+      flash("Success, new event has been added to the list!")
+      return redirect(url_for("event"))
+    except:
+      flash("Upps, there is an issue!")
+      return redirect(url_for("event"))
+  else:
+    return render_template("admin_dashboard/event-add.html")
 
 if __name__ == "__main__":
   app.run(debug=True)

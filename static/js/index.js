@@ -50,12 +50,19 @@ menuLists.forEach(menuList => {
   });
 });
 
+
+/*
+* Test Fetch Request
+*/
+
+
+
 /*
 * Count down timer
 */
 
 // Set the date we're counting down
-const getNewDate = new Date("2021-09-30 15:04").getTime();
+const getNewDate = new Date("2021-09-29 15:15:00").getTime();
 
 const countDown = () => {
   setInterval(() => {
