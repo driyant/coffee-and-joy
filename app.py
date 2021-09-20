@@ -306,6 +306,8 @@ def menu_edit(id):
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
+      # if not request.files["menu_image"]:
+      #   request.files["menu_image"] = menu.menu_image.read()
       if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):
         menu.menu_image = request.files["menu_image"].read()
         menu.menu_mimetype = request.files["menu_image"].mimetype
@@ -362,7 +364,6 @@ def event_add():
       event_time_end = request.form["time_end"]
       event_place = request.form["event_place"]
       event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "upcoming")
-      print(event)
       db.session.add(event)
       db.session.commit()
       flash("Success, new event has been added to the list!")
@@ -385,7 +386,14 @@ def event_delete(id):
   except:
     flash("There is an issue!")
     return redirect(url_for("event"))
-    
+
+@app.route("/admin_dashboard/event/edit/<id>", methods=["GET", "POST"])
+@login_required
+def event_edit(id):
+  event = Event.query.filter_by(id=id).first()
+  print(f"{event.event_name} {event.event_promo_info}")
+  # if request.method == "POST":
+  return render_template("admin_dashboard/event-edit.html", event=event)
 
 if __name__ == "__main__":
   app.run(debug=True)
