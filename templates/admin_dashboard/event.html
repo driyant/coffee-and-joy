@@ -61,12 +61,12 @@ messages %}
             ><i class="fa fa-pencil"></i> Edit</a
           >
           <a
-            href="javascript:void(0)"
-            data-toggle="tooltip"
-            title="Delete"
+            href="#event{{event.id}}"
+            data-toggle="modal"
             class="btn btn-xs btn-danger"
             ><i class="fa fa-times"></i> Delete</a
           >
+          {% include "admin_dashboard/includes_admin/event-modal-delete.html" %}
         </div>
       </td>
     </tr>

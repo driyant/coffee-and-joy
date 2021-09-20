@@ -369,6 +369,20 @@ def event_add():
       return redirect(url_for("event"))
   else:
     return render_template("admin_dashboard/event-add.html")
+  
+@app.route("/admin_dashboard/event/delete/<id>", methods=["POST"])
+@login_required
+def event_delete(id):
+  try:
+    event = Event.query.filter_by(id=id).first()
+    db.session.delete(event)
+    db.session.commit()
+    flash(f"Success, delete event {event.event_name}!")
+    return redirect(url_for("event"))
+  except:
+    flash("There is an issue!")
+    return redirect(url_for("event"))
+    
 
 if __name__ == "__main__":
   app.run(debug=True)

@@ -13,7 +13,7 @@
           >
           ×
         </button>
-        <h4>Menu Delete</h4>
+        <h4>Event Delete</h4>
       </div>
       <!-- END Modal Header -->
       <!-- Modal Content -->
@@ -21,24 +21,25 @@
         <div class="tab-content">
           <!-- First Tab -->
           <div class="tab-pane active">
-            <form action="/admin_dashboard/event/delete/{{event.id}}" class="form-horizontal" method="POST">
+            
               <div class="form-group">
                 <div class="col-md-12">
-                  <p>Are you sure want to delete this menu <strong>{{menu.menu_name.title()}}?</strong></p>
+                  <p>Are you sure want to delete this event <strong>{{event.event_name}}?</strong></p>
                 </div>
               </div>
           </div>
         </div>
       </div>
       <div class="modal-footer remove-margin">
+      <form action="/admin_dashboard/event/delete/{{event.id}}" class="form-horizontal" method="POST">
         <button class="btn btn-danger" data-dismiss="modal">
           <i class="fa fa-times"></i> Close
         </button>
         <button type="submit" class="btn btn-success">
           <i class="fa fa-save"></i> Save changes
         </button>
+         </form>
       </div>
-      </form>
     <!-- END Modal Content -->
   </div>
   <!-- END Modal Dialog -->
