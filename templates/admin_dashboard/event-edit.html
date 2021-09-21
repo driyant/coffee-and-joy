@@ -92,9 +92,9 @@
           class="form-control"
           required
         >
-          <option value="{{ event.event_status }}" selected>{{ event.event_status.title() }}</option>
-          <option value="active">Active</option>
-          <option value="finished" >Finished</option>
+        {% for status in event_status  %}
+          <option value="{{status}}">{{status}}</option>
+        {% endfor %}
         </select>
       </div>
     </div>

@@ -391,6 +391,7 @@ def event_delete(id):
 @login_required
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
+  event_status = ["active", "upcoming", "finished"]
   if request.method == "POST":
     try:
       event.event_name = request.form["event_name"]
@@ -404,8 +405,9 @@ def event_edit(id):
       return redirect(url_for("event"))
     except:
       flash("Upps, there is an issue!")
-      return redirect(url_for("event")) 
-  return render_template("admin_dashboard/event-edit.html", event=event)
+      return redirect(url_for("event"))
+  else: 
+    return render_template("admin_dashboard/event-edit.html", event=event, event_status=event_status)
 
 if __name__ == "__main__":
   app.run(debug=True)
