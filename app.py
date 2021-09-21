@@ -111,7 +111,7 @@ def index():
   # Get data category
   categories = Category.query.all()
   menus = Menu.query.all()
-  event = Event.query.filter_by(event_status="upcoming").first()
+  event = Event.query.filter_by(event_status="active").first()
   get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
   display_date = get_date.strftime("%d %B %Y")
   images_list = []

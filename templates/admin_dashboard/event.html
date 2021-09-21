@@ -49,7 +49,15 @@ messages %}
       <td>{{ event.event_date }}</td>
       <td>{{ event.event_time }}</td>
       <td>{{ event.event_place }}</td>
-      <td><span class="label label-info">{{ event.event_status.title() }}...</span></td>
+      <td>
+        {% if event.event_status == "upcoming"%}
+          <span class="label label-info">{{ event.event_status.title() }} ...</span>
+        {% elif event.event_status == "active" %}
+          <span class="label label-success">{{ event.event_status.title() }} ...</span>
+        {% else %}
+          <span class="label label-default">{{ event.event_status.title() }} ...</span>
+        {% endif %}
+      </td>
       <td>
         <div class="btn-group">
           <a
