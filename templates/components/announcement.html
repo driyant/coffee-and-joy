@@ -10,7 +10,7 @@
   <div class="wrapper" style="display:flex; flex-flow:row">
     <img src="{{url_for('static', filename='assets/bell.png') }}" alt="bell" />
     <span
-      >We are having Grand Opening Event. <a href="#event">Learn More</a></span
+      >We are having {{ event.event_name }} Event. <a href="#event">Learn More</a></span
     >
   </div>
 </section>

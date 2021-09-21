@@ -282,7 +282,7 @@ def menu_add():
         db.session.add(data)
         db.session.commit()
         print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
-        flash(f"Success! menu {menu_name.title()} 🥘 has been added to the list")
+        flash(f"Success ✔️! menu {menu_name.title()} 🥘 has been added to the list")
         return redirect(url_for('menu'))
       else:
         flash("Upps, sorry only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
@@ -306,8 +306,8 @@ def menu_edit(id):
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
-      # if not request.files["menu_image"]:
-      #   request.files["menu_image"] = menu.menu_image.read()
+      if not request.files["menu_image"]:
+        print("Input file is empty!")
       if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):
         menu.menu_image = request.files["menu_image"].read()
         menu.menu_mimetype = request.files["menu_image"].mimetype
@@ -340,7 +340,7 @@ def menu_delete(id):
     data = Menu.query.filter_by(id=id).first()
     db.session.delete(data)
     db.session.commit()
-    flash(f"Success, delete menu {data.menu_name.title()}!")
+    flash(f"Success ✔️, delete menu {data.menu_name.title()}!")
     return redirect(url_for("menu"))
   except:
     flash("There is an issue delete menu!")
@@ -366,7 +366,7 @@ def event_add():
       event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "upcoming")
       db.session.add(event)
       db.session.commit()
-      flash("Success, new event has been added to the list!")
+      flash("Success ✔️, new event has been added to the list!")
       return redirect(url_for("event"))
     except:
       flash("Upps, there is an issue!")
@@ -391,8 +391,20 @@ def event_delete(id):
 @login_required
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
-  print(f"{event.event_name} {event.event_promo_info}")
-  # if request.method == "POST":
+  if request.method == "POST":
+    try:
+      event.event_name = request.form["event_name"]
+      event.event_promo_info = request.form["event_promo_info"]
+      event.event_date = request.form["event_date_end"]
+      event.event_time = request.form["event_time_end"]
+      event.event_place = request.form["event_place"]
+      event.event_status = request.form["event_status"].lower()
+      db.session.commit()
+      flash(f"Success, event {event.event_name} has been updated!")
+      return redirect(url_for("event"))
+    except:
+      flash("Upps, there is an issue!")
+      return redirect(url_for("event")) 
   return render_template("admin_dashboard/event-edit.html", event=event)
 
 if __name__ == "__main__":
