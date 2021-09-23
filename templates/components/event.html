@@ -2,15 +2,21 @@
   <h2 class="title">Event</h2>
   <div class="wrapper">
     <div class="content__description" data-aos="fade-up">
-      <h3>Join us our {{event.event_name}} event</h3>
-      <p>{{event.event_promo_info}}
-      </p>
-      <p>{{ display_date }} {{event.event_time}}</p>
-      <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
-      <p>Event will be ended in :</p>
-    </div>
-    <div class="time__remaining" data-aos="fade-in">
-      <h1></h1>
+      {% if event_active < 1 %}
+        <h3>There is no event available</h3>
+        <p>Sign up our monthly newsletter</p>
+        <p>Don't miss our next event, see ya!</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
+      {% else %}  
+        <h3>Join us our {{event.event_name}} event</h3>
+        <p>{{ display_date }} {{event.event_time}}</p>
+        <p>{{event.event_promo_info}}</p>
+        <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
+        <p>Event promo will be ended in :</p>
+        <div class="time__remaining" data-aos="fade-in">
+          <h1></h1>
+        </div>
+      {% endif %}
     </div>
     <div class="form__group">
       <p>Sign Up Our Monthly Newsletter</p>

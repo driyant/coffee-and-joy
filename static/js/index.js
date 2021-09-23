@@ -54,7 +54,14 @@ menuLists.forEach(menuList => {
 /*
 * Test Fetch Request
 */
+const fetchData = async () => {
+  const url = window.location;
+  const res = await fetch(url)
+  const data = res.json();
+  console.log(data);
+}
 
+fetchData();
 
 
 /*

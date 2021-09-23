@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from forms import LoginForm, RegisterForm 
@@ -108,13 +108,14 @@ def allowed_file(image):
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-  # Get data category
   categories = Category.query.all()
   menus = Menu.query.all()
   event = Event.query.filter_by(event_status="active").first()
   get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
   display_date = get_date.strftime("%d %B %Y")
+  event_active = Event.query.filter_by(event_status="active").count()
   images_list = []
+  
   for menu in menus:
     image_encode = base64.b64encode(menu.menu_image)
     image_decode = image_encode.decode("UTF-8")
@@ -133,7 +134,14 @@ def index():
     except:
       flash("Upps, there is an issue!")
       return redirect(url_for("index"))
-  return render_template("index.html", categories=categories, menus=menus, images_list=images_list, event=event, display_date=display_date)
+  return render_template("index.html",
+    categories=categories,
+    menus=menus, 
+    images_list=images_list,
+    event=event, 
+    display_date=display_date, 
+    event_active=event_active
+  )
 
 @app.route("/update/event")
 def update_event():
@@ -302,25 +310,26 @@ def menu_edit(id):
   image_string = image_string.decode("UTF-8")
   categories = Category.query.all()
   if request.method == "POST":
-    try:
+    if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):
       menu.menu_name = request.form["menu_name"]
       menu.menu_description = request.form["menu_description"]
       menu.category_id = request.form["menu_category"]
-      if not request.files["menu_image"]:
-        print("Input file is empty!")
-      if request.files["menu_image"] and allowed_file(request.files["menu_image"].filename):
-        menu.menu_image = request.files["menu_image"].read()
-        menu.menu_mimetype = request.files["menu_image"].mimetype
-        menu.menu_filename = secure_filename(request.files["menu_image"].filename)
-      else:        
-        flash("Sorry, only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
-        return redirect(url_for("menu"))
+      menu.menu_image = request.files["menu_image"].read()
+      menu.menu_mimetype = request.files["menu_image"].mimetype
+      menu.menu_filename = secure_filename(request.files["menu_image"].filename)
       db.session.commit()
       flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
       return redirect(url_for("menu"))
-    except:
-      flash("There is an issue!")
+    elif not request.files["menu_image"] :
+      menu.menu_name = request.form["menu_name"]
+      menu.menu_description = request.form["menu_description"]
+      menu.category_id = request.form["menu_category"]
+      db.session.commit()
+      flash(f"Success ✔️, menu {menu.menu_name} has been updated! ")
       return redirect(url_for("menu"))
+    else:
+      flash("Sorry, only .png, .jpg, .jpeg extensions are allowed!")
+      return redirect(url_for("menu")) 
   return render_template("admin_dashboard/menu-edit.html", menu=menu, categories=categories, image_string=image_string)
 
 @app.route("/admin_dashboard/menu/detail/<int:id>")
@@ -381,7 +390,7 @@ def event_delete(id):
     event = Event.query.filter_by(id=id).first()
     db.session.delete(event)
     db.session.commit()
-    flash(f"Success, delete event {event.event_name}!")
+    flash(f"Success ✔️, delete event !")
     return redirect(url_for("event"))
   except:
     flash("There is an issue!")
@@ -391,9 +400,15 @@ def event_delete(id):
 @login_required
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
+  # Count rows where event is active
+  event_active = Event.query.filter_by(event_status = "active").count()
   event_status = ["active", "upcoming", "finished"]
   if request.method == "POST":
     try:
+      # If event active <= 1 user will be directed to event list
+      # if event_active < 1:
+      #   flash("Update failed, there is no event active please update event list to be active at least 1")
+      #   return redirect(url_for("event"))
       event.event_name = request.form["event_name"]
       event.event_promo_info = request.form["event_promo_info"]
       event.event_date = request.form["event_date_end"]
@@ -401,7 +416,7 @@ def event_edit(id):
       event.event_place = request.form["event_place"]
       event.event_status = request.form["event_status"].lower()
       db.session.commit()
-      flash(f"Success, event {event.event_name} has been updated!")
+      flash(f"Success ✔️, event {event.event_name} has been updated!")
       return redirect(url_for("event"))
     except:
       flash("Upps, there is an issue!")
