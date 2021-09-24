@@ -363,7 +363,7 @@ def event_add():
       event_date_end = request.form["date_end"]
       event_time_end = request.form["time_end"]
       event_place = request.form["event_place"]
-      event = Event(event_name, event_promo_info, event_date_end, event_time_end, event_place, event_status = "upcoming")
+      event = Event(event_name, event_promo_info, event_date_end, event_time_end, event_place, event_status = "not_set")
       db.session.add(event)
       db.session.commit()
       flash("Success ✔️, new event has been added to the list!")
@@ -392,7 +392,7 @@ def event_delete(id):
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
   # Count rows where event is active
-  event_status = ["active", "upcoming", "finished"]
+  event_status = ["active", "finished"]
   if request.method == "POST":
     event_active = Event.query.filter_by(event_status = "active").count()
     # If event active <= 1 user will be directed to event list
