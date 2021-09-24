@@ -51,11 +51,11 @@ messages %}
       <td>{{ event.event_place }}</td>
       <td>
         {% if event.event_status == "upcoming"%}
-          <span class="label label-info">{{ event.event_status.title() }} ...</span>
+          <span class="label label-info">{{ event.event_status.title() }}...</span>
         {% elif event.event_status == "active" %}
-          <span class="label label-success">{{ event.event_status.title() }} ...</span>
+          <span class="label label-success">{{ event.event_status.title() }}...</span>
         {% else %}
-          <span class="label label-default">{{ event.event_status.title() }} ...</span>
+          <span class="label label-default">{{ event.event_status.title() }}...</span>
         {% endif %}
       </td>
       <td>

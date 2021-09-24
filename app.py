@@ -111,8 +111,6 @@ def index():
   categories = Category.query.all()
   menus = Menu.query.all()
   event = Event.query.filter_by(event_status="active").first()
-  # get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
-  # display_date = get_date.strftime("%d %B %Y")
   images_list = []
   for menu in menus:
     image_encode = base64.b64encode(menu.menu_image)
@@ -365,7 +363,7 @@ def event_add():
       event_date_end = request.form["date_end"]
       event_time_end = request.form["time_end"]
       event_place = request.form["event_place"]
-      event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "active")
+      event = Event(event_name, event_promo_info, event_date_end, event_time_end, event_place, event_status = "upcoming")
       db.session.add(event)
       db.session.commit()
       flash("Success ✔️, new event has been added to the list!")
