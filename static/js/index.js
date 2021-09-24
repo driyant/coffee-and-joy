@@ -52,24 +52,15 @@ menuLists.forEach(menuList => {
 
 
 /*
-* Test Fetch Request
-*/
-const fetchData = async () => {
-  const url = window.location;
-  const res = await fetch(url)
-  const data = res.json();
-  console.log(data);
-}
-
-fetchData();
-
-
-/*
 * Count down timer
 */
 
+// Target date element
+const dateEvent = document.querySelector(".date_end_event");
+const timeEvent = document.querySelector(".time_end_event");
+
 // Set the date we're counting down
-const getNewDate = new Date("2021-09-29 15:15:00").getTime();
+const getNewDate = new Date(`${dateEvent.innerText} ${timeEvent.innerText}`).getTime();
 
 const countDown = () => {
   setInterval(() => {
@@ -89,8 +80,9 @@ const countDown = () => {
   });
 }
 
-countDown();
-
+if (dateEvent.innerText && timeEvent.innerText !== "") {
+  countDown();
+}
 // Aos Scroll
 AOS.init({
   once : true,
