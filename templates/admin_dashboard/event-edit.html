@@ -93,7 +93,7 @@
           required
         >
         {% for status in event_status  %}
-          <option value="{{status}}">{{status}}</option>
+          <option value="{{status}}">{{status.title()}}</option>
         {% endfor %}
         </select>
       </div>

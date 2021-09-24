@@ -2,22 +2,23 @@
   <h2 class="title">Event</h2>
   <div class="wrapper">
     <div class="content__description" data-aos="fade-up">
-      {% if event_active < 1 %}
-        <h3>There is no event available</h3>
-        <p>Sign up our monthly newsletter</p>
-        <p>Don't miss our next event, see ya!</p>
-        <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
-      {% else %}  
-        <h3>Join us our {{event.event_name}} event</h3>
-        <p>{{ display_date }} {{event.event_time}}</p>
-        <p>{{event.event_promo_info}}</p>
-        <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
-        <p>Event promo will be ended in :</p>
-        <div class="time__remaining" data-aos="fade-in">
-          <h1></h1>
-        </div>
-      {% endif %}
+    {% if not event %}
+      <h3>There is no event available</h3>
+      <p>Subscribe our monthly newsletter and don't miss our next event!</p>
+    {% else %}
+      <h3>Join us our {{event.event_name}} event</h3>
+      <div class="date_time" style="display:flex; flex-flow:row nowrap; justify-content:center;align-items:center; font-size:1.2rem">
+        <p class="date" style="margin-right:10px;">{{ event.event_date }}</p>
+        <p class="time">{{event.event_time}}</p>
+      </div>
+      <p>{{event.event_promo_info}}</p>
+      <p><i class="fas fa-map-marker-alt"></i> {{event.event_place}}</p>
+      <p>Event promo will be ended in :</p>
+      <div class="time__remaining" data-aos="fade-in">
+        <h1></h1>
+      </div>
     </div>
+    {% endif %}
     <div class="form__group">
       <p>Sign Up Our Monthly Newsletter</p>
       <p>Get 1 Coffee and Croissant For Free!</p>

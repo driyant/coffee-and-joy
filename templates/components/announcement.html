@@ -1,5 +1,4 @@
 <section class="announcement" id="announcement" style="flex-flow:column">
-  
     {% with messages = get_flashed_messages() %} {% if messages %} {% for message
   in messages %}
   <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:5px; position:relative; z-index:1000;">
@@ -9,8 +8,10 @@
   {% endfor %} {% endif %} {% endwith %}
   <div class="wrapper" style="display:flex; flex-flow:row">
     <img src="{{url_for('static', filename='assets/bell.png') }}" alt="bell" />
-    <span
-      >We are having {{ event.event_name }} Event. <a href="#event">Learn More</a></span
-    >
+    {% if not event %}
+      <span>There is no event available. Don't miss our event! <a href="#event">Learn More</a></span>
+    {% else %}
+      <span>We are having {{ event.event_name }} Event. <a href="#event">Learn More</a></span>
+    {% endif %}
   </div>
 </section>

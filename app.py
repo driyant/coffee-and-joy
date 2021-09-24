@@ -111,11 +111,9 @@ def index():
   categories = Category.query.all()
   menus = Menu.query.all()
   event = Event.query.filter_by(event_status="active").first()
-  get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
-  display_date = get_date.strftime("%d %B %Y")
-  event_active = Event.query.filter_by(event_status="active").count()
+  # get_date = datetime.datetime.strptime(f"{event.event_date}", "%m/%d/%Y")
+  # display_date = get_date.strftime("%d %B %Y")
   images_list = []
-  
   for menu in menus:
     image_encode = base64.b64encode(menu.menu_image)
     image_decode = image_encode.decode("UTF-8")
@@ -138,14 +136,9 @@ def index():
     categories=categories,
     menus=menus, 
     images_list=images_list,
-    event=event, 
-    display_date=display_date, 
-    event_active=event_active
+    event=event
+    # display_date = display_date
   )
-
-@app.route("/update/event")
-def update_event():
-  return "Update event"
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -372,7 +365,7 @@ def event_add():
       event_date_end = request.form["date_end"]
       event_time_end = request.form["time_end"]
       event_place = request.form["event_place"]
-      event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "upcoming")
+      event = Event(event_name,event_promo_info,event_date_end,event_time_end,event_place,event_status = "active")
       db.session.add(event)
       db.session.commit()
       flash("Success ✔️, new event has been added to the list!")
@@ -401,26 +394,19 @@ def event_delete(id):
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
   # Count rows where event is active
-  event_active = Event.query.filter_by(event_status = "active").count()
   event_status = ["active", "upcoming", "finished"]
   if request.method == "POST":
-    try:
-      # If event active <= 1 user will be directed to event list
-      # if event_active < 1:
-      #   flash("Update failed, there is no event active please update event list to be active at least 1")
-      #   return redirect(url_for("event"))
-      event.event_name = request.form["event_name"]
-      event.event_promo_info = request.form["event_promo_info"]
-      event.event_date = request.form["event_date_end"]
-      event.event_time = request.form["event_time_end"]
-      event.event_place = request.form["event_place"]
-      event.event_status = request.form["event_status"].lower()
-      db.session.commit()
-      flash(f"Success ✔️, event {event.event_name} has been updated!")
-      return redirect(url_for("event"))
-    except:
-      flash("Upps, there is an issue!")
-      return redirect(url_for("event"))
+    event_active = Event.query.filter_by(event_status = "active").count()
+    # If event active <= 1 user will be directed to event list
+    event.event_name = request.form["event_name"]
+    event.event_promo_info = request.form["event_promo_info"]
+    event.event_date = request.form["event_date_end"]
+    event.event_time = request.form["event_time_end"]
+    event.event_place = request.form["event_place"]
+    event.event_status = request.form["event_status"].lower()
+    db.session.commit()
+    flash(f"Success ✔️, event {event.event_name} has been updated!")
+    return redirect(url_for("event"))
   else: 
     return render_template("admin_dashboard/event-edit.html", event=event, event_status=event_status)
 
