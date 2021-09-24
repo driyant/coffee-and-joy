@@ -181,13 +181,20 @@ def admin_dashboard():
   categories = Category.query.all()
   menus = Menu.query.all()
   subscribers = Subscriber.query.all()
+  event = Event.query.filter_by(event_status="active").first()
+  print(event.event_name)
+  events = Event.query.all()
   count_subscribers = len(subscribers)
   count_menus = len(menus)
+  # count_event = len(event)
+  count_all_events = len(events)
   count_categories = len(categories)
   total = {
     "subscribers" : count_subscribers,
     "menus" :  count_menus,
-    "categories" : count_categories
+    "categories" : count_categories,
+    "event" : event,
+    "events" : count_all_events
   }
   return render_template("admin_dashboard/admin.html", total=total)
 
