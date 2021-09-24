@@ -75,7 +75,7 @@ const countDown = () => {
 
     if (distance < 0) {
       clearInterval(countDown);
-      getElementH1.innerHTML = `Event is already finished!`;
+      getElementH1.innerHTML = `Event promo is finished!`;
     }
   });
 }

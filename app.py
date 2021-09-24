@@ -392,7 +392,7 @@ def event_delete(id):
 def event_edit(id):
   event = Event.query.filter_by(id=id).first()
   # Count rows where event is active
-  event_status = ["active", "finished"]
+  event_status = ["active", "not_set", "finished"]
   if request.method == "POST":
     event_active = Event.query.filter_by(event_status = "active").count()
     # If event active <= 1 user will be directed to event list
