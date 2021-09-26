@@ -50,10 +50,10 @@ messages %}
       <td>{{ event.event_time }}</td>
       <td>{{ event.event_place }}</td>
       <td>
-        {% if event.event_status == "upcoming"%}
-          <span class="label label-info">{{ event.event_status.title() }}...</span>
-        {% elif event.event_status == "active" %}
+        {% if event.event_status == "active"%}
           <span class="label label-success">{{ event.event_status.title() }}...</span>
+        {% elif event.event_status == "not_set" %}
+          <span class="label label-info">{{ event.event_status.title() }}...</span>
         {% else %}
           <span class="label label-default">{{ event.event_status.title() }}...</span>
         {% endif %}
@@ -81,7 +81,7 @@ messages %}
   </tbody>
 </table> </br>
 <p>Note :
-  Status by default is not_set, you can edit it by clicking edit button. When promo event is set to active, countdown timer is starting.
+  Status by default is not_set, you can edit it by clicking edit button. When promo event is set to active, countdown timer is starting. You can choose which event is active.
 </p>
 <!-- END Datatables -->
 {% endblock content %}
