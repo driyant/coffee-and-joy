@@ -182,7 +182,6 @@ def admin_dashboard():
   menus = Menu.query.all()
   subscribers = Subscriber.query.all()
   event = Event.query.filter_by(event_status="active").first()
-  print(event.event_name)
   events = Event.query.all()
   count_subscribers = len(subscribers)
   count_menus = len(menus)
@@ -416,4 +415,4 @@ def event_edit(id):
     return render_template("admin_dashboard/event-edit.html", event=event, event_status=event_status)
 
 if __name__ == "__main__":
-  app.run(debug=False)
+  app.run(debug=True)
