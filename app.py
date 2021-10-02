@@ -12,7 +12,6 @@ import datetime
 import gunicorn
 
 app = Flask(__name__)
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:driyant@localhost/db_coffeeshop"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffeeshop.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
