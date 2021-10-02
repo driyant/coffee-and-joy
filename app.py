@@ -416,4 +416,4 @@ def event_edit(id):
     return render_template("admin_dashboard/event-edit.html", event=event, event_status=event_status)
 
 if __name__ == "__main__":
-  app.run(debug=True)
+  app.run(debug=False)
