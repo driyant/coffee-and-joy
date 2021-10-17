@@ -286,7 +286,6 @@ def menu_add():
         data = Menu(menu_name, menu_description, menu_image.read(), menu_mimetype, menu_secure_img, menu_category)
         db.session.add(data)
         db.session.commit()
-        print(f"Menu : {menu_name}, \n Desc: {menu_description},\n Category:{menu_category}")
         flash(f"Success ✔️! menu {menu_name.title()} 🥘 has been added to the list")
         return redirect(url_for('menu'))
       else:
