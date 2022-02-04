@@ -45,10 +45,10 @@ messages %}
     <tr>
       <td class="text-center hidden-xs hidden-sm">{{ loop.index }}</td>
       <td>{{ event.event_name }}</td>
-      <td>{{ event.event_promo_info }}</td>
-      <td>{{ event.event_date }}</td>
-      <td>{{ event.event_time }}</td>
-      <td>{{ event.event_place }}</td>
+      <td class="hidden-xs hidden-sm">{{ event.event_promo_info }}</td>
+      <td class="hidden-xs hidden-sm">{{ event.event_date }}</td>
+      <td class="hidden-xs hidden-sm">{{ event.event_time }}</td>
+      <td class="hidden-xs hidden-sm">{{ event.event_place }}</td>
       <td>
         {% if event.event_status == "active"%}
           <span class="label label-success">{{ event.event_status.title() }}...</span>
