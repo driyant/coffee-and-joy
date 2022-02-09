@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, date
 from forms import LoginForm, RegisterForm 
 from functools import wraps
 from datetime import timedelta
@@ -195,6 +195,7 @@ def admin_dashboard():
     "event" : event,
     "events" : count_all_events
   }
+  current_year = date.today().year
   return render_template("admin_dashboard/admin.html", total=total)
 
 @app.route("/admin_dashboard/subscriber")

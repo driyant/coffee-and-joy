@@ -126,9 +126,7 @@
             </ul>
           </li>
           <!-- END RSS Widget -->
-
           <li class="divider-vertical"></li>
-
           <!-- Twitter Widget -->
           <!-- Add .dropdown-left-responsive class to align the dropdown menu left (so its visible on mobile) -->
           <li id="twitter-widget" class="dropdown dropdown-left-responsive">
@@ -467,9 +465,8 @@
         </div>
         <!-- Footer -->
         <footer>
-          &copy; Coffee & Joy | Coded : Riyan
-          <span id="year-copy"></span> Design Theme by
-          <strong><a href="">uAdmin 2.1</a></strong>
+          &copy; Coffee & Joy <span id="footer_year"></span> | Coded by : Riyan | Design Theme by
+          <strong>uAdmin</strong>
         </footer>
         <!-- END Footer -->  
       </div>
@@ -782,4 +779,9 @@ Bio Information..</textarea
   {% block script_category %} {% endblock %}
   {% block script_menu %} {% endblock %}
   {% block script_event %} {% endblock %}
+  <script>
+    let date =  new Date().getFullYear();
+    footerSpan = document.querySelector("#footer_year");
+    footerSpan.textContent = date;
+  </script>
 </html>
