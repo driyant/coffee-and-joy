@@ -104,14 +104,31 @@ const buttonSubmit = document.querySelector(".cta__subscribe");
 
 const submitHandler = (e) => {
   e.preventDefault();
-
-  Toastify({
-    text: "This is a toast",
-    className: "info",
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    }
-  }).showToast();
+  let formIsInvalid = 
+    firstNameInput.value === "" || 
+    lastNameInput.value === "" || 
+    emailInput.value === "" || 
+    !emailInput.value.includes("@");
+  if (formIsInvalid) {
+    Toastify({
+      text: `Sorry cannot process ☹️, check your the form again!`,
+      duration: 3000,
+      close: false,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #aa0000, #fe0000)",
+      },
+    }).showToast();
+    return;
+  }
+  let data = {
+    "firstname" : firstNameInput.value,
+    "lastname" : lastNameInput.value,
+    "email" : emailInput.value
+  }
+  console.log(data);
 };
 
 buttonSubmit.addEventListener("click", submitHandler);
