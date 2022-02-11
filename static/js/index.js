@@ -1,6 +1,6 @@
 /*
-* Toggle hamburger menu for mobile and tablet screen
-*/
+ * Toggle hamburger menu for mobile and tablet screen
+ */
 
 // Target navlinks
 const navlinks = document.querySelector(".nav__links");
@@ -10,7 +10,7 @@ const hamburger = document.querySelector(".hamburger");
 const toggleMenuOpen = () => {
   navlinks.classList.toggle("open");
   hamburger.classList.toggle("open");
-}
+};
 hamburger.addEventListener("click", toggleMenuOpen);
 
 const removeOpen = () => {
@@ -18,56 +18,62 @@ const removeOpen = () => {
     navlinks.classList.remove("open");
     hamburger.classList.remove("open");
   }, 400);
-}
+};
 const navLists = document.querySelectorAll(".nav__links li");
-navLists.forEach(navList =>  {
+navLists.forEach((navList) => {
   navList.addEventListener("click", removeOpen);
 });
 
 /*
-* Filterlist our menu category
-*/
+ * Filterlist our menu category
+ */
 
 // Filterlist
 const menuLinks = document.querySelector(".menu__links");
 const menuLists = menuLinks.querySelectorAll("li");
 const menus = document.querySelectorAll(".menu");
 
-menuLists.forEach(menuList => {
+menuLists.forEach((menuList) => {
   menuList.addEventListener("click", (e) => {
-     e.preventDefault();
-     menuLists.forEach(list => {
+    e.preventDefault();
+    menuLists.forEach((list) => {
       list.classList.remove("active");
       e.target.classList.add("active");
     });
-    menus.forEach(menu => {
+    menus.forEach((menu) => {
       menu.style.display = "none";
       let singleItem = menuList.textContent.toLowerCase();
-      if(menu.getAttribute("data-category") === singleItem || singleItem == "all") {
+      if (
+        menu.getAttribute("data-category") === singleItem ||
+        singleItem == "all"
+      ) {
         menu.style.display = "block";
       }
     });
   });
 });
 
-
 /*
-* Count down timer
-*/
+ * Count down timer
+ */
 
 // Target date element
 const dateEvent = document.querySelector(".date_end_event");
 const timeEvent = document.querySelector(".time_end_event");
 
 // Set the date we're counting down
-const getNewDate = new Date(`${dateEvent.innerText} ${timeEvent.innerText}`).getTime();
+const getNewDate = new Date(
+  `${dateEvent.innerText} ${timeEvent.innerText}`
+).getTime();
 
 const countDown = () => {
   setInterval(() => {
     const getNow = new Date().getTime();
     const distance = getNewDate - getNow;
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     const getElementH1 = document.querySelector(".time__remaining h1");
@@ -78,14 +84,34 @@ const countDown = () => {
       getElementH1.innerHTML = `Event promo is finished!`;
     }
   });
-}
+};
 
 if (dateEvent.innerText && timeEvent.innerText !== "") {
   countDown();
 }
 // Aos Scroll
 AOS.init({
-  once : true,
-  easing : 'ease',
-  delay: 400
+  once: true,
+  easing: "ease",
+  delay: 400,
 });
+
+// Rertieve input from Newsletter form
+const firstNameInput = document.querySelector(".firstname");
+const lastNameInput = document.querySelector(".lastname");
+const emailInput = document.querySelector(".email");
+const buttonSubmit = document.querySelector(".cta__subscribe");
+
+const submitHandler = (e) => {
+  e.preventDefault();
+
+  Toastify({
+    text: "This is a toast",
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+  }).showToast();
+};
+
+buttonSubmit.addEventListener("click", submitHandler);
