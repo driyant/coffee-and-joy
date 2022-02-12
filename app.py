@@ -137,6 +137,25 @@ def index():
     event=event
     # display_date = display_date
   )
+  
+@app.route("/api/newsletter", methods=["POST"])
+def add_newsletter():
+  req = request.get_json()
+  firstname = req.get("firstname")
+  lastname = req.get("lastname")
+  email = req.get("email")
+  print(firstname)
+  if firstname == "" or lastname == "" or email == "":
+    return jsonify(message="Bad request!"), 401
+  # Email Already Exist!
+  find_email = Subscriber.query.filter_by(subscriber_email=email).first()
+  if find_email:
+    return jsonify(message="Email already exist!"), 409
+  subscriber = Subscriber(firstname, lastname, email)
+  db.session.add(subscriber)
+  db.session.commit()
+  return jsonify(message="Success"), 201
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
