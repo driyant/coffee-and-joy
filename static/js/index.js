@@ -101,6 +101,7 @@ const firstNameInput = document.querySelector(".firstname");
 const lastNameInput = document.querySelector(".lastname");
 const emailInput = document.querySelector(".email");
 const buttonSubmit = document.querySelector(".cta__subscribe");
+const thumbsUp = document.querySelector(".fa-thumbs-up");
 
 const submitHandler = (e) => {
   e.preventDefault();
@@ -123,11 +124,33 @@ const submitHandler = (e) => {
     }).showToast();
     return;
   }
+  thumbsUp.classList.add("d-none");
+  buttonSubmit.innerHTML = `
+    Processing... 
+    <div id="spinner" class="spinner-border text-light spinner-border-sm" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>`;
   let data = {
     "firstname" : firstNameInput.value,
     "lastname" : lastNameInput.value,
     "email" : emailInput.value
   }
+  // Toastify({
+  //   text: `Wohoo! ${data.firstname} 😄, you have subscribed our newsletter!!`,
+  //   duration: 5000,
+  //   newWindow: true,
+  //   close: true,
+  //   gravity: "bottom", // `top` or `bottom`
+  //   position: "right", // `left`, `center` or `right`
+  //   stopOnFocus: true, // Prevents dismissing of toast on hover
+  //   style: {
+  //     background: "linear-gradient(to right, #00b09b, #96c93d)",
+  //   },
+  // }).showToast();
+  // buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`
+  // firstNameInput.value = "";
+  // lastNameInput.value = "";
+  // emailInput.value = "";
   console.log(data);
 };
 
