@@ -116,26 +116,11 @@ def index():
     image_encode = base64.b64encode(menu.menu_image)
     image_decode = image_encode.decode("UTF-8")
     images_list.append(image_decode)
-  if request.method == "POST":
-    try:
-      # Get input value
-      firstname = request.form['firstname']
-      lastname = request.form['lastname']
-      email = request.form['email']
-      data = Subscriber(firstname,lastname,email)
-      db.session.add(data)
-      db.session.commit()
-      flash(f"Wohoo! {firstname.title()}, you have subscribed our newsletter!")
-      return redirect(url_for("index"))
-    except:
-      flash("Upps, there is an issue!")
-      return redirect(url_for("index"))
   return render_template("index.html",
     categories=categories,
     menus=menus, 
     images_list=images_list,
     event=event
-    # display_date = display_date
   )
   
 @app.route("/api/newsletter", methods=["POST"])
@@ -144,7 +129,6 @@ def add_newsletter():
   firstname = req.get("firstname")
   lastname = req.get("lastname")
   email = req.get("email")
-  print(firstname)
   if firstname == "" or lastname == "" or email == "":
     return jsonify(message="Bad request!"), 401
   # Email Already Exist!
