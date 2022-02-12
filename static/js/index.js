@@ -105,10 +105,10 @@ const thumbsUp = document.querySelector(".fa-thumbs-up");
 
 const submitHandler = (e) => {
   e.preventDefault();
-  let formIsInvalid = 
-    firstNameInput.value === "" || 
-    lastNameInput.value === "" || 
-    emailInput.value === "" || 
+  let formIsInvalid =
+    firstNameInput.value === "" ||
+    lastNameInput.value === "" ||
+    emailInput.value === "" ||
     !emailInput.value.includes("@");
   if (formIsInvalid) {
     Toastify({
@@ -131,26 +131,67 @@ const submitHandler = (e) => {
       <span class="visually-hidden">Loading...</span>
     </div>`;
   let data = {
-    "firstname" : firstNameInput.value,
-    "lastname" : lastNameInput.value,
-    "email" : emailInput.value
-  }
-  // Toastify({
-  //   text: `Wohoo! ${data.firstname} 😄, you have subscribed our newsletter!!`,
-  //   duration: 5000,
-  //   newWindow: true,
-  //   close: true,
-  //   gravity: "bottom", // `top` or `bottom`
-  //   position: "right", // `left`, `center` or `right`
-  //   stopOnFocus: true, // Prevents dismissing of toast on hover
-  //   style: {
-  //     background: "linear-gradient(to right, #00b09b, #96c93d)",
-  //   },
-  // }).showToast();
-  // buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`
-  // firstNameInput.value = "";
-  // lastNameInput.value = "";
-  // emailInput.value = "";
+    firstname: firstNameInput.value,
+    lastname: lastNameInput.value,
+    email: emailInput.value,
+  };
+  fetch(`${window.origin}/api/newsletter`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.ok) {
+      Toastify({
+        text: `Wohoo! ${data.firstname} 😄, you have subscribed our newsletter!!`,
+        duration: 5000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
+    } else if (res.status === 409) {
+      Toastify({
+        text: `Sorry 😔, that email already exists!`,
+        duration: 5000,
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #aa0000, #fe0000)",
+        },
+      }).showToast();
+    } else {
+      throw new Error("Something went wrong!");
+    }
+  }).catch((err)=> {
+    Toastify({
+      text: `Sorry 😔, something went wrong ${err}!`,
+      duration: 5000,
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #aa0000, #fe0000)",
+      },
+    }).showToast();
+  });
+  firstNameInput.value = "";
+  lastNameInput.value = "";
+  emailInput.value = "";
+  setInterval(() => {
+    buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`;
+  }, 1000)
+  clearInterval();
   console.log(data);
 };
 
