@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, json
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
-from forms import LoginForm, RegisterForm 
+from forms import LoginForm 
 from functools import wraps
 from datetime import timedelta
 from werkzeug.utils import secure_filename

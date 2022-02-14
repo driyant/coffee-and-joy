@@ -196,3 +196,8 @@ const submitHandler = (e) => {
 };
 
 buttonSubmit.addEventListener("click", submitHandler);
+
+//  Footer Copyright
+const spanCopyright = document.querySelector(".copyright");
+const year = new Date().getFullYear()
+spanCopyright.textContent = `© Coffee & Joy - ${year}`
