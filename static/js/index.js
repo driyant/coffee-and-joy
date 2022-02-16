@@ -103,6 +103,10 @@ const emailInput = document.querySelector(".email");
 const buttonSubmit = document.querySelector(".cta__subscribe");
 const thumbsUp = document.querySelector(".fa-thumbs-up");
 
+const defaultCTAButton = function () {
+  buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`;
+}
+  
 const submitHandler = (e) => {
   e.preventDefault();
   let formIsInvalid =
@@ -155,6 +159,7 @@ const submitHandler = (e) => {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         },
       }).showToast();
+      defaultCTAButton();
     } else if (res.status === 409) {
       Toastify({
         text: `Sorry 😔, that email already exists!`,
@@ -168,7 +173,9 @@ const submitHandler = (e) => {
           background: "linear-gradient(to right, #aa0000, #fe0000)",
         },
       }).showToast();
+      defaultCTAButton();
     } else {
+      defaultCTAButton();
       throw new Error("Something went wrong!");
     }
   }).catch((err)=> {
@@ -184,15 +191,11 @@ const submitHandler = (e) => {
         background: "linear-gradient(to right, #aa0000, #fe0000)",
       },
     }).showToast();
+    defaultCTAButton();
   });
   firstNameInput.value = "";
   lastNameInput.value = "";
   emailInput.value = "";
-  setInterval(() => {
-    buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`;
-  }, 1000)
-  clearInterval();
-  console.log(data);
 };
 
 buttonSubmit.addEventListener("click", submitHandler);
