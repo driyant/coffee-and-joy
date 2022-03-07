@@ -106,6 +106,26 @@ const thumbsUp = document.querySelector(".fa-thumbs-up");
 const defaultCTAButton = function () {
   buttonSubmit.innerHTML = `Yes, I want free coffee! <i class="far fa-thumbs-up"></i>`;
 }
+
+const showToastify = (text, styleBackground) => {
+  Toastify({
+    text: text,
+    duration: 3000,
+    close: false,
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: styleBackground,
+    },
+  }).showToast();
+}
+
+const resetForm = () => {
+  firstNameInput.value = "";
+  lastNameInput.value = "";
+  emailInput.value = "";
+}
   
 const submitHandler = (e) => {
   e.preventDefault();
@@ -115,17 +135,10 @@ const submitHandler = (e) => {
     emailInput.value === "" ||
     !emailInput.value.includes("@");
   if (formIsInvalid) {
-    Toastify({
-      text: `Sorry cannot process ☹️, check your the form again!`,
-      duration: 3000,
-      close: false,
-      gravity: "bottom", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(to right, #aa0000, #fe0000)",
-      },
-    }).showToast();
+    showToastify(
+      "Sorry can not process ☹️, check your the form again!",
+      "linear-gradient(to right, #aa0000, #fe0000)"
+    )
     return;
   }
   thumbsUp.classList.add("d-none");
@@ -147,55 +160,40 @@ const submitHandler = (e) => {
     },
   }).then((res) => {
     if (res.ok) {
-      Toastify({
-        text: `Wohoo! ${data.firstname} 😄, you have subscribed our newsletter!!`,
-        duration: 5000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        },
-      }).showToast();
+      showToastify(
+        `Wohoo! ${data.firstname} 😄, you have subscribed our newsletter!`,
+        "linear-gradient(to right, #00b09b, #96c93d)"
+      )
       defaultCTAButton();
+      resetForm();
     } else if (res.status === 409) {
-      Toastify({
-        text: `Sorry 😔, that email already exists!`,
-        duration: 5000,
-        newWindow: true,
-        close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #aa0000, #fe0000)",
-        },
-      }).showToast();
+      showToastify(
+        `Sorry 😔, that email already exists!`,
+        "linear-gradient(to right, #aa0000, #fe0000)"
+      )
       defaultCTAButton();
-    } else {
+      resetForm();
+    } else if (res.status === 400) {
+      showToastify(
+        `Bad request, form is invalid! Check the input!`,
+        "linear-gradient(to right, #aa0000, #fe0000)"
+      )
       defaultCTAButton();
+      resetForm();
+    } 
+    else {
+      defaultCTAButton();
+      resetForm();
       throw new Error("Something went wrong!");
     }
   }).catch((err)=> {
-    Toastify({
-      text: `Sorry 😔, something went wrong ${err}!`,
-      duration: 5000,
-      newWindow: true,
-      close: true,
-      gravity: "bottom", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(to right, #aa0000, #fe0000)",
-      },
-    }).showToast();
+    showToastify(
+      `Sorry 😔, something went wrong ${err}!`,
+      "linear-gradient(to right, #aa0000, #fe0000)"
+    )
     defaultCTAButton();
+    resetForm
   });
-  firstNameInput.value = "";
-  lastNameInput.value = "";
-  emailInput.value = "";
 };
 
 buttonSubmit.addEventListener("click", submitHandler);
