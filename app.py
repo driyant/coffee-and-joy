@@ -125,21 +125,28 @@ def index():
   
 @app.route("/api/newsletter", methods=["POST"])
 def add_newsletter():
-  req = request.get_json()
-  firstname = req.get("firstname")
-  lastname = req.get("lastname")
-  email = req.get("email")
-  if firstname == "" or lastname == "" or email == "":
-    return jsonify(message="Bad request!"), 401
-  # Email Already Exist!
-  find_email = Subscriber.query.filter_by(subscriber_email=email).first()
-  if find_email:
-    return jsonify(message="Email already exist!"), 409
-  subscriber = Subscriber(firstname, lastname, email)
-  db.session.add(subscriber)
-  db.session.commit()
-  return jsonify(message="Success"), 201
-
+  # Check request is json
+  if request.is_json:
+    req = request.get_json()
+    firstname = req.get("firstname")
+    lastname = req.get("lastname")
+    email = req.get("email")
+    # Validation
+    if not firstname or not lastname or not email:
+      return jsonify(message="Bad request!"), 400
+    # Email Already Exist!
+    find_email = Subscriber.query.filter_by(subscriber_email=email).first()
+    if find_email:
+      return jsonify(message="Email already exist!"), 409
+    try:
+      subscriber = Subscriber(firstname, lastname, email)
+      db.session.add(subscriber)
+      db.session.commit()
+      return jsonify(message="Success"), 201
+    except Exception as e:
+      return jsonify(message=f"Something went wrong! {e}")
+  else:
+    return jsonify(message="Bad request, data is not a json!"), 400
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
