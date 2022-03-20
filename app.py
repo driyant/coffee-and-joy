@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, json
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date
 from forms import LoginForm 
@@ -36,7 +36,7 @@ class Menu(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   menu_name = db.Column(db.String(100))
   menu_description = db.Column(db.String(200))
-  menu_image = db.Column(db.Text, unique=True, nullable=False)
+  menu_image = db.Column(db.Text, nullable=False)
   mimetype = db.Column(db.Text, nullable=False)
   menu_filename = db.Column(db.Text, nullable=False)
   category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
@@ -301,8 +301,8 @@ def menu_add():
       else:
         flash("Upps, sorry only upload 'png', 'jpg', 'jpeg' extensions are allowed!")
         return redirect(url_for("menu"))
-    except:
-      flash("Oops! There is an issue")
+    except Exception as e:
+      flash(f"Oops! There is an issue! {e}")
       return redirect(url_for('menu'))
   return render_template("admin_dashboard/menu-add.html", categories=categories)
 
