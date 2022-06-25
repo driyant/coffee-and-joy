@@ -9,7 +9,7 @@ import base64
 from dateutil import parser
 from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, UserMixin
 import json
 import datetime
 import gunicorn
@@ -29,20 +29,21 @@ login_manager = LoginManager()
 csrf.init_app(app)
 login_manager.init_app(app)
 
-
-class User(db.Model):
+class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   username = db.Column(db.String(50))
+  name = db.Column(db.String(70))
   password = db.Column(db.String(50))
   status = db.Column(db.String(30))
   
-  def __init__(self, username, password, status):
+  def __init__(self, username, name, password, status):
     self.username = username
+    self.name = name
     self.password = password
     self.status = status
     
   def __repr__(self):
-    return f"<User {self.username} >"
+    return f"<User {self.username} {self.name}>"
 
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -115,20 +116,20 @@ db.session.commit()
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.filter_by(id=user_id).first()
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Browser caching issue
-@app.after_request
-def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
+# @app.after_request
+# def add_header(response):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+#     response.headers['Cache-Control'] = 'public, max-age=0'
+#     return response
 
 def allowed_file(image):
     return '.' in image and \
@@ -183,43 +184,48 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
     # get user
-    user = User.query.filter_by(username=username).first()
-    # Check username and password login
-    if user and user.username == username and check_password_hash(user.password, password):
-      # Passed
-      # session["logged_in"] = True
-      # session["username"] = username
-      login_user(user)
-      flash('Log in success ✔️. Hello admin 😄!', "success")
-      # return redirect(url_for("admin_dashboard"))
-      return 'admin dashboard'
-    else:
-      flash("Login failed! ☹️ Invalid username or password", "danger")
+    try:
+      user = User.query.filter_by(username=username).first()
+      # print(user)
+      # Check username and password login
+      if user and check_password_hash(user.password, password):
+        # print('passed!')
+        # Passed
+      #   # session["logged_in"] = True
+      #   # session["username"] = username
+        login_user(user)
+        flash(f'Log in success ✔️. Hello {user.name.title()} 😄!', "success")
+        return redirect(url_for("admin_dashboard"))
+      else:
+        flash("Login failed! ☹️ Invalid username or password", "danger")
+        return redirect(url_for("login"))
+    except Exception as e:
+      flash(f"Something went wrong! {e}", "danger")
       return redirect(url_for("login"))
   # return render_template("login.html", form=form, login=True)
   return render_template('pages/login.html', form=form)
 
-#Check if the user logged in
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if "logged_in" in session:
-          return f(*args, **kwargs)
-        else:
-          flash("Unauthorised ⛔, Please login!")
-          return redirect(url_for("login"))
-    return wrap
+# #Check if the user logged in
+# def login_required(f):
+#     @wraps(f)
+#     def wrap(*args, **kwargs):
+#         if "logged_in" in session:
+#           return f(*args, **kwargs)
+#         else:
+#           flash("Unauthorised ⛔, Please login!")
+#           return redirect(url_for("login"))
+#     return wrap
 
 # Logout user
 @app.route("/logout")
 @login_required
 def logout():
   session.clear()
-  flash("Logged out! Bye 👋, have a nice day!")
+  flash("Logged out! Bye 👋, have a nice day!", "success")
   return redirect(url_for("login"))
 
 @app.route("/admin_dashboard", methods=["GET"])
-# @login_required
+@login_required
 def admin_dashboard():
   # categories = Category.query.all()
   # menus = Menu.query.all()
@@ -239,7 +245,7 @@ def admin_dashboard():
   #   "events" : count_all_events
   # }
   # return render_template("admin_dashboard/admin.html", total=total)
-  return render_template("layouts/dashboard.html")
+  return render_template("pages/admin.html")
 
 @app.route("/admin_dashboard/subscriber")
 @login_required
