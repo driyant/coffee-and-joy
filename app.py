@@ -190,7 +190,7 @@ def login():
       # session["logged_in"] = True
       # session["username"] = username
       login_user(user)
-      flash('Log in success  ✔️. Hello admin 😄!', "success")
+      flash('Log in success ✔️. Hello admin 😄!', "success")
       # return redirect(url_for("admin_dashboard"))
       return 'admin dashboard'
     else:
@@ -219,26 +219,27 @@ def logout():
   return redirect(url_for("login"))
 
 @app.route("/admin_dashboard", methods=["GET"])
-@login_required
+# @login_required
 def admin_dashboard():
-  categories = Category.query.all()
-  menus = Menu.query.all()
-  subscribers = Subscriber.query.all()
-  event = Event.query.filter_by(event_status="active").first()
-  events = Event.query.all()
-  count_subscribers = len(subscribers)
-  count_menus = len(menus)
-  # count_event = len(event)
-  count_all_events = len(events)
-  count_categories = len(categories)
-  total = {
-    "subscribers" : count_subscribers,
-    "menus" :  count_menus,
-    "categories" : count_categories,
-    "event" : event,
-    "events" : count_all_events
-  }
-  return render_template("admin_dashboard/admin.html", total=total)
+  # categories = Category.query.all()
+  # menus = Menu.query.all()
+  # subscribers = Subscriber.query.all()
+  # event = Event.query.filter_by(event_status="active").first()
+  # events = Event.query.all()
+  # count_subscribers = len(subscribers)
+  # count_menus = len(menus)
+  # # count_event = len(event)
+  # count_all_events = len(events)
+  # count_categories = len(categories)
+  # total = {
+  #   "subscribers" : count_subscribers,
+  #   "menus" :  count_menus,
+  #   "categories" : count_categories,
+  #   "event" : event,
+  #   "events" : count_all_events
+  # }
+  # return render_template("admin_dashboard/admin.html", total=total)
+  return render_template("layouts/dashboard.html")
 
 @app.route("/admin_dashboard/subscriber")
 @login_required
