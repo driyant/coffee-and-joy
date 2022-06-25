@@ -150,21 +150,22 @@ def add_newsletter():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-  form = LoginForm()
-  if form.validate_on_submit():
-    username = request.form["username"]
-    password = request.form["password"]
-    # Check username and password login
-    if username == "admin" and password == "admin123":
-      # Passed
-      session["logged_in"] = True
-      session["username"] = username
-      flash("Login success ✔️!")
-      return redirect(url_for("admin_dashboard"))
-    else:
-      flash("Login failed! ☹️ Invalid username or password ")
-      return redirect(url_for("login"))
-  return render_template("login.html", form=form, login=True)
+  # form = LoginForm()
+  # if form.validate_on_submit():
+  #   username = request.form["username"]
+  #   password = request.form["password"]
+  #   # Check username and password login
+  #   if username == "admin" and password == "admin123":
+  #     # Passed
+  #     session["logged_in"] = True
+  #     session["username"] = username
+  #     flash("Login success ✔️!")
+  #     return redirect(url_for("admin_dashboard"))
+  #   else:
+  #     flash("Login failed! ☹️ Invalid username or password ")
+  #     return redirect(url_for("login"))
+  # return render_template("login.html", form=form, login=True)
+  return render_template('pages/login.html')
 
 #Check if the user logged in
 def login_required(f):
