@@ -7,6 +7,9 @@ from datetime import timedelta
 from werkzeug.utils import secure_filename
 import base64
 from dateutil import parser
+from flask_wtf.csrf import CSRFProtect
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, login_required, logout_user
 import json
 import datetime
 import gunicorn
@@ -20,6 +23,26 @@ app.secret_key = '66700+!&##&+#ULHjek'
 app.permanent_session_lifetime = timedelta(minutes=15)
 
 db = SQLAlchemy(app)
+csrf = CSRFProtect(app)
+login_manager = LoginManager()
+
+csrf.init_app(app)
+login_manager.init_app(app)
+
+
+class User(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  username = db.Column(db.String(50))
+  password = db.Column(db.String(50))
+  status = db.Column(db.String(30))
+  
+  def __init__(self, username, password, status):
+    self.username = username
+    self.password = password
+    self.status = status
+    
+  def __repr__(self):
+    return f"<User {self.username} >"
 
 class Category(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -89,6 +112,11 @@ class Event(db.Model):
 db.create_all()
 db.session.commit()
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Browser caching issue
@@ -150,22 +178,26 @@ def add_newsletter():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-  # form = LoginForm()
-  # if form.validate_on_submit():
-  #   username = request.form["username"]
-  #   password = request.form["password"]
-  #   # Check username and password login
-  #   if username == "admin" and password == "admin123":
-  #     # Passed
-  #     session["logged_in"] = True
-  #     session["username"] = username
-  #     flash("Login success ✔️!")
-  #     return redirect(url_for("admin_dashboard"))
-  #   else:
-  #     flash("Login failed! ☹️ Invalid username or password ")
-  #     return redirect(url_for("login"))
+  form = LoginForm()
+  if form.validate_on_submit():
+    username = request.form["username"]
+    password = request.form["password"]
+    # get user
+    user = User.query.filter_by(username=username).first()
+    # Check username and password login
+    if user and user.username == username and check_password_hash(user.password, password):
+      # Passed
+      # session["logged_in"] = True
+      # session["username"] = username
+      login_user(user)
+      flash('Log in success  ✔️. Hello admin 😄!', "success")
+      # return redirect(url_for("admin_dashboard"))
+      return 'admin dashboard'
+    else:
+      flash("Login failed! ☹️ Invalid username or password", "danger")
+      return redirect(url_for("login"))
   # return render_template("login.html", form=form, login=True)
-  return render_template('pages/login.html')
+  return render_template('pages/login.html', form=form)
 
 #Check if the user logged in
 def login_required(f):

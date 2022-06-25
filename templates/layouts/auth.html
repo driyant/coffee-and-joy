@@ -25,6 +25,21 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        {# <strong>Hello</strong> #}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %} {% endif %} {% endwith %}
       <p class="login-box-msg">Sign in to start your session</p>
       {% block content %} {% endblock %}
       {# <div class="social-auth-links text-center mb-3">
@@ -38,12 +53,12 @@
       </div>#}
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
+      {# <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p> 
+      </p>  #}
     </div>
     <!-- /.login-card-body -->
   </div>
