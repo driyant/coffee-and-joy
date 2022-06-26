@@ -1,5 +1,23 @@
-{% extends 'layouts/dashboard.html' %} {% block title %} Dashboard {% endblock
-%} {% block breadcrumb %} Dashboard {% endblock %} {% block content %}
+{% extends 'layouts/dashboard.html' %} 
+{% block title %} Dashboard {% endblock%} 
+{% block active %} active {% endblock %} 
+
+{% block header %}
+<div class="col-sm-6">
+  <h1 class="m-0">Dashboard</h1>
+</div>
+<!-- /.col -->
+<div class="col-sm-6">
+  <ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item"><a href="">Home</a></li>
+    <li class="breadcrumb-item active">
+      Dashboard
+    </li>
+  </ol>
+</div>
+{% endblock %} 
+
+{% block content%}
 <!-- Small boxes (Stat box) -->
 <div class="row">
   <div class="col-lg-3 col-6">

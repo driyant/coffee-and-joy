@@ -20,7 +20,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
 
 app.secret_key = '66700+!&##&+#ULHjek'
-app.permanent_session_lifetime = timedelta(minutes=15)
+# app.permanent_session_lifetime = timedelta(minutes=15)
 
 db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
@@ -245,7 +245,7 @@ def admin_dashboard():
   #   "events" : count_all_events
   # }
   # return render_template("admin_dashboard/admin.html", total=total)
-  return render_template("pages/admin.html")
+  return render_template("pages/admin_dashboard/index.html")
 
 @app.route("/admin_dashboard/subscriber")
 @login_required
@@ -403,14 +403,15 @@ def menu_delete(id):
 
 @app.route("/admin_dashboard/event", methods=["GET"])
 @login_required
-def event():
+def management_event():
   #Fetch all data in event list
   events = Event.query.all()
-  return render_template('admin_dashboard/event.html', events=events)
+  return render_template('pages/management_event/index.html', events=events)
 
-@app.route("/admin_dashboard/event/add", methods=["GET","POST"])
+@app.route("/admin_dashboard/create_event", methods=["GET","POST"])
 @login_required
-def event_add():
+def create_event():
+  form = LoginForm()
   if request.method == "POST":
     try:
       event_name = request.form["event"]
@@ -418,16 +419,16 @@ def event_add():
       event_date_end = request.form["date_end"]
       event_time_end = request.form["time_end"]
       event_place = request.form["event_place"]
-      event = Event(event_name, event_promo_info, event_date_end, event_time_end, event_place, event_status = "not_set")
+      event = Event(event_name, event_promo_info, event_date_end, event_time_end, event_place, event_status = "inactive")
       db.session.add(event)
       db.session.commit()
-      flash("Success ✔️, new event has been added to the list!")
-      return redirect(url_for("event"))
-    except:
-      flash("Upps, there is an issue!")
-      return redirect(url_for("event"))
+      flash("Success ✔️, new event has been added to the list!", "success")
+      return redirect(url_for("management_event"))
+    except Exception as e:
+      flash(f"Something went wrong! {e}")
+      return redirect(url_for("management_event"))
   else:
-    return render_template("admin_dashboard/event-add.html")
+    return render_template("pages/management_event/create.html", form=form)
   
 @app.route("/admin_dashboard/event/delete/<id>", methods=["POST"])
 @login_required

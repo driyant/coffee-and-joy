@@ -1,0 +1,88 @@
+{% extends 'layouts/dashboard.html' %} {% block title %} Event {% endblock%} {%
+block active %} active {% endblock %} {% block header %}
+<div class="col-sm-6">
+  <h1 class="m-0">Management Event</h1>
+</div>
+<!-- /.col -->
+<div class="col-sm-6">
+  <ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('admin_dashboard') }}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Event</li>
+  </ol>
+</div>
+{% endblock %} {% block content %}
+<!-- Small boxes (Stat box) -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        {# <h3 class="card-title">DataTable with default features</h3> #}
+        <a class="btn btn-primary" href="{{ url_for('create_event') }}">
+        <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+        Add Event</a>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>NO#</th>
+              <th>NAME</th>
+              <th>PROMO</th>
+              <th>END DATE</th>
+              <th>END TIME</th>
+              <th>PLACE</th>
+              <th>STATUS</th>
+              <th>OPERATIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ event.event_name }}</td>
+              <td>{{ event.event_promo_info }}</td>
+              <td>{{ event.event_date }}</td>
+              <td>{{ event.event_time }}</td>
+              <td>{{ event.event_place }}</td>
+              <td>
+              {% if event.event_status == "inactive"%}
+                <div class="color-palette-set">
+                  <div class="bg-warning color-palette"><span>{{event.event_status}}...</span></div>
+                </div>
+              {% elif event.event_status == "active" %}
+                <div class="color-palette-set">
+                  <div class="bg-success color-palette"><span>{{event.event_status}}...</span></div>
+                </div>
+              {% else %}
+                <div class="color-palette-set">
+                  <div class="bg-gray-dark color-palette"><span>{{event.event_status}}...</span></div>
+                </div>
+              {% endif %}
+              </td>
+              <td>
+              <a href="">Edit</a>
+              <a href="">Delete</a>
+              </td>
+            </tr>
+            {% endfor  %}
+          </tbody>
+          {# <tfoot>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+              <th>Engine version</th>
+              <th>CSS grade</th>
+            </tr>
+          </tfoot> #}
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>
+<!-- /.row (main row) -->
+{% endblock %}

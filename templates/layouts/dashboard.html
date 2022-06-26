@@ -59,6 +59,14 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='admin/plugins/summernote/summernote-bs4.min.css') }}"
     />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -102,18 +110,9 @@
                 </div>
                 {% endfor %} {% endif %} {% endwith %}
               </div>
-              <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="">Home</a></li>
-                  <li class="breadcrumb-item active">
-                    {% block breadcrumb %} {% endblock %}
-                  </li>
-                </ol>
-              </div>
+              {% block header %} 
+              
+              {% endblock %}
               <!-- /.col -->
             </div>
             <!-- /.row -->
@@ -160,8 +159,8 @@
     <script src="{{ url_for('static', filename='admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
     <script src="{{ url_for('static', filename='admin/plugins/chart.js/Chart.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ url_for('static', filename='admin/plugins/sparklines/sparkline.js') }}"></script>
+    {# <!-- Sparkline -->
+    <script src="{{ url_for('static', filename='admin/plugins/sparklines/sparkline.js') }}"></script> #}
     <!-- JQVMap -->
     <script src="{{ url_for('static', filename='admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -179,8 +178,58 @@
     <!-- AdminLTE App -->
     <script src="{{ url_for('static', filename='admin/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ url_for('static', filename='admin/js/demo.js') }}"></script>
+    {# <script src="{{ url_for('static', filename='admin/js/demo.js') }}"></script> #}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ url_for('static', filename='admin/js/pages/dashboard.js') }}"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ url_for('static', filename='admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }} "></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- bs-custom-file-input -->
+    <script src="{{ url_for('static', filename='admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <!-- date-range-picker -->
+    <script src="{{ url_for('static', filename='admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ url_for('static', filename='admin/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+
+      //Date picker
+      $('#reservationdate').datetimepicker({
+          format: 'L'
+      });
+
+      //Timepicker
+      $('#timepicker').datetimepicker({
+        format: 'LT'
+      });
+
+      //Date and time picker
+      $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+    </script>
   </body>
 </html>
