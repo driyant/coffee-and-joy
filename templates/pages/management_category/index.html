@@ -1,0 +1,120 @@
+{% extends 'layouts/dashboard.html' %} {% block title %} Event {% endblock%} {%
+block active %} active {% endblock %} {% block header %}
+<div class="col-sm-6">
+  <h1 class="m-0">Management Category</h1>
+</div>
+<!-- /.col -->
+<div class="col-sm-6">
+  <ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item">
+      <a href="{{ url_for('admin_dashboard') }}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Category</li>
+  </ol>
+</div>
+{% endblock %} {% block content %}
+<!-- Small boxes (Stat box) -->
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        {# <h3 class="card-title">DataTable with default features</h3> #}
+        <a class="btn btn-primary" href="{{ url_for('create_category') }}">
+        <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
+        Add Category</a>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>NO#</th>
+              <th>CATEGORY</th>
+              <th>OPERATIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for category in categories %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ category.category_name.title() }}</td>
+              <td>
+                <a class="btn btn-info" href="/admin_dashboard/category/edit/query={{category.id}}" >
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-danger btn-delete" data-src="{{category.id}}">
+                  <i class="fa fa-trash" data-src="{{category.id}}"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor  %}
+          </tbody>
+          {# <tfoot>
+            <tr>
+              <th>Rendering engine</th>
+              <th>Browser</th>
+              <th>Platform(s)</th>
+              <th>Engine version</th>
+              <th>CSS grade</th>
+            </tr>
+          </tfoot> #}
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>
+<!-- /.row (main row) -->
+
+{% endblock %}
+{% block script_delete %} 
+
+<script>
+const csrfToken = "{{ csrf_token() }}"
+const showSwal = (id) => {
+  swal({
+  title: `Are you sure delete this?`,
+  text: "Once deleted, you will not be able to recover this.",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      
+      fetch(`${window.origin}/admin_dashboard/category/delete/query=${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-CSRFToken" : csrfToken
+        }
+      })
+      .then((res) => {
+        if (res.ok) {
+         swal("Success!", "Category has been deleted!", "success");
+         setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          clearTimeout();
+        }
+        else if (res.status === 404) {
+          swal("Info!", "Event is not found 404", "info");
+        }
+      })
+      .catch((err) => {
+        swal(`Something went wrong! ${err}`, "error");
+      })
+    } else {
+      swal("Cancelling delete event!");
+    }
+  });
+}
+
+const btnDeletes = document.querySelectorAll(".btn-delete");
+btnDeletes.forEach((btnDelete) => {
+  btnDelete.addEventListener("click", (e) => {
+    const getDataId = e.target.getAttribute('data-src');
+    showSwal(getDataId);
+  });
+});
+</script>
+{% endblock %}

@@ -256,58 +256,67 @@ def subscriber():
 
 @app.route("/admin_dashboard/category")
 @login_required
-def category():
+def management_category():
   # Fetch all category data
   categories = Category.query.all()
-  return render_template("admin_dashboard/category.html", categories = categories)
+  return render_template("pages/management_category/index.html", categories=categories)
 
-@app.route("/admin_dashboard/category/add", methods=["GET", "POST"])
+@app.route("/admin_dashboard/category/create", methods=["GET", "POST"])
 @login_required
-def category_add():
+def create_category():
+  form = LoginForm()
   if request.method == "POST":
+    category_name = request.form["category"].lower()
+    category = Category.query.filter_by(category_name=category_name).first()
+    if category:
+      flash(f"Warning, category is already exist!", "danger")
+      return redirect(url_for('management_category'))
     try:
       # Get form category value
-      category = request.form["category"].lower()
-      data = Category(category)
+      data = Category(category_name)
       db.session.add(data)
       db.session.commit()
-      flash(f"Success ✔️, category {category.title()} has been added!")
-      return redirect(url_for('category'))
-    except:
-      flash("There is an issue!")
-      return redirect(url_for('category'))
+      flash(f"Success ✔️, {category_name.title()} has been added!", "success")
+      return redirect(url_for('management_category'))
+    except Exception as e:
+      flash(f"Something went wrong! {e}", "danger")
+      return redirect(url_for('management_category'))
   else:
-    return render_template("admin_dashboard/category-add.html")
+    return render_template("pages/management_category/create.html", form=form)
 
-@app.route("/admin_dashboard/category/edit/<int:id>", methods=["GET","POST"])
+@app.route("/admin_dashboard/category/edit/query=<int:id>", methods=["GET","POST"])
 @login_required
-def category_edit(id):
+def edit_category(id):
+  form = LoginForm()
   category = Category.query.filter_by(id=id).first()
+  if not category:
+    flash(f"Category does not exist!", "danger")
+    return redirect(url_for('management_category'))
   if request.method == "POST":
     try:
       # Get input value
       category.category_name = request.form["category"].lower()
       db.session.commit()
-      flash(f"Success ✔️, {category.category_name.title()} has been updated!")
-      return redirect(url_for("category"))
+      flash(f"Success ✔️, {category.category_name.title()} has been updated!", "success")
+      return redirect(url_for("management_category"))
     except:
       flash("Sorry, there is an issue!")
-      return redirect(url_for("category"))
+      return redirect(url_for("management_category"))
   else:
-    return render_template("admin_dashboard/category-edit.html", category=category)
+    return render_template("pages/management_category/edit.html", category=category, form=form)
 
-@app.route("/admin_dashboard/category/delete/<id>", methods=["POST"])
+@app.route("/admin_dashboard/category/delete/query=<int:id>", methods=["DELETE"])
 @login_required
 def category_delete(id):
+  category = Category.query.filter_by(id=id).first()
+  if not category:
+    return jsonify(msg="Data not found!"), 404
   try:
-    data = Category.query.filter_by(id=id).first()
-    db.session.delete(data)
+    db.session.delete(category)
     db.session.commit()
-    flash(f"Success ✔️, category {data.category_name.title()} has been deleted!")
-    return redirect(url_for("category"))
-  except:
-    flash("There is an issue!")
-    return redirect(url_for("category"))
+    return jsonify(msg="Data has been deleted!"), 200
+  except Exception as e:
+    return jsonify(msg=f"Something went wrong! {e}"), 500
   
 @app.route("/admin_dashboard/menu", methods=["GET"])
 @login_required
