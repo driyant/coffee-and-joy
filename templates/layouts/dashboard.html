@@ -200,6 +200,7 @@
     <script src="{{ url_for('static', filename='admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ url_for('static', filename='admin/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       $(function () {
         $("#example1").DataTable({
@@ -231,5 +232,6 @@
       $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
 
     </script>
+    {% block script_delete %} {% endblock %}
   </body>
 </html>

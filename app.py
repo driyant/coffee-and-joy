@@ -430,39 +430,37 @@ def create_event():
   else:
     return render_template("pages/management_event/create.html", form=form)
   
-@app.route("/admin_dashboard/event/delete/<id>", methods=["POST"])
+@app.route("/admin_dashboard/event/delete/query=<int:id>", methods=["DELETE"])
 @login_required
-def event_delete(id):
-  try:
-    event = Event.query.filter_by(id=id).first()
-    db.session.delete(event)
-    db.session.commit()
-    flash(f"Success ✔️, delete event !")
-    return redirect(url_for("event"))
-  except:
-    flash("There is an issue!")
-    return redirect(url_for("event"))
+def delete_event(id):
+  event = Event.query.filter_by(id=id).first()
+  if not event:
+    return jsonify(msg="Event not found"), 404
+  db.session.delete(event)
+  db.session.commit()
+  return jsonify(msg="Success"), 200
 
-@app.route("/admin_dashboard/event/edit/<id>", methods=["GET", "POST"])
+@app.route("/admin_dashboard/event/edit/query=<int:id>", methods=["GET", "POST"])
 @login_required
-def event_edit(id):
+def edit_event(id):
+  form = LoginForm()
   event = Event.query.filter_by(id=id).first()
   # Count rows where event is active
-  event_status = ["active", "not_set", "finished"]
+  event_status = ["active", "inactive", "finished"]
   if request.method == "POST":
     event_active = Event.query.filter_by(event_status = "active").count()
     # If event active <= 1 user will be directed to event list
-    event.event_name = request.form["event_name"]
-    event.event_promo_info = request.form["event_promo_info"]
-    event.event_date = request.form["event_date_end"]
-    event.event_time = request.form["event_time_end"]
-    event.event_place = request.form["event_place"]
-    event.event_status = request.form["event_status"].lower()
+    event.event_name = request.form["event"]
+    event.event_promo_info = request.form["promo_info"]
+    event.event_date = request.form["date_end"]
+    event.event_time = request.form["time_end"]
+    event.event_place = request.form["place"]
+    event.event_status = request.form["status"].lower()
     db.session.commit()
-    flash(f"Success ✔️, event {event.event_name} has been updated!")
-    return redirect(url_for("event"))
+    flash(f"Success ✔️, {event.event_name} has been updated!", "success")
+    return redirect(url_for("management_event"))
   else: 
-    return render_template("admin_dashboard/event-edit.html", event=event, event_status=event_status)
+    return render_template("pages/management_event/edit.html", event=event, event_status=event_status, form=form)
 
 if __name__ == "__main__":
   app.run(debug=True)

@@ -54,7 +54,7 @@ block active %} active {% endblock %} {% block header %}
                 </div>
               {% elif event.event_status == "active" %}
                 <div class="color-palette-set">
-                  <div class="bg-success color-palette"><span>{{event.event_status}}...</span></div>
+                  <div class="bg-success color-palette "><span>{{event.event_status}}...</span></div>
                 </div>
               {% else %}
                 <div class="color-palette-set">
@@ -63,8 +63,12 @@ block active %} active {% endblock %} {% block header %}
               {% endif %}
               </td>
               <td>
-              <a href="">Edit</a>
-              <a href="">Delete</a>
+                <a class="btn btn-info" href="/admin_dashboard/event/edit/query={{event.id}}" >
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-danger btn-delete" data-src="{{event.id}}">
+                  <i class="fa fa-trash" data-src="{{event.id}}"></i>
+                </a>
               </td>
             </tr>
             {% endfor  %}
@@ -85,4 +89,56 @@ block active %} active {% endblock %} {% block header %}
   </div>
 </div>
 <!-- /.row (main row) -->
+
+{% endblock %}
+{% block script_delete %} 
+
+<script>
+const csrfToken = "{{ csrf_token() }}"
+const showSwal = (id) => {
+  swal({
+  title: `Are you sure delete this?`,
+  text: "Once deleted, you will not be able to recover this.",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      
+      fetch(`${window.origin}/admin_dashboard/event/delete/query=${id}`, {
+        method: "DELETE",
+        headers: {
+          "X-CSRFToken" : csrfToken
+        }
+      })
+      .then((res) => {
+        if (res.ok) {
+         swal("Success!", "Event has been deleted!", "success");
+         setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          clearTimeout();
+        }
+        else if (res.status === 404) {
+          swal("Info!", "Event is not found 404", "info");
+        }
+      })
+      .catch((err) => {
+        swal(`Something went wrong! ${err}`, "error");
+      })
+    } else {
+      swal("Cancelling delete event!");
+    }
+  });
+}
+
+const btnDeletes = document.querySelectorAll(".btn-delete");
+btnDeletes.forEach((btnDelete) => {
+  btnDelete.addEventListener("click", (e) => {
+    const getDataId = e.target.getAttribute('data-src');
+    showSwal(getDataId);
+  });
+});
+</script>
 {% endblock %}
