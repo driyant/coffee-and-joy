@@ -147,6 +147,7 @@ const submitHandler = (e) => {
     <div id="spinner" class="spinner-border text-light spinner-border-sm" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>`;
+  const csrfToken = "{{ csrf_token() }}"
   let data = {
     firstname: firstNameInput.value,
     lastname: lastNameInput.value,
@@ -156,6 +157,7 @@ const submitHandler = (e) => {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
+      "X-CSRFToken" : csrfToken,
       "Content-Type": "application/json",
     },
   }).then((res) => {
@@ -172,18 +174,15 @@ const submitHandler = (e) => {
         "linear-gradient(to right, #aa0000, #fe0000)"
       )
       defaultCTAButton();
-      resetForm();
-    } else if (res.status === 400) {
-      showToastify(
-        `Bad request, form is invalid! Check the input!`,
-        "linear-gradient(to right, #aa0000, #fe0000)"
-      )
-      defaultCTAButton();
-      resetForm();
+    // } else if (res.status === 400) {
+    //   showToastify(
+    //     `Bad request, form is invalid! Check the input!`,
+    //     "linear-gradient(to right, #aa0000, #fe0000)"
+    //   )
+    //   defaultCTAButton();
     } 
     else {
       defaultCTAButton();
-      resetForm();
       throw new Error("Something went wrong!");
     }
   }).catch((err)=> {
@@ -192,7 +191,6 @@ const submitHandler = (e) => {
       "linear-gradient(to right, #aa0000, #fe0000)"
     )
     defaultCTAButton();
-    resetForm
   });
 };
 

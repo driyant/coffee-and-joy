@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="{{ url_for('index') }}" class="brand-link">
     {# <img
       src="dist/img/AdminLTELogo.png"
       alt="AdminLTE Logo"
@@ -92,7 +92,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="{{ url_for('subscriber') }}" class="nav-link">
             <i class="nav-icon fa fa-envelope"></i>
             <p>
               Data Subscribers

@@ -15,7 +15,7 @@ import datetime
 import gunicorn
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffeeshop.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db_coffee_and_joy.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
 
@@ -81,11 +81,13 @@ class Subscriber(db.Model):
   subscriber_firstname = db.Column(db.String(50), nullable=False)
   subscriber_lastname = db.Column(db.String(50), nullable=False)
   subscriber_email = db.Column(db.String(50), nullable=False)
+  subscriber_status = db.Column(db.String(50))
 
-  def __init__(self, subscriber_firstname, subscriber_lastname, subscriber_email):
+  def __init__(self, subscriber_firstname, subscriber_lastname, subscriber_email, subscriber_status):
     self.subscriber_firstname = subscriber_firstname
     self.subscriber_lastname = subscriber_lastname
     self.subscriber_email = subscriber_email
+    self.subscriber_status = subscriber_status
   
   def __repr__(self):
     return f"<Subscriber {self.subscriber_firstname}>"
@@ -121,15 +123,15 @@ def load_user(user_id):
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Browser caching issue
-# @app.after_request
-# def add_header(response):
-#     """
-#     Add headers to both force latest IE rendering engine or Chrome Frame,
-#     and also to cache the rendered page for 10 minutes.
-#     """
-#     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-#     response.headers['Cache-Control'] = 'public, max-age=0'
-#     return response
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 def allowed_file(image):
     return '.' in image and \
@@ -153,6 +155,7 @@ def index():
   )
   
 @app.route("/api/newsletter", methods=["POST"])
+@csrf.exempt
 def add_newsletter():
   # Check request is json
   if request.is_json:
@@ -160,7 +163,7 @@ def add_newsletter():
     firstname = req.get("firstname")
     lastname = req.get("lastname")
     email = req.get("email")
-    # Validation
+    Validation
     if not firstname or not lastname or not email:
       return jsonify(message="Bad request!"), 400
     # Email Already Exist!
@@ -168,11 +171,12 @@ def add_newsletter():
     if find_email:
       return jsonify(message="Email already exist!"), 409
     try:
-      subscriber = Subscriber(firstname, lastname, email)
+      subscriber = Subscriber(firstname, lastname, email, subscriber_status="subscribed")
       db.session.add(subscriber)
       db.session.commit()
       return jsonify(message="Success"), 201
     except Exception as e:
+      print(e)
       return jsonify(message=f"Something went wrong! {e}")
   else:
     return jsonify(message="Bad request, data is not a json!"), 400
@@ -251,8 +255,8 @@ def admin_dashboard():
 @login_required
 def subscriber():
    # Fetch all data in subscriber list
-  data_subscriber = Subscriber.query.all()
-  return render_template('admin_dashboard/subscriber.html', subscribers = data_subscriber)
+  subscribers = Subscriber.query.all()
+  return render_template('pages/data_subscribers/index.html', subscribers = subscribers)
 
 @app.route("/admin_dashboard/category")
 @login_required

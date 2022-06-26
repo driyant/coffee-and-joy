@@ -1,7 +1,7 @@
-{% extends 'layouts/dashboard.html' %} {% block title %} Category {% endblock%} {%
+{% extends 'layouts/dashboard.html' %} {% block title %} Subscribers {% endblock%} {%
 block active %} active {% endblock %} {% block header %}
 <div class="col-sm-6">
-  <h1 class="m-0">Management Category</h1>
+  <h1 class="m-0">Data Subscriber</h1>
 </div>
 <!-- /.col -->
 <div class="col-sm-6">
@@ -9,7 +9,7 @@ block active %} active {% endblock %} {% block header %}
     <li class="breadcrumb-item">
       <a href="{{ url_for('admin_dashboard') }}">Home</a>
     </li>
-    <li class="breadcrumb-item active">Category</li>
+    <li class="breadcrumb-item active">Data Subscriber</li>
   </ol>
 </div>
 {% endblock %} {% block content %}
@@ -19,9 +19,9 @@ block active %} active {% endblock %} {% block header %}
     <div class="card">
       <div class="card-header">
         {# <h3 class="card-title">DataTable with default features</h3> #}
-        <a class="btn btn-primary" href="{{ url_for('create_category') }}">
+        {# <a class="btn btn-primary" href="{{ url_for('create_subscriber') }}">
         <i class="nav-icon fa fa-plus" aria-hidden="true"></i>
-        Add Category</a>
+        Add Subscriber</a> #}
       </div>
       <!-- /.card-header -->
       <div class="card-body">
@@ -29,21 +29,27 @@ block active %} active {% endblock %} {% block header %}
           <thead>
             <tr>
               <th>NO#</th>
-              <th>CATEGORY</th>
+              <th>FIRSTNAME</th>
+              <th>LASTNAME</th>
+              <th>EMAIL</th>
+              <th>STATUS</th>
               <th>OPERATIONS</th>
             </tr>
           </thead>
           <tbody>
-            {% for category in categories %}
+            {% for subscriber in subscribers %}
             <tr>
               <td>{{ loop.index }}</td>
-              <td>{{ category.category_name.title() }}</td>
+              <td>{{ subscriber.subscriber_firstname.title() }}</td>
+              <td>{{ subscriber.subscriber_lastname.title() }}</td>
+              <td>{{ subscriber.subscriber_email.lower() }}</td>
+              <td>{{ subscriber.subscriber_status.title() }}</td>
               <td>
-                <a class="btn btn-info" href="/admin_dashboard/category/edit/query={{category.id}}" >
+                {# <a class="btn btn-info" href="/admin_dashboard/category/edit/query={{category.id}}" >
                   <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                </a>
-                <a class="btn btn-danger btn-delete" data-src="{{category.id}}">
-                  <i class="fa fa-trash" data-src="{{category.id}}"></i>
+                </a> #}
+                <a class="btn btn-danger btn-delete" data-src="{{subscriber.id}}">
+                  <i class="fa fa-trash" data-src="{{subscriber.id}}"></i>
                 </a>
               </td>
             </tr>
